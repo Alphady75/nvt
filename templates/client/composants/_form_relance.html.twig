@@ -1,0 +1,63 @@
+<fieldset class="my-3">
+	<legend>Contact relance</legend>
+	<table class="table contact">
+		<tbody>
+			<tr>
+				<th>Nom contact</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ form_widget(form.relanceNom) }}
+							{{ form_errors(form.relanceNom) }}
+						</div>
+						<div class="col-sm-3">
+							<label for="">Jours relance</label>
+						</div>
+						<div class="col-sm-3">
+							{{ form_widget(form.relanceJours) }}
+							{{ form_errors(form.relanceJours) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Tel</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-5">
+							{{ form_widget(form.relanceTel) }}
+							{{ form_errors(form.relanceTel) }}
+						</div>
+						<div class="col-sm-2">
+							<label for="">Tel 2</label>
+						</div>
+						<div class="col-sm-5">
+							{{ form_widget(form.relanceTel2) }}
+							{{ form_errors(form.relanceTel2) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-8">
+							{{ form_widget(form.relanceEmail) }}
+							{{ form_errors(form.relanceEmail) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Memo</th>
+				<td>
+					<div class="row">
+						{{ form_widget(form.relanceMemo) }}
+						{{ form_errors(form.relanceMemo) }}
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>

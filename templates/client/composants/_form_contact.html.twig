@@ -1,0 +1,90 @@
+<fieldset class="">
+	<legend>Contact</legend>
+
+	<div class="row rounded">
+		<div class="col-sm-3">
+			<div class="h-100 rounded text-center">
+				{% if app.request.attributes.get('_route') == 'client_edit' %}
+
+					{% if client.civilite == 'Mr' %}
+						<img src="{{ asset('img/user.png') }}" class="img-fluid" alt="">
+					{% else %}
+						<img src="{{ asset('img/femmel.png') }}" class="img-fluid" alt="">
+					{% endif %}
+
+				{% else %}
+					<img src="{{ asset('img/user.jpg') }}" class="img-fluid" alt="">
+				{% endif %}
+            <div class="py-2">
+               {{ form_row(form.civilite) }}
+            </div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table contact">
+						<tbody>
+							<tr>
+								<th>Fonction</th>
+								<td>
+                           {{ form_widget(form.contFonction) }}
+                           {{ form_errors(form.contFonction) }}
+								</td>
+							</tr>
+							<tr>
+								<th>Nom</th>
+								<td>
+									<div class="row">
+										<div class="col-sm-6">
+											{{ form_widget(form.nom) }}
+											{{ form_errors(form.nom) }}
+										</div>
+										<div class="col-sm-6">
+											{{ form_widget(form.prenom) }}
+											{{ form_errors(form.prenom) }}
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td>
+									{{ form_widget(form.email) }}
+									{{ form_errors(form.email) }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<table class="table commande">
+		<tbody>
+			<tr>
+				<th>Tel Fix</th>
+				<td>
+					{{ form_widget(form.contFix) }}
+					{{ form_errors(form.contFix) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Mobile</th>
+				<td>
+					{{ form_widget(form.telephone) }}
+					{{ form_errors(form.telephone) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Fax</th>
+				<td>
+					{{ form_widget(form.contFax) }}
+					{{ form_errors(form.contFax) }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</fieldset>

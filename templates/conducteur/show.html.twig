@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conducteur
+{% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('conducteur_index') }}">
+			<i class="mdi mdi-account-multiple-outline"></i>
+			Conducteurs</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}
+	</li>
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="card">
+		<div class="card-header bg-primary">
+			<h4 class="font-size-18 py-2 text-light">
+				Conducteur:
+				{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}
+			</h4>
+		</div>
+		<div class="card-body py-5">
+			<div class="row">
+				<div class="col-sm-9 offset-sm-1">
+
+					<div class="row my-3">
+						<div class="col-sm-6">
+							<div class="h-100">
+
+								{% if conducteur.imageName %}
+									<img src="{{ vich_uploader_asset(conducteur) | imagine_filter('large_size') }}" class="img-fluid" alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
+								{% else %}
+									{% if conducteur.civilite == 'Mr' %}
+										<img src="{{ asset('img/user.png') }}" class="img-fluid" alt="">
+									{% else %}
+										<img src="{{ asset('img/femmel.png') }}" class="img-fluid" alt="">
+									{% endif %}
+								{% endif %}
+
+								{{ conducteur.imageFile }}
+
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<p class="my-1 text-muted">Civilité</p>
+							{{ conducteur.civilite }}
+							<p class="my-1 pt-4 text-muted">Statut</p>
+							{% for statut in conducteur.statut %}
+								<span>{{ statut }}</span>
+							{% endfor %}
+							<p class="my-1 pt-4 text-muted">Code</p>
+							{{ conducteur.code }}
+							<p class="my-1 pt-4 text-muted">Nom*</p>
+							{{ conducteur.nom }}
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="my-1 pt-4 text-muted">Prénom*</p>
+                                    {{ conducteur.prenom }}
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="my-1 pt-4 text-muted">Prénom 2*</p>
+                                    {{ conducteur.prenom2 }}
+                                </div>
+                            </div>
+							<div class="row">
+								<div class="col-sm-6">
+									<p class="my-1 pt-4 text-muted">Date de naissance</p>
+									{{ conducteur.datenaissance|date('d/m/Y') }}
+								</div>
+								<div class="col-sm-6">
+									<p class="my-1 pt-4 text-muted">Ville de naissance</p>
+									{{ conducteur.villenaissance }}
+								</div>
+								<div class="col-sm-12">
+									<p class="my-1 pt-4 text-muted">Nationalité</p>
+									{{ conducteur.nationalite }}
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Domicile</p>
+							{{ conducteur.domicile }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Adresse</p>
+							{{ conducteur.adresse }}
+						</div>
+
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Téléphone</p>
+							{{ conducteur.telephone }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Téléphone personnel</p>
+							{{ conducteur.telpersonnel }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<p class="my-1 pt-4 text-muted">Email</p>
+							{{ conducteur.email }}
+						</div>
+						<div class="col-sm-6">
+							<p class="my-1 pt-4 text-muted">Email personnel</p>
+							{{ conducteur.emailPerso }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Poste</p>
+							{{ conducteur.poste }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Service</p>
+							{{ conducteur.service }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Ville de travail</p>
+							{{ conducteur.villeTravail }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Entreprise</p>
+							{{ conducteur.entreprise }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Date debut encienneté</p>
+							{{ conducteur.dateDebutEnciennete|date('d/m/Y') }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Date d'entré</p>
+							{{ conducteur.dateEntre|date('d/m/Y') }}
+						</div>
+
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Type de contrat</p>
+							{{ conducteur.typeContrat }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Date Fin Contrat</p>
+							{{ conducteur.dateFinContrat|date('d/m/Y') }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							{{ conducteur.chauffeur ? 'Chaufeur' : '' }}
+						</div>
+						<div class="col-sm-12">
+							<p class="my-1 pt-4 text-muted">Mémo</p>
+							{{ conducteur.memo }}
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Type permis</p>
+							{{ conducteur.typePermis }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Numéro permis</p>
+							{{ conducteur.numPermis }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Ville permis</p>
+							{{ conducteur.villePermis }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Société</p>
+							{{ conducteur.societe }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Appartenance</p>
+							{{ conducteur.appartenance }}
+						</div>
+						<div class="col-sm-6">
+							<p class="my-1 pt-4 text-muted">A contacter en cas d'urgence</p>
+							{{ conducteur.contactsUrgence }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Num carte Tachy</p>
+							{{ conducteur.numcartetachy }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Num carte Vital</p>
+							{{ conducteur.numCarteVital }}
+						</div>
+						<div class="col-sm-6">
+							<p class="my-1 pt-4 text-muted">Emeteur passeport</p>
+							{{ conducteur.emeteurPasseport }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Taille</p>
+							{{ conducteur.taille }}
+						</div>
+						<div class="col-sm-3">
+							<p class="my-1 pt-4 text-muted">Pointure</p>
+							{{ conducteur.pointure }}
+						</div>
+					</div>
+
+					<div class="">
+						<table class="table table-striped mt-3">
+							<tbody>
+								<tr>
+									<th>Date de création</th>
+									<td>{{ conducteur.created ? conducteur.created|date('d/m/Y H:i:s') : '' }}</td>
+								</tr>
+								<tr>
+									<th>Dernière mise à jour</th>
+									<td>{{ conducteur.updated ? conducteur.updated|date('d/m/Y H:i:s') : '' }}</td>
+								</tr>
+								<tr>
+									<th>Actions</th>
+									<td>
+										<a href="{{ path('conducteur_edit', {'id': conducteur.id}) }}" class="btn btn-light">Mettre à jour</a>
+
+
+										{{ include('conducteur/_delete_form.html.twig') }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

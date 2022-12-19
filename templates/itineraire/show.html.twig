@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Itineraire{% endblock %}
+
+{% block btn %}
+	{% include "itineraire/_btn_links.html.twig" %}
+{% endblock %}
+
+
+{% block body %}
+    <h1>Itineraire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ itineraire.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ itineraire.designation }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ itineraire.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ itineraire.description }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ itineraire.created ? itineraire.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ itineraire.updated ? itineraire.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('itineraire_index') }}">back to list</a>
+
+    <a href="{{ path('itineraire_edit', {'id': itineraire.id}) }}">edit</a>
+
+    {{ include('itineraire/_delete_form.html.twig') }}
+{% endblock %}

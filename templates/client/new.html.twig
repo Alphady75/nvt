@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau client
+{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('client_index') }}">
+        <i class="mdi mdi-account-group"></i>
+        Clients</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <i class="icon-user"></i>
+    Nouveau client
+</li>
+
+{% endblock %}
+
+{% block body %}
+
+{{ include('client/_form.html.twig') }}
+
+{% endblock %}
+{% block javascripts %}
+
+{{ parent() }}
+
+<script>
+    $(document).on('change', '#client_ville', function () {
+
+        let $field = $(this)
+        let $form = $field.closest('form')
+        let data = {}
+
+        data[$field.attr('name')] = $field.val()
+
+        $.post($form.attr('action'), data).then(function (data) {
+
+            console.log(data)
+
+            let $input = $(data).find('#client_secteur')
+
+            $('#client_secteur').replaceWith($input)
+
+        }).catch(function (error) {
+            console.log(error)
+        })
+    })
+</script>
+
+{% endblock %}

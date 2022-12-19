@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vehicule
+{% endblock %}
+
+{% block links %}
+	<li class="breadcrumb-item">
+		<a href="{{ path('vehicule_index') }}">
+			<i class="mdi mdi-bus-marker"></i>
+			Vehicules</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		Ajouter un vehicule
+	</li>
+{% endblock %}
+
+{% block body %}
+
+	{{ include('vehicule/_form.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Itineraires{% endblock %}
+
+{% block btn %}
+{% include "itineraire/_btn_links.html.twig" %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="table-responsive">
+        <table class="table table-hover bg-white rounded table-striped">
+            <thead class="text-left bg-primary text-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Designation</th>
+                    <th>Tarif</th>
+                    <th>Description</th>
+                    <th>Client</th>
+                    <th></th>
+                    <th>Date création</th>
+                    <th>Dernière mise à jour</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for itineraire in itineraires %}
+                <tr>
+                    <td>{{ itineraire.id }}</td>
+                    <td>{{ itineraire.designation }}</td>
+                    <td>{{ itineraire.tarif ~ currency }}</td>
+                    <td>{{ itineraire.description|raw }}</td>
+                    <td>
+                        {% if itineraire.client.civilite == 'Mr' %}
+                        <img src="{{ asset('img/user.png') | imagine_filter('medium_avatar') }}"
+                            alt="{{ itineraire.client.nom ~ ' ' ~ itineraire.client.prenom }}">
+                        {% else %}
+                        <img src="{{ asset('img/femmel.png') | imagine_filter('medium_avatar') }}"
+                            alt="{{ itineraire.client.nom ~ ' ' ~ itineraire.client.prenom }}">
+                        {% endif %}
+                    </td>
+                    <td>{{ itineraire.client.civilite }}. <strong>{{ itineraire.client.nom }} {{ itineraire.client.prenom }}</strong> <br>
+                        <small>{{ itineraire.client.email }}</small>
+                    </td>
+                    <td>{{ itineraire.created ? itineraire.created|date('d/m/Y à H:i:s') : '' }}</td>
+                    <td>{{ itineraire.updated ? itineraire.updated|date('d/m/Y à H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('itineraire_show', {'id': itineraire.id}) }}" class="btn btn-light">
+                            Details
+                        </a>
+                        <a href="{{ path('itineraire_edit', {'id': itineraire.id}) }}" class="btn btn-light">
+                            Modifier
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="9">Aucune données</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

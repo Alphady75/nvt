@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-calendar-multiple"></i> {{ commandesAll|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('commande_index') }}">Commandes</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-account-group"></i> {{ clients|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('client_index') }}">Clients</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-account-multiple-outline"></i> {{ conducteurs|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('conducteur_index') }}">Conducteurs</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-routes"></i> {{ itineraires|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('itineraire_index') }}">Itineraires</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-bus-marker"></i> {{ vehicules|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('vehicule_index') }}">Vehicules</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+	
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-map"></i> {{ villes|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('ville_index') }}">Villes</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-arrow-decision"></i> {{ secteurs|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('secteur_index') }}">Secteurs</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+	
+	<!-- end col -->
+	<div class="col-sm-6 col-xl-3">
+		<div class="card card-content">
+			<div class="card-body row justify-content-center">
+				<h4 class="mb-2 font-size-20">
+					<i class="mdi-24px mdi mdi-account-supervisor-circle-outline"></i> {{ users|length }}
+				</h4>
+				<p class="mb-2 text-muted font-size-13 text-nowrap">
+					<a href="{{ path('users_index') }}">Comptes utilisateurs</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+</div>
+<!-- end row -->
+
+<div class="row">
+	<div class="col-xl-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Donut Chart</h5>
+				<p class="card-title-desc d-inline-block text-truncate w-100">Pie and doughnut charts are probably
+					the most commonly used chart there are. They are divided into segments,
+					the arc of each segment shows the proportional value of each piece of
+					data.
+				</p>
+				<canvas id="doughnut" height="300"></canvas>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+
+	<div class="col-xl-8">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Line Chart</h5>
+				<p class="card-title-desc d-inline-block text-truncate w-100">A line chart is a way of plotting data
+					points on a line. Often, it is used to show trend data, and the
+					comparison of two data sets.
+				</p>
+				<canvas id="lineChart" height="300"></canvas>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+</div>
+<!-- end row -->
+
+{% include "commande/_table_card.html.twig" %}
+
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+<!-- Responsive Table css -->
+<link href="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.css') }}" rel="stylesheet"
+	type="text/css" />
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<!-- Responsive Table js -->
+<script src="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.js') }}"></script>
+
+<!-- Init js -->
+<script src="{{ asset('themes/base/js/pages/table-responsive.init.js') }}"></script>
+{% endblock %}

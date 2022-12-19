@@ -1,0 +1,95 @@
+<fieldset class="my-3">
+	<legend>Feuille semaine</legend>
+	<div class="row">
+		<div class="col-sm-6">
+			<table class="table contact">
+				<tbody>
+					<tr>
+						<th>Chargement</th>
+						<td>
+							{{ form_widget(form.feuilleChar) }}
+							{{ form_errors(form.feuilleChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Code Chargement</th>
+						<td>
+							{{ form_widget(form.feuilleCodeChar) }}
+							{{ form_errors(form.feuilleCodeChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Supprimer</th>
+						<td>
+							{{ form_widget(form.feuilleSupChar) }}
+							{{ form_errors(form.feuilleSupChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Nb car</th>
+						<td>
+							{{ form_widget(form.feuilleNbCarChar) }}
+							{{ form_errors(form.feuilleNbCarChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Vide</th>
+						<td>
+							{{ form_widget(form.feuilleVideChar) }}
+							{{ form_errors(form.feuilleVideChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Ref Client</th>
+
+						<td>
+							{{ form_widget(form.feuilleRefClientChar) }}
+							{{ form_errors(form.feuilleRefClientChar) }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-6">
+			<table class="table commande">
+				<tbody>
+					<tr>
+						<th>Livraison</th>
+						<td>
+							{{ form_widget(form.feuilleLiv) }}
+							{{ form_errors(form.feuilleLiv) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Code livraison</th>
+						<td>
+							{{ form_widget(form.feuilleLivCode) }}
+							{{ form_errors(form.feuilleLivCode) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Supprimer</th>
+						<td>
+							{{ form_widget(form.feuilleLivSup) }}
+							{{ form_errors(form.feuilleLivSup) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Ref client</th>
+						<td>
+							{{ form_widget(form.feuilleLivRefClient) }}
+							{{ form_errors(form.feuilleLivRefClient) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Nb car</th>
+						<td>
+							{{ form_widget(form.feuilleLivNbCar) }}
+							{{ form_errors(form.feuilleLivNbCar) }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</fieldset>

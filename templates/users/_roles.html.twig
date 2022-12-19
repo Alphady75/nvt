@@ -1,0 +1,17 @@
+{% for role in user.roles %}
+
+	{% if role == "ROLE_MODERATEUR" %}
+
+		<span class="badge bg-success">MODERATEUR</span>
+
+	{% elseif role == "ROLE_ADMIN" %}
+
+		<span class="badge bg-primary">ADMINISTRATEUR</span>
+
+	{% elseif role == "ROLE_EDITEUR" %}
+
+		<span class="badge bg-info">EDITEUR</span>
+
+	{% endif %}
+
+{% endfor %}

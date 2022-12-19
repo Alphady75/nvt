@@ -1,0 +1,92 @@
+<div class="vertical-menu">
+
+	<div
+		data-simplebar class="h-100">
+
+		<!--- Sidemenu -->
+		<div
+			id="sidebar-menu">
+			<!-- Left Menu Start -->
+			<ul class="metismenu list-unstyled" id="side-menu">
+				<li class="menu-title">{{ appName }}</li>
+
+				{% if is_granted('ROLE_ADMIN') %}
+
+					<li>
+						<a href="{{ path('dashboard') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-speedometer"></i>
+							<span>Tableau de bord</span>
+						</a>
+					</li>
+
+					<!-- Clients -->
+					<li>
+						<a href="{{ path('client_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-account-group"></i>
+							<span>Clients</span>
+						</a>
+					</li>
+
+					<!-- Conducteurs -->
+					<li>
+						<a href="{{ path('conducteur_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-account-multiple-outline"></i>
+							<span>Conducteurs</span>
+						</a>
+					</li>
+
+					<!-- Villes -->
+					<li>
+						<a href="{{ path('ville_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-map"></i>
+							<span>Villes</span>
+						</a>
+					</li>
+
+					<!-- Secteurs -->
+					<li>
+						<a href="{{ path('secteur_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-arrow-decision"></i>
+							<span>Secteurs</span>
+						</a>
+					</li>
+
+					<!-- Vehicule -->
+					<li>
+						<a href="{{ path('vehicule_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-bus-marker"></i>
+							<span>Vehicule</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+				{% if is_granted('ROLE_MODERATEUR') %}
+
+					<!-- Commande -->
+					<li>
+						<a href="{{ path('commande_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-calendar-multiple"></i>
+							<span>Planning des commandes</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+				{% if is_granted('ROLE_ADMIN') %}
+
+					<!-- Comptes utilisateurs -->
+					<li>
+						<a href="{{ path('users_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-account-supervisor-circle-outline"></i>
+							<span>Comptes utilisateurs</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+			</ul>
+		</div>
+		<!-- Sidebar -->
+	</div>
+</div>

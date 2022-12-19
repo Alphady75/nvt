@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau compte utilisateur {% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('users_index') }}">
+			<i class="mdi mdi-account-supervisor-circle-outline"></i>
+			Comptes utilisateurs</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		Nouveau compte utilisateur
+	</li>
+
+{% endblock %}
+
+{% block btn %}
+<a href="{{ path('users_new') }}" class="btn btn-primary">
+    <i class="mdi mdi-account"></i> Nouveau comptes
+</a>
+{% endblock %}
+
+{% block body %}
+
+{{ include('users/_form.html.twig') }}
+
+{% endblock %}

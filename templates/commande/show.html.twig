@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande n°{{ commande.id }}
+{% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('commande_index') }}">
+			<i class="mdi mdi-calendar-multiple"></i>
+			Planning des commandes</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		Commande n°{{ commande.id }}
+	</li>
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="card">
+        <div class="card-header bg-primary">
+            <h4 class="py-2 font-size-18 text-light">Commande de 
+				{{ commande.client.civilite }} {{ commande.client.nom }} {{ commande.client.prenom }}</h4>
+        </div>
+
+		<div class="card-body py-5">
+			<h4 class="my-4 font-size-18">Client</h4>
+			<table class="h-50 table table-borderless table-hover p-0">
+				<tbody class="py-0 my-0">
+					<tr class="">
+						<th class="">Civilité</th>
+						<td>{{ commande.client.civilite }}</td>
+					</tr>
+					<tr>
+						<th class="">Nom(s)</th>
+						<td>{{ commande.client.nom }}</td>
+					</tr>
+					<tr>
+						<th class="">Prénom(s)</th>
+						<td>{{ commande.client.prenom }}</td>
+					</tr>
+					<tr>
+						<th class="">Téléphone</th>
+						<td>{{ commande.client.telephone }}</td>
+					</tr>
+					<tr>
+						<th class="">Adresse</th>
+						<td>{{ commande.client.adresse }}</td>
+					</tr>
+					<tr>
+						<th class="">Email</th>
+						<td>{{ commande.client.email }}</td>
+					</tr>
+					<tr>
+						<th class="">Ville</th>
+						<td>{{ commande.client.ville }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4 class="my-4 font-size-18">Conducteur</h4>
+			<table class="h-50 table table-borderless table-hover p-0">
+				<tbody class="py-0 my-0">
+					<tr>
+						<th>
+							{% if commande.conducteur.imageName %}
+								<img src="{{ vich_uploader_asset(commande.conducteur) | imagine_filter('identite_size') }}" alt="{{ commande.conducteur.nom ~ ' ' ~ commande.conducteur.prenom }}">
+							{% else %}
+								<img src="{{ asset('img/user.jpg') | imagine_filter('identite_size') }}" alt="{{ commande.conducteur.nom ~ ' ' ~ commande.conducteur.prenom }}">
+							{% endif %}
+						</th>
+						<td>
+							<span>{{ commande.conducteur.civilite }}</span>
+							<strong>{{ commande.conducteur.nom }}
+								{{ commande.conducteur.prenom }}</strong>
+							<p>{{ commande.conducteur.email }}</p>
+							<p>{{ commande.conducteur.telephone }}</p>
+							<p>
+								<span class="">Code:</span>
+								<strong>{{ commande.conducteur.code }}</strong>
+							</p>
+							<p>
+								<span class="">Adresse:</span>
+								<strong>{{ commande.conducteur.adresse }}</strong>
+							</p>
+							<p>
+								<span class="">Ville de tarvail et secteur:</span>
+								<strong>{{ commande.conducteur.villeTravail }}
+									-
+									{{ commande.conducteur.secteur.name
+                                    }}</strong>
+							</p>
+							<p>
+								<span class="">Type de contrat:</span>
+								<strong>{{ commande.conducteur.typeContrat }}</strong>
+							</p>
+							<p>
+								<span class="" colspan="2">
+									<a href="{{ path('conducteur_edit', {id: commande.conducteur.id}) }}" target="_blank" class="btn btn-light">
+										<i class="mdi mdi-account-edit"></i>
+										Mettre à jour
+									</a>
+								</span>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4 class="my-3 font-size-18">Vehicule</h4>
+
+			{% if commande.statut %}
+
+			<h4 class="my-3 font-size-18">Facture</h4>
+			<div class="p-5 border">
+
+				{{ include('commande/_facture.html.twig') }} <br class="mt-3">
+
+				{{ include('factures/_form_generer.html.twig') }}
+
+				{{ include('commande/_delete_form.html.twig') }}
+			</div>
+
+			{% endif %}
+
+		</div>
+
+	</div>
+
+{% endblock %}

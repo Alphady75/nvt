@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ vehicule.name }}{% endblock %}
+
+{% block links %}
+<li class="breadcrumb-item">
+	<a href="{{ path('vehicule_index') }}">
+		<i class="mdi mdi-bus-marker"></i>
+		Vehicules</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+	{{ vehicule.name }}
+</li>
+{% endblock %}
+
+{% block body %}
+<div class="card">
+	<div class="card-header bg-primary">
+		<h4 class="font-size-18 py-2 text-light">Vehicule {{ vehicule.name }}</h4>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<table class="table table-borderless">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ vehicule.id }}</td>
+						</tr>
+						<tr>
+							<th>Désignation</th>
+							<td>{{ vehicule.name }}</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ vehicule.description }}</td>
+						</tr>
+						<tr>
+							<th>Média</th>
+							<td>
+								{% if vehicule.imageName %}
+								<img src="{{ vich_uploader_asset(vehicule) | imagine_filter('medium_size') }}"
+									alt="{{ vehicule.name }}">
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<th>Reference</th>
+							<td>{{ vehicule.reference }}</td>
+						</tr>
+						<tr>
+							<th>Date création</th>
+							<td>{{ vehicule.created ? vehicule.created|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Dernière mise à jour</th>
+							<td>{{ vehicule.updated ? vehicule.updated|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a href="{{ path('vehicule_edit', {'id': vehicule.id}) }}" class="btn btn-light">Mettre à jour</a>
+
+				{{ include('vehicule/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

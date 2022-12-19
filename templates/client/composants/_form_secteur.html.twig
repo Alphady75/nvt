@@ -1,0 +1,41 @@
+<fieldset class="my-3">
+   <table class="table commande">
+      <legend>Secteur</legend>
+      <tbody>
+         <tr>
+            <th>Appartenance</th>
+            <td>
+               <div class="row">
+                  <div class="col-sm-6">
+                     {{ form_widget(form.sectAppartenance) }}{{ form_errors(form.sectAppartenance) }}
+                  </div>
+                  <div class="col-sm-6">
+                     {{ form_widget(form.ville) }}{{ form_errors(form.ville) }}
+                  </div>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <th>Compte</th>
+            <td>
+               {{ form_widget(form.sectCompte) }}
+               {{ form_errors(form.sectCompte) }}
+            </td>
+         </tr>
+         <tr>
+            <th>Secteur</th>
+            <td>
+               {{ form_widget(form.secteur) }}
+               {{ form_errors(form.secteur) }}
+            </td>
+         </tr>
+         <tr>
+            <th>Num siret</th>
+            <td>
+               {{ form_widget(form.sectNumSiret) }}
+               {{ form_errors(form.sectNumSiret) }}
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>

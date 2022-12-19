@@ -1,0 +1,29 @@
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="alert alert-dismissible fade show alert-{{ type }} left-icon-big alert-dismissible fade show" role="alert">
+
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+			<strong>
+				{% if type == 'success' %}
+					<i class="mdi mdi-check-circle-outline"></i>
+				{% elseif type =='primary' %}
+					<i class="mdi mdi-email-alert"></i>
+				{% elseif type =='danger' %}
+					<i class="mdi mdi-alert"></i>
+				{% endif %}
+
+				{% if type == 'success' %}
+					Success
+				{% elseif type =='primary' %}
+					Success
+				{% elseif type =='danger' %}
+					Echec
+				{% endif %}
+			</strong>
+
+			{{ message }}
+            
+		</div>
+	{% endfor %}
+{% endfor %}

@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+<legend class="h5">Filtre</legend>
+<table class="table filtre">
+   <tbody>
+      <tr>
+         <td>{{ form_row(form.villes) }}</td>
+         <td>{{ form_row(form.secteurs) }}</td>
+         <td>{{ form_row(form.vehicules) }}</td>
+         <td>{{ form_row(form.clients) }}</td>
+         <td>{{ form_row(form.itineraires) }}</td>
+      </tr>
+      <tr>
+         <td>{{ form_row(form.dateLivraison) }}</td>
+         <td>{{ form_row(form.dateReception) }}</td>
+         <td colspan="3">{{ form_row(form.statut) }}</td>
+      </tr>
+      <tr>
+         <td colspan="5">
+            <button class="btn btn-primary mb-4"><i class="mdi mdi-filter"></i> Filtrer</button>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+{{ form_end(form) }}

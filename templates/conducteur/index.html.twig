@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conducteurs{% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('conducteur_index') }}">
+			<i class="mdi mdi-account-multiple-outline"></i>
+			Conducteurs ({{ conducteurs.getTotalItemCount }})
+		</a>
+	</li>
+
+{% endblock %}
+
+{% block btn %}
+	<a href="{{ path('conducteur_new') }}" class="btn btn-primary">
+        <i class="mdi mdi-account"></i>
+		Ajouter un conducteur
+    </a>
+{% endblock %}
+
+{% block body %}
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped text-uppercase">
+        <thead class="text-left bg-primary text-light">
+            <tr>
+                <th>Id</th>
+                <th>Conducteur</th>
+                <th></th>
+                <th>Type Contrat</th>
+                <th>Coordonnées</th>
+                <th>Ville et Secteur de travaile</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for conducteur in conducteurs %}
+            <tr>
+                <td>{{ conducteur.id }}</td>
+                <td>
+                    {% if conducteur.imageName %}
+                    <img src="{{ vich_uploader_asset(conducteur) | imagine_filter('medium_avatar') }}"
+                        alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
+                    {% else %}
+                    {% if conducteur.civilite == 'Mr' %}
+                    <img src="{{ asset('img/user.png') | imagine_filter('medium_avatar') }}"
+                        alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
+                    {% else %}
+                    <img src="{{ asset('img/femmel.png') | imagine_filter('medium_avatar') }}"
+                        alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
+                    {% endif %}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ conducteur.civilite }}.
+                    <strong class="py-0 my-0">
+                        {{ conducteur.nom }}
+                        {{ conducteur.prenom }}
+                    </strong>
+                    <small class="d-block py-0 my-0">{{ conducteur.email }}</small>
+                    <small class="d-block py-0 my-0">Code: {{ conducteur.code }}</small>
+                </td>
+                <td>{{ conducteur.typeContrat }}</td>
+                <td>{{ conducteur.telephone }} <br> {{ conducteur.adresse }}</td>
+                <td>{{ conducteur.villeTravail.name }} <br> {{ conducteur.secteur.name ?? '' }}</td>
+                <td>
+                    <a href="{{ path('conducteur_show', {'id': conducteur.id}) }}" class="btn btn-light"><i
+                        class="mdi mdi-account-search"></i> Détails</a>
+                    <a href="{{ path('conducteur_edit', {'id': conducteur.id}) }}" class="btn btn-light"><i class="mdi mdi-account-edit"></i> Modifier</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8">Aucune donnée</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(conducteurs) }}
+
+</div>
+
+{% endblock %}

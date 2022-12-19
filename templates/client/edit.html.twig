@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients - {{ client.nom ~ ' ' ~ client.prenom }}{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('client_index') }}">
+        <i class="mdi mdi-account-group"></i>
+        Clients</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <i class="icon-user"></i>
+    {{ client.nom ~ ' ' ~ client.prenom }}
+</li>
+
+{% endblock %}
+
+{% block body %}
+
+    {{ include('client/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{{ form_start(form) }}
+<div class="card border">
+
+	<div class="card-header bg-primary">
+		<h4 class="font-size-18 py-2 text-light">
+			Compte
+			{% if app.request.attributes.get('_route') == 'users_edit' %}
+				de
+				{{ user.nom }}
+				{{ user.prenom }}
+			{% else %}
+				utilisateur
+			{% endif %}
+		</h4>
+	</div>
+
+	<div class="card-body py-5">
+		<div class="row">
+			<div class="col-sm-8 offset-sm-1">
+				<div class="row">
+
+					<div class="col-md-5">
+						<div class="text-left rounded">
+
+							{{ include('users/_photo_compte.html.twig') }}
+
+							<div class="small">{{ form_row(form.imageFile) }}</div>
+
+						</div>
+					</div>
+					<div class="col-md-7">
+
+						{{ form_row(form.nom) }}
+
+						{{ form_row(form.prenom) }}
+
+						{{ form_row(form.genre) }}
+
+					</div>
+				</div>
+
+				<div class="py-2 mt-4">
+					{{ form_row(form.apropos) }}
+
+					{{ form_errors(form.apropos) }}
+
+					{{ form_row(form.email) }}
+				</div>
+
+				<div class="py-4">
+
+					<button class="btn btn-primary" formnovalidate="">
+						{{ button_label|default('Enregistrer') }}
+					</button>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+{{ form_end(form) }}

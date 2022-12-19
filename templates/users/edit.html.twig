@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mise à jour du compte de {{ user.nom ~ ' ' ~ user.prenom }} {% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('users_index') }}">
+			<i class="mdi mdi-account-supervisor-circle-outline"></i>
+			Comptes utilisateurs</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		<strong>{{ user.nom ~ " " ~ user.prenom }}</strong>
+	</li>
+
+{% endblock %}
+
+{% block btn %}
+<a href="{{ path('users_new') }}" class="btn btn-primary">
+    <i class="mdi mdi-account"></i> Nouveau comptes
+</a>
+{% endblock %}
+
+{% block body %}
+
+{{ include('users/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

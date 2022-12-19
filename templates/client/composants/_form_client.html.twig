@@ -1,0 +1,123 @@
+<fieldset class="my-3">
+	<legend>Infos comptables Client</legend>
+	<table class="table contact">
+		<tbody>
+			<tr>
+				<th>Tr.CPT.</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ form_widget(form.comptClientTrCpt) }}
+							{{ form_errors(form.comptClientTrCpt) }}
+						</div>
+						<div class="col-sm-6">
+							{{ form_widget(form.comptClientCcMulti) }}
+							{{ form_errors(form.comptClientCcMulti) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Compte</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-8">
+							{{ form_widget(form.comptClientCompte) }}
+							{{ form_errors(form.comptClientCompte) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th>Mode Reg</th>
+				<td>
+					{{ form_widget(form.comptClientModReg) }}
+					{{ form_errors(form.comptClientModReg) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Type Reg</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-5">
+							{{ form_widget(form.comptClientTypeReg) }}
+							{{ form_errors(form.comptClientTypeReg) }}
+						</div>
+						<div class="col-sm-3">
+							<label for="">Jours paiement</label>
+						</div>
+						<div class="col-sm-4">
+							{{ form_widget(form.comptClientJoursPaiement) }}
+							{{ form_errors(form.comptClientJoursPaiement) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Type Reg Parc</th>
+				<td>
+					{{ form_widget(form.comptClientTypeRegParc) }}
+					{{ form_errors(form.comptClientTypeRegParc) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Act Achat</th>
+				<td>
+					{{ form_widget(form.comptClientActVente) }}
+					{{ form_errors(form.comptClientActVente) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Groupe Tax Ventes</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ form_widget(form.comptClientGrTaxVentes) }}
+							{{ form_errors(form.comptClientGrTaxVentes) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Fact Aout</th>
+				<td>
+					{{ form_widget(form.comptClientFactAout) }}
+					{{ form_errors(form.comptClientFactAout) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Certif</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-1">
+							<label for="" class="py-2">Du</label>
+						</div>
+						<div class="col-sm-5">
+							{{ form_widget(form.comptClientCertifStartAt) }}
+							{{ form_errors(form.comptClientCertifStartAt) }}
+						</div>
+						<div class="col-sm-1">
+							<label for="" class="py-2">Au</label>
+						</div>
+						<div class="col-sm-5">
+							{{ form_widget(form.comptClientCertifEndAt) }}
+							{{ form_errors(form.comptClientCertifEndAt) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Reference</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ form_widget(form.comptClientRef) }}
+							{{ form_errors(form.comptClientRef) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>

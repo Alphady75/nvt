@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Itineraire{% endblock %}
+
+{% block btn %}
+	{% include "itineraire/_btn_links.html.twig" %}
+{% endblock %}
+
+{% block body %}
+
+    {{ include('itineraire/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

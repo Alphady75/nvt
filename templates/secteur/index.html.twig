@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Secteurs de travaille ({{ secteurs.getTotalItemCount }}){% endblock %}
+
+{% block links %}
+<li class="breadcrumb-item">
+    <a href="{{ path('client_index') }}">
+        <i class="mdi-24px mdi mdi-arrow-decision"></i>
+        Secteurs de travail ({{ secteurs.getTotalItemCount }})</a>
+</li>
+
+{% endblock %}
+
+{% block btn %}
+<a href="{{ path('client_new') }}" class="btn btn-primary">
+    Ajouter un secteur</a>
+{% endblock %}
+
+{% block body %}
+
+<div class="table-responsive rounded">
+    <table class="table table-hover table-striped shadow">
+        <thead class="text-left bg-primary text-light text-uppercase">
+            <tr>
+                <th>Id</th>
+                <th>Désignation</th>
+                <th>ville</th>
+                <th>Conducteurs</th>
+                <th>Date création</th>
+                <th>Mise à jour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for secteur in secteurs %}
+            <tr>
+                <td>{{ secteur.id }}</td>
+                <td>{{ secteur.name }}</td>
+                <td>{{ secteur.ville.name }}</td>
+                <td>({{ secteur.conducteurs|length }})</td>
+                <td>{{ secteur.created ? secteur.created|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ secteur.updated ? secteur.updated|date('d/m/Y H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('secteur_show', {'id': secteur.id}) }}" class="btn btn-light">
+                        <i class="mdi mdi-account-search"></i>
+                        Détails</a>
+                    <a href="{{ path('secteur_edit', {'id': secteur.id}) }}" class="btn btn-light">
+                        <i class="mdi mdi-account-edit"></i>
+                        Modifier</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">Aucune donnée</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{{ knp_pagination_render(secteurs) }}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+<p>Salut
+   {{ commande.conducteur.civilite }}
+
+   <strong>
+      {{ commande.conducteur.nom }}
+      {{ commande.conducteur.prenom }}
+   </strong>! une nouvelle commande vous à été attribuée
+</p>
+
+<h5>Detail de la commande</h5>
+<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+   <thead style="background: rgb(146, 248, 146);">
+      <tr>
+         <td>JR</td>
+         <td>Désignation</td>
+         <td>Prix</td>
+         <td>Montant</td>
+      </tr>
+   </thead>
+   <tbody>
+      {% if commande.client.itineraires|length > 0 %}
+
+      {% for itineraire in commande.client.itineraires %}
+      <tr style="vertical-align: top;background: white;padding-bottom: 0;">
+         <td>{{ itineraire.id }}</td>
+         <td>{{ itineraire.designation }}</td>
+         <td>{{ itineraire.tarif }}</td>
+         <td>{{ itineraire.tarif ~ currency }}
+         </td>
+      </tr>
+      {% endfor %}
+
+      {% else %}
+
+      {% for itineraire in commande.itineraires %}
+      <tr style="vertical-align: top;background: white;padding-bottom: 0;">
+         <td>{{ itineraire.id }}</td>
+         <td>{{ itineraire.designation }}</td>
+         <td>{{ itineraire.tarif }}</td>
+         <td>{{ itineraire.tarif ~ currency }}
+         </td>
+      </tr>
+      {% endfor %}
+
+      {% endif %}
+
+   </tbody>
+</table>
+<p>Date d'attribution: {{ commande.created|date('d/m/Y à H:i:s') }}</p>
+<h2>Merci!</h2>

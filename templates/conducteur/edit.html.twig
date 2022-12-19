@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ conducteur.nom ~ ' ' ~ conducteur.prenom }} {% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('conducteur_index') }}">
+			<i class="mdi mdi-account-multiple-outline"></i>
+			Conducteurs</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}
+	</li>
+
+{% endblock %}
+
+{% block body %}
+
+    {{ include('conducteur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

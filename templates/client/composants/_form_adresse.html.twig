@@ -1,0 +1,52 @@
+<fieldset class="my-3">
+	<table class="table commande">
+		<legend>Adresse</legend>
+		<tbody>
+			<tr>
+				<th>Type adr</th>
+				<td>
+					<div class="row">
+						<div class="col-sm-8">
+							{{ form_widget(form.adresseType) }}
+							{{ form_errors(form.adresseType) }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Code</th>
+				<td>
+					{{ form_widget(form.adresseCode) }}
+					{{ form_errors(form.adresseCode) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>
+					{{ form_widget(form.adresseNom) }}
+					{{ form_errors(form.adresseNom) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>
+					{{ form_widget(form.adresse) }}
+					{{ form_errors(form.adresse) }}
+               <br>
+					{{ form_widget(form.adresseDep) }}
+					{{ form_errors(form.adresseDep) }}
+               <br>
+					{{ form_widget(form.adresseRef) }}
+					{{ form_errors(form.adresseRef) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>
+					{{ form_widget(form.adresseVille) }}
+					{{ form_errors(form.adresseVille) }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>

@@ -1,0 +1,993 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client -
+{{ client.nom ~ ' ' ~ client.prenom }}
+{% endblock %}
+
+{% block body %}
+
+<div class="card bg-white">
+    <div class="card-header bg-primary py-2">
+        <h4 class="font-size-18 text-light">Informations du client:
+            {{ client.nom ~ ' ' ~ client.prenom }}
+        </h4>
+    </div>
+    <div class="card-body py-5">
+
+        <div class="row">
+            <div class="col-sm-11 mx-auto">
+
+                <div class="client-form">
+                    <div class="row">
+                        <div class="col-sm-12 mx-auto">
+                            <div class="row">
+                                <div class="col-sm-6">
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <table class="table commande">
+                                            <h5>Général</h5>
+                                            <tbody>
+                                                <tr>
+                                                    <th>CODE</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.code }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>NUM</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.num }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>siret</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.siret }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>ape Naf</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.apeNaf }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>num Tva</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.numTva }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>type</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.type }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>statut</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.statut }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>raison Sociale</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.raisonSociale }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>groupe Client</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.groupeClient }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>sous Groupe</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.sousGroupe }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>resp Facturation</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.respFacturation }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>resp Saisie</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.respSaisie }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>type Suivi (shippeo)</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.typeSuivi }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                {{ client.shippeo }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>decodage Adr</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.decodageAdr }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>adresse Valide</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.adresseValide }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <table class="table commande">
+                                            <h5>Secteur</h5>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Appartenance</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.sectAppartenance }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                {{ client.ville }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Compte</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.sectCompte }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Secteur</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.secteur }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Num siret</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.sectNumSiret }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <table class="table contact">
+                                            <h5>Facturation</h5>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Val journalière</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.facValJournaliere }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                {{ client.factTarif }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>edition</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.edition }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        {{ client.editionStartAt }}
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        {{ client.editionEndAt }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        {% for factMode in client.factMode %}
+                                                        <span class="text-uppercase">{{ factMode }}</span>,
+                                                        {% endfor %}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="">
+                                        <h5>Momo transport</h5>
+                                        {{ client.memoTrans }}
+                                    </div>
+                                    <br>
+                                    <div class="">
+                                        <h5>Indication feuille de route</h5>
+                                        {{ client.indFeuilleRoute }}
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <table class="table commande">
+                                            <h5>Adresse</h5>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Type adr</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.adresseType }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.adresseCode }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Nom</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.adresseNom }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Adresse</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.adresse }}
+                                                        <br>
+                                                        {{ client.adresseDep }}
+                                                        <br>
+                                                        {{ client.adresseRef }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ville</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.adresseVille }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Contact relance</h5>
+                                        <table class="table contact">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Nom contact</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.relanceNom }}
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="">Jours relance</label>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                {{ client.relanceJours }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tel</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                {{ client.relanceTel }}
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <label for="">Tel 2</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                {{ client.relanceTel2 }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.relanceEmail }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Memo</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            {{ client.relanceMemo }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Infos comptables Client</h5>
+                                        <table class="table contact">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Tr.CPT.</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptClientTrCpt }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptClientCcMulti }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Compte</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.comptClientCompte }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Mode Reg</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptClientModReg }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Type Reg</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                {{ client.comptClientTypeReg }}
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="">Jours paiement</label>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                {{ client.comptClientJoursPaiement }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Type Reg Parc</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptClientTypeRegParc }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Act Achat</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptClientActVente }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Groupe Tax Ventes</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptClientGrTaxVentes }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fact Aout</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptClientFactAout }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Certif</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-1">
+                                                                <label for="" class="py-2">Du</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                {{ client.comptClientCertifStartAt }}
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <label for="" class="py-2">Au</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                {{ client.comptClientCertifEndAt }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Reference</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptClientRef }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Stat Quantité Cha</h5>
+                                        <table class="table commande">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Tol attente cha</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.tolAttenteCha }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tol retard cha</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.tolRetardCha }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lors du cal attante (ch)</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.calAttanteCha }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Stat Quantité Li</h5>
+                                        <table class="table commande">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Tol attente cha</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.tolAttenteLiv }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tol retard Liv</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.tolRetardLiv }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lors du cal attante (Liv)</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                {{ client.calAttanteLiv }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Demandes clientes</label>
+                                        {% for demande in client.demandes %}
+                                        <span class="text-uppercase">{{ demande }}</span>,
+                                        {% endfor %}
+                                    </div>
+                                    <div class="mb-3">
+                                        <h5>Palettes Europe</h5>
+                                        <table class="table commande">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Pal Europe</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.palEurope }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Mail / sms</label>
+                                        {% for mailsms in client.mailSms %}
+                                        <span class="text-uppercase">{{ mailsms }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Duplication / sms</label>
+                                        {% for duplication in client.duplicationSms %}
+                                        <span class="text-uppercase">{{ duplication }}</span>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Planning</h5>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <table class="table contact">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Chargement</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Code Chargement</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planCodeChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Supprimer</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planSupChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nb car</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planNbCarChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Vide</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planVideChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Ref Client</th>
+
+                                                            <td class="text-muted small">
+                                                                {{ client.planRefClientChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Supprimer</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planSup2Char }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nb Car</th>
+
+                                                            <td class="text-muted small">
+                                                                {{ client.planNbCar2Char }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <table class="table commande">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Livraison</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planLiv }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Code livraison</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planLivCode }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Supprimer</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planLivSup }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Ref client</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planLivRefClient }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Supprimer</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planLivSup2 }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nb Car</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.planLivNbCar }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Feuille semaine</h5>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <table class="table contact">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Chargement</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Code Chargement</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleCodeChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Supprimer</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleSupChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nb car</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleNbCarChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Vide</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleVideChar }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Ref Client</th>
+
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleRefClientChar }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <table class="table commande">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Livraison</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleLiv }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Code livraison</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleLivCode }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Supprimer</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleLivSup }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Ref client</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleLivRefClient }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nb car</th>
+                                                            <td class="text-muted small">
+                                                                {{ client.feuilleLivNbCar }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Contact</h5>
+
+                                        <div class="row rounded">
+                                            <div class="col-sm-3">
+                                                <div class="h-100 rounded text-center">
+
+                                                    {% if client.civilite == 'Mr' %}
+                                                    <img src="{{ asset('img/user.png') | imagine_filter('identite_size') }}"
+                                                        class="img-fluid" alt="">
+                                                    {% else %}
+                                                    <img src="{{ asset('img/femmel.png') | imagine_filter('identite_size') }}"
+                                                        class="img-fluid" alt="">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table contact">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Civilité</th>
+                                                                    <td class="text-muted small">
+                                                                        {{ client.civilite }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Fonction</th>
+                                                                    <td class="text-muted small">
+                                                                        {{ client.contFonction }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Nom</th>
+                                                                    <td class="text-muted small">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                {{ client.nom }}
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                {{ client.prenom }}
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Email</th>
+                                                                    <td class="text-muted small">
+                                                                        {{ client.email }}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table commande">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Tel Fix</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.contFix }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Mobile</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.telephone }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fax</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.contFax }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="my-3 border p-3 rounded">
+                                        <h5>Infos comptables Fournisseurs</h5>
+                                        <table class="table contact">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Tr.CPT.</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptFourTrCpt }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptFourCcMulti }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Mode Reg</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptFourModReg }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Type Reg</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptFourTypeReg }}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <table class="table commande">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>Jours paiement</th>
+                                                                            <td class="text-muted small">
+                                                                                {{ client.comptFourJoursPaiement }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Type Reg Parc</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptFourTypeRegParc }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Act Achat</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptFourActAchat }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Groupe Tax Achats</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptFourGrTaxAchats }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fact Aout</th>
+                                                    <td class="text-muted small">
+                                                        {{ client.comptFourFactAout }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Certif</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-1">
+                                                                <label for="" class="py-2">Du</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                {{ client.comptFourCertifStartAt }}
+                                                            </div>
+                                                            <div class="col-sm-1">
+                                                                <label for="" class="py-2">Au</label>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                {{ client.comptFourCertifEndAt }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Reference</th>
+                                                    <td class="text-muted small">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ client.comptFourRef }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>Date de création</th>
+                            <td class="text-muted small">
+                                {{ client.created ? client.created|date('d/m/Y à H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de mise à jour</th>
+                            <td class="text-muted small">
+                                {{ client.updated ? client.updated|date('d/m/Y à H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Action</th>
+                            <td class="text-muted small">
+                                <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-light">
+                                    <i class="mdi mdi-account-edit"></i>
+                                    Modifier</a>
+
+                                {{ include('client/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        {{ include('factures/_facture_client.html.twig') }}
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    <span>({{ client.commandes|length }})</span>
+                                    Commande{{ client.commandes|length > 1 ? 's' : '' }}
+                                    effectuée{{ client.commandes|length > 1 ? 's' : '' }}
+                                </th>
+                                <td class="text-muted small">
+                                    {{ include('factures/_form_client_factures.html.twig') }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mettre à jour des informations de la ville de {{ ville.name }}{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('ville_index') }}">
+        <i class="mdi mdi-map"></i>
+        Villes</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    Mettre à jour des informations de la ville de {{ ville.name }}
+</li>
+
+{% endblock %}
+
+{% block body %}
+
+    {{ include('ville/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

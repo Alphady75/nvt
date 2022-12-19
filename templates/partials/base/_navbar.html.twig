@@ -1,0 +1,23 @@
+<nav class="mb-4">
+
+	<h3>{{ appName }}</h3>
+
+	{% if app.user %}
+
+		<a href="{{ path('dashboard') }}">Tableau de bord</a>
+		<a href="{{ path('commande_index') }}">Planning des commandes</a>
+		<a href="{{ path('client_index') }}">Clients</a>
+		<a href="{{ path('conducteur_index') }}">Conducteurs</a>
+		<a href="{{ path('ville_index') }}">Villes de travaille</a>
+		<a href="{{ path('secteur_index') }}">Secteurs de travaille</a>
+		<a href="{{ path('vehicule_index') }}">Vehicules</a>
+		<a href="{{ path('users_index') }}">Comptes utilisateurs</a>
+		<a href="{{ path('app_logout') }}" class="btn stripes-btn">Déconnexion</a>
+	
+	{% else %}
+
+		<a href="{{ path('app_register') }}">Création de compte</a>
+
+	{% endif %}
+
+</nav>

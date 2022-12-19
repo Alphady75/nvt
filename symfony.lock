@@ -1,6 +1,12 @@
 {
+    "bacon/bacon-qr-code": {
+        "version": "2.0.7"
+    },
     "behat/transliterator": {
         "version": "v1.3.0"
+    },
+    "dasprid/enum": {
+        "version": "1.0.3"
     },
     "doctrine/annotations": {
         "version": "1.13",
@@ -48,6 +54,18 @@
             "./src/Repository/.gitignore"
         ]
     },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "1f5514cfa15b947298df4d771e694e578d4c204d"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
+        ]
+    },
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.2",
         "recipe": {
@@ -85,6 +103,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "dompdf/dompdf": {
+        "version": "v1.2.2"
+    },
     "easycorp/easyadmin-bundle": {
         "version": "4.0",
         "recipe": {
@@ -96,6 +117,15 @@
     },
     "egulias/email-validator": {
         "version": "3.1.2"
+    },
+    "endroid/installer": {
+        "version": "1.4.0"
+    },
+    "endroid/qr-code": {
+        "version": "4.4.9"
+    },
+    "endroid/qr-code-bundle": {
+        "version": "4.0.8"
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
@@ -123,6 +153,9 @@
     },
     "jms/metadata": {
         "version": "2.6.1"
+    },
+    "khanamiryan/qrcode-detector-decoder": {
+        "version": "1.0.6"
     },
     "knplabs/knp-components": {
         "version": "v3.5.0"
@@ -163,6 +196,12 @@
     },
     "phar-io/version": {
         "version": "3.1.0"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.4"
+    },
+    "phenx/php-svg-lib": {
+        "version": "0.4.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -222,6 +261,9 @@
     },
     "psr/log": {
         "version": "3.0.0"
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.4.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -527,6 +569,15 @@
     "symfony/proxy-manager-bridge": {
         "version": "v6.0.3"
     },
+    "symfony/requirements-checker": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "02c6e4b9b117c39e8a23eab7f3840ef6e62293b9"
+        }
+    },
     "symfony/routing": {
         "version": "6.0",
         "recipe": {
@@ -610,6 +661,18 @@
     },
     "symfony/uid": {
         "version": "v6.0.3"
+    },
+    "symfony/ux-autocomplete": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.2",
+            "ref": "f8fa49e4547904ab278c100564ae1102df774243"
+        },
+        "files": [
+            "./config/routes/ux_autocomplete.yaml"
+        ]
     },
     "symfony/ux-turbo": {
         "version": "v2.0.1"

@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comptes utilisateurs ({{ users.getTotalItemCount }}) {% endblock %}
+
+{% block links %}
+<li class="breadcrumb-item">
+    <a href="{{ path('users_index') }}">
+        <i class="mdi mdi-account-supervisor-circle-outline"></i>
+        Comptes utilisateurs</a>
+</li>
+{% endblock %}
+
+{% block btn %}
+<a href="{{ path('users_new') }}" class="btn btn-primary">
+    <i class="mdi mdi-account"></i> Nouveau comptes
+</a>
+{% endblock %}
+
+{% block body %}
+
+<div class="table-responsive">
+    <table class="table bg-white table-striped table-hover shadow">
+        <thead class="text-uppercase bg-primary text-light">
+            <tr>
+                <td>#ID</td>
+                <td>Utilisateur</td>
+                <td></td>
+                <th>E-mail</th>
+                <td>Rôle</td>
+                <td>Profil mis à jour</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+
+            {% if app.user == user %}
+            
+            {% else %}
+
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>
+                    {% if user.avatar %}
+                    <img alt="image" src="{{ vich_uploader_asset(user) | imagine_filter('medium_avatar') }}"
+                        class="img-fluid" alt="avatar de {{ user.prenom }}">
+                    {% else %}
+
+                    <img src="{{ asset('img/user.png') | imagine_filter('medium_avatar') }}" alt="">
+
+                    {% endif %}
+                </td>
+                <td>
+                    <h5 class="text-dark">{{ user.nom ~ ' ' ~ user.prenom }}</h5>
+                    <small>{{ user.genre }}</small>
+                </td>
+                <td>
+                    <strong>{{ user.email }}</strong>
+                </td>
+                <td>
+                    {{ include('users/_roles.html.twig') }}
+                </td>
+                <td>
+                    {{ user.created|date('d/m/Y à H:i:s') }}
+                </td>
+                <td>
+                    <a href="{{ path('users_show', {'id': user.id}) }}" class="btn btn-outline-primary">
+                        <i class="mdi mdi-account-search"></i> Details
+                    </a> &nbsp;
+                    <a href="{{ path('users_edit', {'id': user.id}) }}" class="btn btn-light border">
+                        <i class="mdi mdi-account-edit"></i> Modifier
+                    </a>
+                </td>
+            </tr>
+
+            {% endif %}
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ knp_pagination_render(users) }}
+</div>
+{% endblock %}

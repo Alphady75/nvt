@@ -1,0 +1,117 @@
+<fieldset class="my-3">
+	<legend>Planning</legend>
+	<div class="row">
+		<div class="col-sm-6">
+			<table class="table contact">
+				<tbody>
+					<tr>
+						<th>Chargement</th>
+						<td>
+							{{ form_widget(form.planChar) }}
+							{{ form_errors(form.planChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Code Chargement</th>
+						<td>
+							{{ form_widget(form.planCodeChar) }}
+							{{ form_errors(form.planCodeChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Supprimer</th>
+						<td>
+							{{ form_widget(form.planSupChar) }}
+							{{ form_errors(form.planSupChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Nb car</th>
+						<td>
+							{{ form_widget(form.planNbCarChar) }}
+							{{ form_errors(form.planNbCarChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Vide</th>
+						<td>
+							{{ form_widget(form.planVideChar) }}
+							{{ form_errors(form.planVideChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Ref Client</th>
+
+						<td>
+							{{ form_widget(form.planRefClientChar) }}
+							{{ form_errors(form.planRefClientChar) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Supprimer</th>
+						<td>
+							{{ form_widget(form.planSup2Char) }}
+							{{ form_errors(form.planSup2Char) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Nb Car</th>
+
+						<td>
+							{{ form_widget(form.planNbCar2Char) }}
+							{{ form_errors(form.planNbCar2Char) }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-6">
+			<table class="table commande">
+				<tbody>
+					<tr>
+						<th>Livraison</th>
+						<td>
+							{{ form_widget(form.planLiv) }}
+							{{ form_errors(form.planLiv) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Code livraison</th>
+						<td>
+							{{ form_widget(form.planLivCode) }}
+							{{ form_errors(form.planLivCode) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Supprimer</th>
+						<td>
+							{{ form_widget(form.planLivSup) }}
+							{{ form_errors(form.planLivSup) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Ref client</th>
+						<td>
+							{{ form_widget(form.planLivRefClient) }}
+							{{ form_errors(form.planLivRefClient) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Supprimer</th>
+						<td>
+							{{ form_widget(form.planLivSup2) }}
+							{{ form_errors(form.planLivSup2) }}
+						</td>
+					</tr>
+					<tr>
+						<th>Nb Car</th>
+						<td>
+							{{ form_widget(form.planLivNbCar) }}
+							{{ form_errors(form.planLivNbCar) }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</fieldset>

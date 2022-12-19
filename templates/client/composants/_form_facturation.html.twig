@@ -1,0 +1,49 @@
+<fieldset class="my-3">
+   <table class="table contact">
+      <legend>Facturation</legend>
+      <tbody>
+         <tr>
+            <th>Val journalière</th>
+            <td>
+               <div class="row">
+                  <div class="col-sm-6">
+                     {{ form_widget(form.facValJournaliere) }}{{ form_errors(form.facValJournaliere) }}
+                  </div>
+                  <div class="col-sm-6">
+                     {{ form_widget(form.factTarif) }}{{ form_errors(form.factTarif) }}
+                  </div>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <th>edition</th>
+            <td>
+               <div class="row">
+                  <div class="col-sm-6">
+                     {{ form_widget(form.edition) }}
+                     {{ form_errors(form.edition) }}
+                  </div>
+                  <div class="col-sm-6">
+                     <div class="row">
+                        <div class="col-sm-6">
+                           {{ form_widget(form.editionStartAt) }}
+                           {{ form_errors(form.editionStartAt) }}
+                        </div>
+                        <div class="col-sm-6">
+                           {{ form_widget(form.editionEndAt) }}
+                           {{ form_errors(form.editionEndAt) }}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               {{ form_widget(form.factMode) }}
+               {{ form_errors(form.factMode) }}
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>

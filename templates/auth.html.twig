@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8"/>
+		<title>
+			{% block title %}Bienvenue sur
+				{{ appName }}
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+		<meta
+		content="Themesbrand" name="author"/>
+		<!-- App favicon -->
+		<link
+		rel="shortcut icon" href="{{ asset('base/images/favicon.ico') }}"/>
+
+		<!-- Bootstrap Css -->
+		<link
+		href="{{ asset('themes/base/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+		<!-- Icons Css -->
+		<link
+		href="{{ asset('themes/base/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+		<!-- App Css-->
+		<link href="{{ asset('themes/base/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css"/>
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+	</head>
+
+	<body class="auth-body-bg" data-turbo="false">
+
+		<div
+			class="container-fluid">
+			<!-- Log In page -->
+			<div class="row">
+				<div class="col-lg-3 pe-0">
+					<div class="card mb-0 shadow-none">
+						<div class="card-body">
+
+							<h3 class="text-center m-0">
+								<a href="{{ path('espace_utilisateur') }}" class="Logo {{ appName }}">
+									<img src="{{ asset('img/logo.jpg') }}" width="100" alt="">
+								</a>
+							</h3>
+
+							{{ include('partials/base/_flash_message.html.twig') }}
+
+							{% block body %}{% endblock %}
+
+						</div>
+					</div>
+				</div>
+				<!-- end col -->
+
+				<div class="col-lg-9 p-0 vh-100  d-flex justify-content-center">
+					<div class="accountbg d-flex align-items-center">
+						<div class="account-title text-center text-white">
+							<h4 class="mt-3 text-white">Bienvenu sur
+								<span class="text-warning">{{ appName }}</span>
+							</h4>
+							<h1 class="text-white">Commençons</h1>
+							<p class="mt-3 font-size-14"></p>
+							<div class="border w-25 mx-auto border-warning"></div>
+						</div>
+					</div>
+				</div>
+				<!-- end col -->
+			</div>
+			<!-- End Log In page -->
+		</div>
+
+		<!-- JAVASCRIPT -->
+		<script src="{{ asset('themes/base/libs/jquery/jquery.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/metismenu/metisMenu.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/simplebar/simplebar.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/node-waves/waves.min.js') }}"></script>
+
+		<script src="{{ asset('themes/base/js/app.js') }}"></script>
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+	</body>
+
+</html>

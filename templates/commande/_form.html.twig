@@ -1,0 +1,112 @@
+{{ form_start(form) }}
+<div class="card shadow">
+	<div class="card-header bg-primary">
+		<h4 class="font-size-18 py-2 text-light">
+			Commande
+			{% if app.request.attributes.get('_route') == 'commande_edit' %}
+				n°:
+				{{ commande.id }}
+			{% endif %}
+		</h4>
+	</div>
+	<div class="card-body py-5">
+		<div class="row">
+			<div class="col-sm-9 offset-sm-1">
+
+				<fieldset class="">
+					<legend class="font-size-18 mt-4 p-2">Informations Générale</legend>
+					<table class="table commande table-hover">
+						<tbody>
+							<tr>
+								<th>Client</th>
+								<td>
+									{{ form_widget(form.client) }}
+									{{ form_errors(form.client) }}
+								</td>
+							</tr>
+							<tr>
+								<th>Itineraires</th>
+								<td>
+									{{ form_widget(form.itineraires) }}
+									{{ form_errors(form.itineraires) }}
+								</td>
+							</tr>
+							<tr>
+								<th>Conducteur</th>
+								<td>
+									{{ form_widget(form.conducteur) }}
+									{{ form_errors(form.conducteur) }}
+								</td>
+							</tr>
+							<tr>
+								<th>Hehicule</th>
+								<td>
+									{{ form_widget(form.vehicule) }}
+									{{ form_errors(form.vehicule) }}
+								</td>
+							</tr>
+
+							<tr>
+								<th>Villes</th>
+								<td>
+									{{ form_widget(form.ville) }}
+									{{ form_errors(form.ville) }}
+								</td>
+							</tr>
+							<tr>
+								<th>Secteurs</th>
+								<td>
+									{{ form_widget(form.secteur) }}
+									{{ form_errors(form.secteur) }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<legend class="font-size-18 mt-4 p-2">Delais de livraison</legend>
+					<table class="table commande">
+						<tbody>
+							<tr>
+								<th>Date de reception</th>
+								<td>
+									{{ form_widget(form.dateReception) }}
+									{{ form_errors(form.dateReception) }}
+								</td>
+							</tr>
+							<tr>
+								<th>Date de livraison</th>
+								<td>
+									{{ form_widget(form.dateLivraison) }}
+									{{ form_errors(form.dateLivraison) }}
+								</td>
+							</tr>
+
+							<tr>
+								<th>Statut</th>
+								<td>
+									{{ form_widget(form.statut) }}
+									{{ form_errors(form.statut) }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+
+				<fieldset>
+					<legend class="font-size-18 mt-4 p-2">Observation</legend>
+					{{ form_row(form.observation) }}
+				</fieldset>
+
+				{{ form_rest(form) }}
+
+				<div class="py-3">
+					<button class="btn btn-primary" formnovalidate>
+						{{ button_label|default('Enregistrer') }}
+					</button>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+{{ form_end(form) }}

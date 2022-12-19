@@ -1,0 +1,9 @@
+{% if user.avatar %}
+
+<img alt="image" src="{{ vich_uploader_asset(user) | imagine_filter('medium_size') }}" class="img-fluid rounded" alt="avatar de {{ user.prenom }}">
+
+{% else %}
+
+<img src="{{ asset('img/user.jpg') | imagine_filter('medium_size') }}" class="rounded img-fluid" alt="">
+
+{% endif %}

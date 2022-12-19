@@ -1,0 +1,84 @@
+{% extends 'auth.html.twig' %}
+
+{% block title %}Identification
+{% endblock %}
+
+{% block body %}
+
+	<div class="px-2 mt-2">
+		<h4 class="font-size-18 mb-2 text-center">Content de te revoir !</h4>
+		<p class="text-muted text-center">Connectez-vous pour continuer vers {{ appName }}.</p>
+
+		<form method="post" class="form-horizontal my-4">
+
+			{% if error %}
+				<div class="alert alert-danger">
+					<p class="font-weight-bold">Combinaison identifiant Mot de passe incorecte!</p>
+				</div>
+			{% endif %}
+
+			{% if app.user %}
+				<div class="mb-3">
+					You are logged in as
+					{{ app.user.username }},
+					<a href="{{ path('app_logout') }}">Déconnexion</a>
+				</div>
+			{% endif %}
+
+			<div class="mb-3">
+				<label class="form-label" for="username">Adresse e-mail</label>
+				<div class="input-group">
+
+					<span class="input-group-text" id="basic-addon1">
+						<i class="far fa-user"></i>
+					</span>
+
+                    <input type="email" class="form-control" value="{{ last_username }}" placeholder="E-mail ou le nom d'utilisateur..." name="email" id="inputEmail" autocomplete="email" required autofocus>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="userpassword">Password</label>
+				<div class="input-group">
+					<span class="input-group-text" id="basic-addon2">
+						<i class="fa fa-key"></i>
+					</span>
+					<input type="password" class="form-control" name="password" id="inputPassword" autocomplete="current-password" placeholder="Entrez votre mot de passe" required aria-label="Password" aria-describedby="password-addon">
+				</div>
+			</div>
+
+			<div class="mb-3 row mt-4">
+				<div class="col-sm-6">
+					<div class="form-check">
+						<input type="checkbox" name="_remember_me" class="form-check-input" id="customControlInline">
+						<label class="form-check-label" for="customControlInline">Restez connecter</label>
+					</div>
+				</div>
+				<!-- end col -->
+				<div class="col-sm-6 text-end">
+					<a href="{{ path('app_forgot_password_request') }}" class="text-muted font-size-13">
+						<i class="mdi mdi-lock"></i>
+						Mot de passe oublié?</a>
+				</div>
+				<!-- end col -->
+			</div>
+			<!-- end row -->
+
+			<div class="mb-3 mb-0 row">
+				<div class="col-12 mt-2">
+					<button class="btn btn-primary w-100 waves-effect waves-light" type="submit">
+                        Connexion
+						<i class="fas fa-sign-in-alt ms-1"></i>
+					</button>
+				</div>
+				<!-- end col -->
+			</div>
+			<!-- end row -->
+		</form>
+		<!-- end form -->
+	</div>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients
+{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('client_index') }}">
+        <i class="mdi mdi-account-group"></i>
+        Clients ({{ clients.getTotalItemCount }})</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <i class="icon-user"></i>
+    Nouveau compte
+</li>
+
+{% endblock %}
+
+{% block btn %}
+<a href="{{ path('client_new') }}" class="btn btn-primary">
+    <i class="mdi mdi-account"></i>
+    Nouveau client</a>
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header bg-primary py-2">
+        <h2 class="font-size-18 text-light">Clients ({{ clients.getTotalItemCount }})</h2>
+    </div>
+    <div class="card-body">
+        {{ form_start(form) }}
+            <div class="row py-3">
+                <div class="col-sm-4">
+                    {{ form_rest(form) }}
+                </div>
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+        <div class="table-rep-plugin">
+            <div class="table-responsive mb-0" data-bs-pattern="priority-columns">
+                <table id="tech-companies-1" class="table  table-striped no-radius">
+                    <thead class="text-uppercase bg-light text-dark rounded-0">
+                        <tr>
+                            <th>Id</th>
+                            <th>Client</th>
+                            <th></th>
+                            <th>Coordonnées</th>
+                            <th>Création de compte</th>
+                            <th>Mise à jour du compte</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for client in clients %}
+                        <tr>
+                            <td>{{ client.id }}</td>
+                            <td>
+                                {% if client.civilite == 'Mr' %}
+                                <img src="{{ asset('img/user.png') | imagine_filter('medium_avatar') }}"
+                                    alt="{{ client.nom ~ ' ' ~ client.prenom }}">
+                                {% else %}
+                                <img src="{{ asset('img/femmel.png') | imagine_filter('medium_avatar') }}"
+                                    alt="{{ client.nom ~ ' ' ~ client.prenom }}">
+                                {% endif %}
+                            </td>
+                            <td>{{ client.civilite }}.
+                                <strong>{{ client.nom }}
+                                    {{ client.prenom }}</strong>
+                                <br>
+                                <small>{{ client.email }}</small>
+                            </td>
+                            <td>{{ client.adresse }}
+                                <br>
+                                {{ client.telephone }}
+                            </td>
+                            <td>{{ client.created ? client.created|date('d/m/Y H:i:s') : '' }}</td>
+                            <td>{{ client.updated ? client.updated|date('d/m/Y H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('client_show', {'id': client.id}) }}" class="btn btn-light">
+                                    <i class="mdi mdi-account-search"></i>
+                                    Détails</a>
+                                <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-light">
+                                    <i class="mdi mdi-account-edit"></i>
+                                    Modifier</a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="7">Aucune donnée</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {{ knp_pagination_render(clients) }}
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+<!-- Responsive Table css -->
+<link href="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.css') }}" rel="stylesheet"
+    type="text/css" />
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<!-- Responsive Table js -->
+<script src="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.js') }}"></script>
+
+<!-- Init js -->
+<script src="{{ asset('themes/base/js/pages/table-responsive.init.js') }}"></script>
+{% endblock %}

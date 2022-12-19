@@ -1,0 +1,26 @@
+<table style="width: 100%;margin-bottom: 10%;">
+    <thead>
+        <tr>
+            <td style="width:55%">
+                <div style="display:inline-block;width: 50px;margin-right: 5px;vertical-align: top;">
+                    {{ include('partials/base64/_drapeau_congo.html.twig') }}
+                </div>
+
+                <div style="display: inline-block;width: 70%; vertical-align: top;">
+                	<h5 style="padding: 0px; margin: 0px;font-size: 1em;">{{ pays }}</h5>
+                	<small>{{ devise }}</small>
+                </div>
+            </td>
+            <td style="width:45%">
+                <div style="display:inline-block;width: 50px;margin-right: 5px;vertical-align: top;">
+                    {{ include('partials/base64/_qrcode.html.twig') }}
+                </div>
+
+                <div style="display: inline-block;width: 80%; vertical-align: top;">
+                    <h5 style="padding: 0px; margin: 0px;font-size: 1em;">{{ ministere }}</h5>
+                    <strong>{{ appName }}</strong>
+                </div>
+            </td>
+        </tr>
+    </thead>
+</table>

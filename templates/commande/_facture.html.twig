@@ -1,0 +1,144 @@
+<!--display: grid; grid-template-columns: repeat(2, 1fr); grid-column-gap: 5px;margin-bottom: 30px;-->
+<div style="text-align: center;">
+	{% include "partials/base/_logo_base64.html.twig" %}
+</div>
+
+<div style="margin-bottom: 5px;">
+	<div style="display: inline-block;width: 45%; vertical-align: top;">
+		<h4 style="text-align: center;margin: 0;">Société de transports
+			<br>
+			Alimentaires et Frigorifiques
+		</h4>
+		<h4 style="color: red;text-align: center;margin: 0;">www.staf-transports.com</h4>
+		<h4 style="margin: 0;">
+			<span style="color: red;">STOCKAGE DISTRIBUTION</span>
+			<small style="font-size: .6em;font-weight: 100;">Tél:
+				{{ commande.client.telephone }}</small>
+		</h4>
+		<table style="border: 1px solid black;width: 100%;margin: 10px 10px 20px 0">
+			<thead style="background: rgb(146, 248, 146);">
+				<tr>
+					<td>Date</td>
+					<td>N°Facture</td>
+					<td>Code client</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ commande.created|date('d/m/Y') }}</td>
+					<td>F{{ commande.id }}</td>
+					<td>{{ commande.client.id }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="display: inline-block;width: 48%; padding: 15px; vertical-align: top;">
+
+		<div>
+			<h4 style="padding: 0;margin: 0;">TRANSPORTS FABRICE MOISY SAS</h4>
+			<small style="padding: 0;">{{ commande.client.adresse }}</small><br>
+			<small style="padding: 0;">{{ commande.client.nom }}
+				{{ commande.client.prenom }}</small>
+
+			<p>Période du
+				{{ commande.dateReception|date('d/m/Y: H:i:s') }}
+				au
+				{{ commande.dateLivraison|date('d/m/Y: H:i:s') }}
+			</p>
+			<p>ref:
+				{{ commande.id }}
+			</p>
+		</div>
+
+	</div>
+</div>
+
+<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+	<thead style="background: rgb(146, 248, 146);">
+		<tr>
+			<td>JR</td>
+			<td>Désignation</td>
+			<td>Prix</td>
+			<td>Montant</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if commande.client.itineraires|length > 0 %}
+
+			{% for itineraire in commande.client.itineraires %}
+				<tr style="vertical-align: top;background: white;padding-bottom: 0;">
+					<td>{{ itineraire.id }}</td>
+					<td>{{ itineraire.designation }}</td>
+					<td>{{ itineraire.tarif }}</td>
+					<td>{{ itineraire.tarif ~ currency }}
+					</td>
+				</tr>
+			{% endfor %}
+
+		{% else %}
+
+			{% for itineraire in commande.itineraires %}
+				<tr style="vertical-align: top;background: white;padding-bottom: 0;">
+					<td>{{ itineraire.id }}</td>
+					<td>{{ itineraire.designation }}</td>
+					<td>{{ itineraire.tarif }}</td>
+					<td>{{ itineraire.tarif ~ currency }}
+					</td>
+				</tr>
+			{% endfor %}
+
+		{% endif %}
+
+	</tbody>
+</table>
+<br>
+<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+	<thead style="background: rgb(146, 248, 146);">
+		<tr>
+			<th>Total Taxable</th>
+			<th>Total non Taxable</th>
+			<th>Total Hors Taxe</th>
+			<th>Taux TVA</th>
+			<th>Montant TVA</th>
+			<th>Net a Payer</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<table style="width: 100%;border: 1px solid gray">
+	<tr>
+		<td style="width: 80%;"><br>
+			<p style="padding: 8px;">Date de reception
+				<br>
+				{{ commande.dateReception ? commande.dateReception|date('d/m/Y: H:i:s') : '' }}
+				<br>
+				Date de livraison
+				<br>
+				{{ commande.dateLivraison ? commande.dateLivraison|date('d/m/Y: H:i:s') : '' }}
+				<br>
+				{{ commande.statut ? 'Commande Livrée' : 'Commande En attente' }}
+			</p>
+		</td>
+		<td style="width: 20%;text-align:right;">
+			<p style="padding: 8px;">
+				{% if commande.qrcode %}
+					<small>{{ appName }}</small>
+					<br>
+					<img src="{{ commande.qrcode }}" width="70" height="70">
+					<br>
+					<small>Qrcode</small>
+				{% endif %}
+			</p>
+		</td>
+	</tr>
+</table>

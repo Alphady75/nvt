@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ville
+{% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('ville_index') }}">
+			<i class="mdi mdi-map"></i>
+			Villes</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		{{ ville.name }}
+	</li>
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="card">
+		<div class="card-header bg-white">
+			<h4 class="font-size-18 py-2">Ville de
+				{{ ville.name }}</h4>
+		</div>
+		<div class="card-body">
+			<table class="table table-borderless">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ ville.id }}</td>
+					</tr>
+					<tr>
+						<th>Designation</th>
+						<td>{{ ville.name }}</td>
+					</tr>
+					<tr>
+						<th>Slug</th>
+						<td>{{ ville.slug }}</td>
+					</tr>
+					<tr>
+						<th>Description</th>
+						<td>{{ ville.description }}</td>
+					</tr>
+					<tr>
+						<th>Longitude</th>
+						<td>{{ ville.longitude }}</td>
+					</tr>
+					<tr>
+						<th>Latitude</th>
+						<td>{{ ville.latitude }}</td>
+					</tr>
+					<tr>
+						<th>Localisation</th>
+						<td>
+							<iframe src="https://maps.google.com/maps?&q={{ ville.name }}&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</td>
+					</tr>
+					<tr>
+						<th>Hexa décimal</th>
+						<td>
+							<div class="progress">
+								<div class="progress-bar" bac role="progressbar" style="width: 50%;background: {{ ville.hexColor }}!important" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>Date de création</th>
+						<td>{{ ville.created ? ville.created|date('d/m/Y H:i:s') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Dernière mise à jour</th>
+						<td>{{ ville.updated ? ville.updated|date('d/m/Y H:i:s') : '' }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a href="{{ path('ville_edit', {'id': ville.id}) }}" class="btn btn-light">Mettre à jour</a>
+
+			{{ include('ville/_delete_form.html.twig') }}
+		</div>
+	</div>
+
+{% endblock %}

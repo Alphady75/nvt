@@ -1,0 +1,108 @@
+<div class="card client-form">
+    <div class="card-header bg-primary">
+        <h4 class="font-size-18 py-2 text-light">
+            Client
+            {% if app.request.attributes.get('_route') == 'client_edit' %}
+            :
+            {{ client.nom ~ ' ' ~ client.prenom }}
+            {% endif %}
+        </h4>
+    </div>
+    <div class="card-body py-5">
+
+        <div class="row">
+            <div class="col-sm-12 mx-auto">
+                {{ form_start(form) }}
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        {{ include('client/composants/_form_general.html.twig') }}
+
+                        {{ include('client/composants/_form_secteur.html.twig') }}
+
+                        {{ include('client/composants/_form_facturation.html.twig') }}
+
+                        <fieldset class="">
+                            <legend>Momo transport</legend>
+                            {{ form_widget(form.memoTrans) }}
+                            {{ form_errors(form.memoTrans) }}
+                        </fieldset>
+                        <br>
+                        <fieldset class="">
+                            <legend>Indication feuille de route</legend>
+                            {{ form_widget(form.indFeuilleRoute) }}
+                            {{ form_errors(form.indFeuilleRoute) }}
+                        </fieldset>
+
+                        {{ include('client/composants/_form_adresse.html.twig') }}
+
+                        {{ include('client/composants/_form_relance.html.twig') }}
+
+                        {{ include('client/composants/_form_client.html.twig') }}
+
+                    </div>
+                    <div class="col-sm-6">
+                        {{ include('client/composants/_form_stat.html.twig') }}
+                        <fieldset class="mb-3">
+                            <label>Demandes clientes</label>
+                            {{ form_widget(form.demandes) }}
+                            {{ form_errors(form.demandes) }}
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <legend>Palettes Europe</legend>
+                            <table class="table commande">
+                                <tbody>
+                                    <tr>
+                                        <th>Pal Europe</th>
+                                        <td>
+                                            {{ form_widget(form.palEurope) }}
+                                            {{ form_errors(form.palEurope) }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <label>Mail / sms</label>
+                            {{ form_widget(form.mailSms) }}
+                            {{ form_errors(form.mailSms) }}
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <label>Duplication / sms</label>
+                            {{ form_widget(form.duplicationSms) }}
+                            {{ form_errors(form.duplicationSms) }}
+                        </fieldset>
+
+                        {{ include('client/composants/_form_planning.html.twig') }}
+
+                        {{ include('client/composants/_form_feuille.html.twig') }}
+
+                        {{ include('client/composants/_form_contact.html.twig') }}
+
+                        {{ include('client/composants/_form_fournisseur.html.twig') }}
+
+                        {{ form_rest(form) }}
+                    </div>
+                </div>
+
+                <div class="pt-3">
+
+                    <button class="btn btn-primary" formnovalidate>{{ button_label|default('Enregistrer') }}</button>
+
+
+                    {% if app.request.attributes.get('_route') == 'client_edit' %}
+
+                    {{ include('client/_delete_form.html.twig') }}
+
+                    {% endif %}
+
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
+</div>

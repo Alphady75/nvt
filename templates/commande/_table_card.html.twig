@@ -1,0 +1,121 @@
+<div class="card">
+	<div class="card-header bg-primary py-3">
+		<h2 class="font-size-18 text-light">Commandes ({{ commandes.getTotalItemCount }})</h2>
+	</div>
+	<div class="card-body">
+
+		{% include "commande/composants/_filtre.html.twig" %}
+
+		<h4 class="h5">Liste des commandes</h4>
+
+		<div class="table-rep-plugin">
+			<div class="table-responsive mb-0" data-bs-pattern="priority-columns">
+				<table id="tech-companies-1" class="table no-radius table-striped">
+					<thead class="text-left bg-light text-dark font-weight-bold">
+						<tr>
+							<th>NUM
+								<br>
+								VEHICULE
+							</th>
+							<th>SECT
+								<br>
+								VILLE TRAVAIL
+							</th>
+							<th>CONTRAT
+								<br>
+								REF CLIENT
+							</th>
+							<th>DT COM
+								<br>
+								PORTABLE
+							</th>
+							<th>CODE
+								<br>
+								CONDUCTEUR
+							</th>
+							<!--<th>VEHICULE <br> REMORQUE</th>-->
+							<th>POSITION
+								<br>
+								RECU LE
+							</th>
+							<!--<th>CLIENT <br> TEL</th>
+																				                                    <th>NOM <br> EMAIL</th>-->
+							<th>Statut</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% for commande in commandes %}
+							<tr>
+								<td>
+									<span class="co-name text-uppercase small">{{ commande.vehicule.id }}
+										<br>
+										{{
+								                        commande.vehicule.name }}</span>
+								</td>
+								<td>
+									<span class="co-name text-uppercase small">{{ commande.secteur.name }}
+										<br>
+										{{
+								                        commande.ville.name }}</span>
+								</td>
+								<td>
+									<span class="co-name text-uppercase small">Contrat
+										<br>
+										ref client</span>
+								</td>
+								<td>
+									<span class="co-name text-uppercase small">{{ commande.client.telephone }}</span>
+								</td>
+								<td>
+									<span class="co-name text-uppercase small">
+										{{ commande.conducteur.code }}
+										<br>
+										{{ commande.conducteur.nom ~ ' ' ~
+								                        commande.conducteur.prenom }}
+									</span>
+								</td>
+								<!--<td>
+																						                                        <span class="co-name text-uppercase small">
+																						                                            {{ commande.vehicule.name }} <br> {{ commande.vehicule.reference }}
+																						                                        </span>
+																						                                    </td>-->
+								<td>
+									<span class="co-name text-uppercase small">
+										{{ commande.dateReception|date('d/m/Y H:i:s') }}
+									</span>
+								</td>
+								<!--<td>
+																						                                        <span class="co-name text-uppercase small">
+																						                                            {{ commande.client.telephone }}
+																						                                        </span>
+																						                                    </td>
+																						                                    <td>
+																						                                        <span class="co-name text-uppercase small">
+																						                                            {{ commande.client.nom ~ ' ' ~ commande.client.prenom }}
+																						                                        </span>
+																						                                    </td>-->
+								<td>
+									<span class="badge text-uppercase bg-{{ commande.statut ? 'success' : 'light' }}">{{ commande.statut ?
+								                        'Livrée' : 'En service' }}</span>
+								</td>
+								<td>
+									<a href="{{ path('commande_show', {id: commande.id}) }}" class="btn btn-light">
+										<i class="mdi mdi-clipboard-search-outline"></i>
+										Detail</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="9">Aucune données</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		{{ knp_pagination_render(commandes) }}
+	</div>
+</div>

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle commande{% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('commande_index') }}">
+			<i class="mdi mdi-calendar-multiple"></i>
+			Planning des commandes</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		<i class=""></i>
+		Nouvelle commande
+	</li>
+
+{% endblock %}
+
+{% block btn %}
+	<a href="{{ path('commande_index') }}" class="btn btn-primary">
+		<i class="mdi mdi-calendar"></i>
+		Planning des commandes</a>
+{% endblock %}
+
+{% block body %}
+
+	{{ include('commande/_form.html.twig') }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script>
+    $(document).on('change', '#commande_ville', function () {
+
+        let $field = $(this)
+        let $form = $field.closest('form')
+        let data = {}
+
+        data[$field.attr('name')] = $field.val()
+
+        $.post($form.attr('action'), data).then(function (data) {
+
+            console.log(data)
+
+            let $input = $(data).find('#commande_secteur') 
+
+            $('#commande_secteur').replaceWith($input)
+
+        }).catch(function(error){
+            console.log(error)
+        })
+    })
+</script>
+
+{% endblock %}

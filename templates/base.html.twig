@@ -1,19 +1,244 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<!doctype html>
+<html lang="en">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+	<head>
+
+		<meta charset="utf-8"/>
+		<title>
+			{% block title %}Bienvenue sur
+				{{ appName }}
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+		<meta
+		content="Themesbrand" name="author"/>
+		<!-- App favicon -->
+		<link rel="shortcut icon" href="{{ asset('base/images/favicon.ico') }}"/>
+
+		<link
+		href="{{ asset('themes/base/libs/metrojs/release/MetroJs.Full/MetroJs.min.css') }}" rel="stylesheet" type="text/css"/>
+
+		<!-- Bootstrap Css -->
+		<link
+		href="{{ asset('themes/base/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+		<!-- Icons Css -->
+		<link
+		href="{{ asset('themes/base/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+		<!-- App Css-->
+		<link href="{{ asset('themes/base/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css"/>
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		<style>
+			table.th-50 th {
+				width: 30%;
+				padding: 3px !important;
+			}
+			table.th-100 th {
+				width: 45%;
+			}
+			table.th-50 td {
+				width: 60%;
+				padding: 3px !important;
+			}
+			table.th-50 p {
+				padding: 3px 0;
+				margin: 0;
+			}
+			.font-size-18 {
+				font-weight: bold !important;
+			}
+			.form-group {
+				margin: 0 0 10px;
+			}
+			.card form label {
+				text-transform: uppercase !important;
+			}
+			.bg-primary {
+				background: #1f3c4d !important;
+			}
+			.table {
+				background: white;
+				border-radius: 5px !important;
+				border: transparent !important;
+				overflow: hidden;
+			}
+			.table.no-radius{
+				border-radius: inherit!important;
+				overflow: inherit;
+			}
+			.table.commande, table.filtre{
+				overflow: inherit;
+			}
+			.table.commande th {
+				width: 40%;
+			}
+			.table.commande th,
+			.commande td {
+				padding: 10px;
+				text-transform: uppercase;
+			}
+			.commande input,
+			.commande select,
+			.commande text,
+			.commande radio {
+				text-transform: uppercase;
+			}
+			.turbo-progress-bar {
+				height: 2px;
+				background-color: #1f3c4d !important;
+			}
+			.ts-control .item {
+				background: #1f3c4d !important;
+				font-size: .8em!important;
+				border: transparent !important;
+				color: white !important;
+			}
+			.btn-toolbar{
+				display: none!important;
+			}
+			table.filtre td{
+				padding: 5px;
+				width: 20%;
+			}
+			table.contact{
+				text-transform: uppercase;
+			}
+			.client-form legend{
+				font-size: 1.2em!important;
+				font-weight: 600;
+				padding: 0 10px;
+			}
+			.client-form fieldset{
+				border: 1px solid rgb(216, 216, 216);
+				padding: 15px;
+				border-radius: 10px;
+			}
+			.form-error-icon{
+				display: none;
+			}
+		</style>
+
+	</head>
+
+	<body data-turbo="false" data-topbar="dark" data-keep-enlarged="true" class="vertical-collpsed" data-layout-size="">
+		<!--boxed-->
+
+		<!-- Begin page -->
+			<div id="layout-wrapper"> {% include "partials/base/_header.html.twig" %}
+
+			<!-- ========== Left Sidebar Start ========== -->
+			{% include "partials/base/_sidebar.html.twig" %}
+			<!-- Left Sidebar End -->
+
+
+			<!-- ============================================================== -->
+			<!-- Start right Content here -->
+			<!-- ============================================================== -->
+				<div class="main-content"> <div class="page-content">
+					<div class="container-fluid">
+
+						<div class="row mb-3">
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<nav aria-label="breadcrumb bg-white">
+									<ol class="breadcrumb">
+
+										{% block links %}
+
+											<li class="breadcrumb-item">
+												<a href="{{ path('espace_utilisateur') }}">
+													<i class="icon-home2"></i>
+													Espace utilisation</a>
+											</li>
+
+										{% endblock %}
+
+									</ol>
+								</nav>
+							</div>
+							<div
+								class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+								<!-- Top Actions - DateRange and Buttons -->
+								<div class="d-flex justify-content-end">
+
+									{% block btn %}
+
+										{% if is_granted('ROLE_MODERATEUR') %}
+											
+										<a href="{{ path('commande_new') }}" class="btn btn-primary">
+											<i class="mdi mdi-calendar-multiple"></i>
+											Nouvelle commade</a>
+
+										{% endif %}
+
+									{% endblock %}
+
+								</div>
+							</div>
+						</div>
+
+						{{ include('partials/base/_flash_message.html.twig') }}
+
+						{% block body %}{% endblock %}
+
+					</div>
+					<!-- container-fluid -->
+				</div>
+				<!-- End Page-content -->
+
+
+				<footer class="footer">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-6">
+								<script>
+									document.write(new Date().getFullYear())
+								</script>
+								©
+								{{ appName }}.
+							</div>
+							<div class="col-sm-6">
+								<div class="text-sm-end d-none d-sm-block">
+									Conçu par
+									<i class="mdi mdi-heart text-danger"></i>
+									{{ appConcepteur }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+			<!-- end main content-->
+
+		</div>
+		<!-- END layout-wrapper -->
+
+		<!-- Right Sidebar -->
+
+		<!-- /Right-bar -->
+
+		<!-- Right bar overlay--><div class="rightbar-overlay"> </div>
+
+		<!-- JAVASCRIPT -->
+		<script src="{{ asset('themes/base/libs/jquery/jquery.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/metismenu/metisMenu.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/simplebar/simplebar.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/node-waves/waves.min.js') }}"></script>
+
+		<!-- Chart JS -->
+		<script src="{{ asset('themes/base/libs/chart.js/Chart.bundle.min.js') }}"></script>
+		<script src="{{ asset('themes/base/js/pages/chartjs.init.js') }}"></script>
+
+		<script src="{{ asset('themes/base/js/app.js') }}"></script>
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+	</body>
+
 </html>

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Villes de residance & de travail
+{% endblock %}
+
+{% block links %}
+	<li class="breadcrumb-item">
+		<a href="{{ path('ville_index') }}">
+			<i class="mdi mdi-map"></i>
+			Villes de travail</a>
+	</li>
+{% endblock %}
+
+{% block btn %}
+	<a href="{{ path('ville_new') }}" class="btn btn-primary">
+		Ajouter une ville
+	</a>
+{% endblock %}
+
+{% block body %}
+
+	<div class="table-responsive">
+		<table class="table shadow rounded table-hover table-striped">
+			<thead class="text-left bg-primary text-light text-uppercase">
+				<tr>
+					<th>Id</th>
+					<th>Designation</th>
+					<th>Secteurs</th>
+					<th>Conducteurs</th>
+					<th>Longitude</th>
+					<th>Latitude</th>
+					<th>Date création</th>
+					<th>Dernière mise à jour</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for ville in villes %}
+					<tr>
+						<td>{{ ville.id }}</td>
+						<td>{{ ville.name }}</td>
+						<td class="text-center")>({{ ville.secteurs|length }})</td>
+						<td class="text-center">({{ ville.conducteurs|length }})</td>
+						<td>{{ ville.longitude }}</td>
+						<td>{{ ville.latitude }}</td>
+						<td>{{ ville.created ? ville.created|date('d/m/Y H:i:s') : '' }}</td>
+						<td>{{ ville.updated ? ville.updated|date('d/m/Y H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('ville_show', {'id': ville.id}) }}" class="btn btn-light">
+								Details
+							</a>
+							<a href="{{ path('ville_edit', {'id': ville.id}) }}" class="btn btn-light">
+								Modifier
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="10">Aucune donnée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

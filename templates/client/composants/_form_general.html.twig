@@ -1,0 +1,123 @@
+<fieldset class="my-3">
+   <table class="table commande">
+      <legend>Général</legend>
+      <tbody>
+         <tr>
+            <th>CODE</th>
+            <td>
+               {{ form_widget(form.code) }}{{ form_errors(form.code) }}
+            </td>
+         </tr>
+         <tr>
+            <th>NUM</th>
+            <td>
+               {{ form_widget(form.num) }}
+               {{ form_errors(form.num) }}
+            </td>
+         </tr>
+         <tr>
+            <th>siret</th>
+            <td>
+               {{ form_widget(form.siret) }}
+               {{ form_errors(form.siret) }}
+            </td>
+         </tr>
+         <tr>
+            <th>ape Naf</th>
+            <td>
+               {{ form_widget(form.apeNaf) }}
+               {{ form_errors(form.apeNaf) }}
+            </td>
+         </tr>
+         <tr>
+            <th>num Tva</th>
+            <td>
+               {{ form_widget(form.numTva) }}
+               {{ form_errors(form.numTva) }}
+            </td>
+         </tr>
+         <tr>
+            <th>type</th>
+            <td>
+               <div class="row">
+                  <div class="col-sm-6">
+                     {{ form_widget(form.type) }}
+                     {{ form_errors(form.type) }}
+                  </div>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <th>statut</th>
+            <td>
+               {{ form_widget(form.statut) }}
+               {{ form_errors(form.statut) }}
+            </td>
+         </tr>
+         <tr>
+            <th>raison Sociale</th>
+            <td>
+               {{ form_widget(form.raisonSociale) }}
+               {{ form_errors(form.raisonSociale) }}
+            </td>
+         </tr>
+         <tr>
+            <th>groupe Client</th>
+            <td>
+               {{ form_widget(form.groupeClient) }}
+               {{ form_errors(form.groupeClient) }}
+            </td>
+         </tr>
+         <tr>
+            <th>sous Groupe</th>
+            <td>
+               {{ form_widget(form.sousGroupe) }}
+               {{ form_errors(form.sousGroupe) }}
+            </td>
+         </tr>
+         <tr>
+            <th>resp Facturation</th>
+            <td>
+               {{ form_widget(form.respFacturation) }}
+               {{ form_errors(form.respFacturation) }}
+            </td>
+         </tr>
+         <tr>
+            <th>resp Saisie</th>
+            <td>
+               {{ form_widget(form.respSaisie) }}
+               {{ form_errors(form.respSaisie) }}
+            </td>
+         </tr>
+         <tr>
+            <th>type Suivi (shippeo)</th>
+            <td>
+               <div class="row">
+                  <div class="col-sm-6">
+                     {{ form_widget(form.typeSuivi) }}
+                     {{ form_errors(form.typeSuivi) }}
+                  </div>
+                  <div class="col-sm-6">
+                     {{ form_widget(form.shippeo) }}
+                     {{ form_errors(form.shippeo) }}
+                  </div>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <th>decodage Adr</th>
+            <td>
+               {{ form_widget(form.decodageAdr) }}
+               {{ form_errors(form.decodageAdr) }}
+            </td>
+         </tr>
+         <tr>
+            <th>adresse Valide</th>
+            <td>
+               {{ form_widget(form.adresseValide) }}
+               {{ form_errors(form.adresseValide) }}
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>

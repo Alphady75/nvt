@@ -1,0 +1,128 @@
+<!--display: grid; grid-template-columns: repeat(2, 1fr); grid-column-gap: 5px;margin-bottom: 30px;-->
+<div style="text-align: center;">
+	{% include "partials/base/_logo_base64.html.twig" %}
+</div>
+
+<div style="margin-bottom: 5px;">
+	<div style="display: inline-block;width: 45%; vertical-align: top;">
+		<h4 style="text-align: center;margin: 0;">Société de transports
+			<br>
+			Alimentaires et Frigorifiques
+		</h4>
+		<h4 style="color: red;text-align: center;margin: 0;">www.{{ appName }}.com</h4>
+		<h4 style="margin: 0;">
+			<span style="color: red;">STOCKAGE DISTRIBUTION</span>
+			<small style="font-size: .6em;font-weight: 100;">Tél:
+			</small>
+		</h4>
+		<table style="border: 1px solid black;width: 100%;margin: 10px 10px 20px 0">
+			<thead style="background: rgb(146, 248, 146);">
+				<tr>
+					<td>Client</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<strong>{{ client.nom ~ ' ' ~ client.prenom }}</strong>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="display: inline-block;width: 48%; padding: 15px; vertical-align: top;">
+
+		<div>
+			<h4 style="padding: 0;margin: 0;">TRANSPORTS FABRICE MOISY SAS</h4>
+			<small style="padding: 0;"></small><br>
+			<small style="padding: 0;"></small>
+
+			<p>Période du
+								...
+								au
+								...
+			</p>
+			<p>ref:
+								...
+			</p>
+		</div>
+
+	</div>
+</div>
+<small>Historique des commandes</small>
+<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+	<thead style="background: rgb(146, 248, 146);">
+		<tr>
+			<td>JR</td>
+			<td>Date de reception</td>
+			<td>Date de livraison</td>
+			<td>Itinéraires</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for commande in commandes %}
+
+			<tr style="vertical-align: top;background: white;padding-bottom: 0;">
+				<td>{{ commande.id }}</td>
+				<td>{{ commande.dateReception|date('d/m/Y') }}</td>
+				<td>{{ commande.dateReception|date('d/m/Y') }}</td>
+				<td>
+					{% for itineraire in commande.itineraires %}
+						<table style="border: 1px solid rgb(192, 192, 192);width: 100%;">
+							<thead style="background: rgb(146, 248, 146);">
+								<tr>
+									<td>Designation</td>
+									<td>Tarif</td>
+									<td>Description</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="width: 30%">{{ itineraire.designation }}</td>
+									<td style="width: 20%">{{ itineraire.tarif ~ currency }}</td>
+									<td>{{ itineraire.description|raw }}</td>
+								</tr>
+							</tbody>
+						</table>
+					{% endfor %}
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="4">Aucune commande</td>
+			</tr>
+		{% endfor %}
+
+	</tbody>
+</table>
+<br>
+<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+	<thead style="background: rgb(146, 248, 146);">
+		<tr>
+			<th>Total Taxable</th>
+			<th>Total non Taxable</th>
+			<th>Total Hors Taxe</th>
+			<th>Taux TVA</th>
+			<th>Montant TVA</th>
+			<th>Net a Payer</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table><br>
+<table style="width: 100%;border: 1px solid gray">
+	<tr>
+		<td style="width: 80%;"><br></td>
+		<td style="width: 20%;text-align:right;">
+			<p style="padding: 8px;"></p>
+		</td>
+	</tr>
+</table>
