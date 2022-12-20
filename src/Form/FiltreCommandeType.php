@@ -73,7 +73,7 @@ class FiltreCommandeType extends AbstractType
             'class' => Itineraire::class,
             'query_builder' => function (ItineraireRepository $getitineraires) {
                return $getitineraires->createQueryBuilder('i')
-                  ->orderBy('i.designation', 'ASC');
+                  ->orderBy('i.id', 'DESC');
             },
             //'choice_label' => 'name',
             'attr' => ['class' => 'p-0 m-0 border-0']

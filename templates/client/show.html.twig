@@ -104,19 +104,6 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>type Suivi (shippeo)</th>
-                                                    <td class="text-muted small">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                {{ client.typeSuivi }}
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                {{ client.shippeo }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <th>decodage Adr</th>
                                                     <td class="text-muted small">
                                                         {{ client.decodageAdr }}
@@ -290,7 +277,7 @@
                                                                 <label for="">Jours relance</label>
                                                             </div>
                                                             <div class="col-sm-3">
-                                                                {{ client.relanceJours }}
+                                                                {{ client.relanceJours|date('d/m/Y') }}
                                                             </div>
                                                         </div>
                                                     </td>

@@ -86,12 +86,6 @@ class Client
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $adresseValide;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $typeSuivi;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $shippeo;
-
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Itineraire::class)]
     private $itineraires;
 
@@ -269,9 +263,6 @@ class Client
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $comptFourActAchat;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $comptFourGrTaxAchats;
-
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $comptFourFactAout;
 
@@ -304,9 +295,6 @@ class Client
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $comptClientActVente;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $comptClientGrTaxVentes;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $comptClientFactAout;
@@ -641,30 +629,6 @@ class Client
     public function setAdresseValide(?bool $adresseValide): self
     {
         $this->adresseValide = $adresseValide;
-
-        return $this;
-    }
-
-    public function getShippeo(): ?string
-    {
-        return $this->shippeo;
-    }
-
-    public function setShippeo(?string $shippeo): self
-    {
-        $this->shippeo = $shippeo;
-
-        return $this;
-    }
-
-    public function getTypeSuivi(): ?string
-    {
-        return $this->typeSuivi;
-    }
-
-    public function setTypeSuivi(?string $typeSuivi): self
-    {
-        $this->typeSuivi = $typeSuivi;
 
         return $this;
     }
@@ -1395,18 +1359,6 @@ class Client
         return $this;
     }
 
-    public function getComptFourGrTaxAchats(): ?string
-    {
-        return $this->comptFourGrTaxAchats;
-    }
-
-    public function setComptFourGrTaxAchats(?string $comptFourGrTaxAchats): self
-    {
-        $this->comptFourGrTaxAchats = $comptFourGrTaxAchats;
-
-        return $this;
-    }
-
     public function getComptFourFactAout(): ?bool
     {
         return $this->comptFourFactAout;
@@ -1537,18 +1489,6 @@ class Client
     public function setComptClientActVente(?string $comptClientActVente): self
     {
         $this->comptClientActVente = $comptClientActVente;
-
-        return $this;
-    }
-
-    public function getComptClientGrTaxVentes(): ?string
-    {
-        return $this->comptClientGrTaxVentes;
-    }
-
-    public function setComptClientGrTaxVentes(?string $comptClientGrTaxVentes): self
-    {
-        $this->comptClientGrTaxVentes = $comptClientGrTaxVentes;
 
         return $this;
     }

@@ -39,9 +39,10 @@
 				{% for itineraire in itineraires %}
 					<tr>
 						<td>{{ itineraire.id }}</td>
+						<td>{{ itineraire.designation }}</td>
 						<td>{{ itineraire.tarif ~ currency }}</td>
-						<td>{{ itineraire.description|raw }}</td>
-						<td>{{ itineraire.client.civilite }}.
+						<td>
+						{{ itineraire.client.civilite }}.
 							<strong>{{ itineraire.client.nom }}
 								{{ itineraire.client.prenom }}</strong>
 							<br>

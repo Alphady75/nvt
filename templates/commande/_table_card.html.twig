@@ -13,31 +13,13 @@
 				<table id="tech-companies-1" class="table no-radius table-striped">
 					<thead class="text-left bg-light text-dark font-weight-bold">
 						<tr>
-							<th>NUM
-								<br>
-								VEHICULE
-							</th>
-							<th>CONTRAT
-								<br>
-								REF CLIENT
-							</th>
-							<th>DT COM
-								<br>
-								PORTABLE
-							</th>
-							<th>CODE
-								<br>
-								CONDUCTEUR
-							</th>
+							<th>NUM VEHICULE</th>
+							<th>CONTRAT REF CLIENT</th>
+							<th>DT COM PORTABLE</th>
+							<th>CODE CONDUCTEUR</th>
 							<!--<th>VEHICULE <br> REMORQUE</th>-->
-							<th>POSITION
-								<br>
-								RECU LE
-							</th>
-							<!--<th>CLIENT <br> TEL</th>
-																				                                    <th>NOM <br> EMAIL</th>-->
-							<th>Statut</th>
-							<th></th>
+							<th>POSITION RECU LE</th>
+							<th>ACTION</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -73,10 +55,6 @@
 									</span>
 								</td>
 								<td>
-									<span class="badge text-uppercase bg-{{ commande.statut ? 'success' : 'light' }}">{{ commande.statut ?
-								                        'Livrée' : 'En service' }}</span>
-								</td>
-								<td>
 									<a href="{{ path('commande_show', {id: commande.id}) }}" class="btn btn-light">
 										<i class="mdi mdi-clipboard-search-outline"></i>
 										Detail</a>
@@ -84,7 +62,7 @@
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="8">Aucune données</td>
+								<td colspan="7">Aucune données</td>
 							</tr>
 						{% endfor %}
 

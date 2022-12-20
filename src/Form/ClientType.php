@@ -28,82 +28,23 @@ class ClientType extends AbstractType
             ->add('code', TextType::class, [])
             ->add('num', NumberType::class, [])
             ->add('siret', TextType::class, [])
-            ->add('apeNaf', TextType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
-            ])
-            ->add('numTva', TextType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
-            ])
-            ->add('type', ChoiceType::class, [
-                'label' => "Type*",
-                'choices'  => [
-                    'Client'    =>  'Client',
-                    'Entreprise' =>  'Entreprise',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ]),
-                ],
-            ])
+            ->add('apeNaf', TextType::class, [])
+            ->add('numTva', TextType::class, [])
+            ->add('type', TextType::class, [])
             ->add('raisonSociale', TextType::class, [])
             ->add('groupeClient', TextType::class, [])
             ->add('sousGroupe', TextType::class, [])
             ->add('respFacturation', TextType::class, [])
             ->add('respSaisie', TextType::class, [])
-            ->add('typeSuivi', ChoiceType::class, [
-                'label' => "Type suivis",
-                'choices'  => [
-                    'TRAVIS'    =>  'TRAVIS',
-                    'Entreprise' =>  'Entreprise',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ]),
-                ],
-            ])
-            ->add('shippeo', TextType::class, [])
             ->add('decodageAdr', CheckboxType::class, [
                 'label' => false
             ])
             ->add('adresseValide', CheckboxType::class, [
                 'label' => false
             ])
-            ->add('statut', ChoiceType::class, [
-                'label' => "Statut*",
-                'choices'  => [
-                    'En service' =>  0,
-                    'Livrée' =>  1,
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ]),
-                ],
-            ])
-            ->add('nom', TextType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
-            ])
-            ->add('prenom', TextType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
-            ])
+            ->add('statut', TextType::class, [])
+            ->add('nom', TextType::class, [])
+            ->add('prenom', TextType::class, [])
             ->add('civilite', ChoiceType::class, [
                 'label' => false,
                 'help' => 'Civilité',
@@ -113,11 +54,6 @@ class ClientType extends AbstractType
                 ],
                 'expanded' => false,
                 'multiple' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est obligatoire',
-                    ]),
-                ],
             ])
             ->add('adresse', TextType::class, [])
             ->add('telephone', TextType::class, [])
@@ -148,7 +84,6 @@ class ClientType extends AbstractType
                 'label' => "Edition",
                 'choices'  => [
                     'Chargement'    =>  'chargement',
-                    'Location' =>  'location',
                 ],
                 'expanded' => false,
             ])
@@ -223,15 +158,10 @@ class ClientType extends AbstractType
             ])
             ->add('tolAttenteCha', NumberType::class, [])
             ->add('tolRetardCha', NumberType::class, [])
-            ->add('calAttanteCha', ChoiceType::class, [])
+            ->add('calAttanteCha', TextType::class, [])
             ->add('tolAttenteLiv', NumberType::class, [])
             ->add('tolRetardLiv', NumberType::class, [])
-            ->add('calAttanteLiv', ChoiceType::class, [])
-            ->add('palEurope', EntityType::class, [
-                'label'     =>  'Pal Europe*',
-                'placeholder'     =>  '--Pal Europe--',
-                'class' => PalEurope::class,
-            ])
+            ->add('calAttanteLiv', TextType::class, [])
             ->add('planChar', CheckboxType::class, ['label' => false])
             ->add('planCodeChar', CheckboxType::class, ['label' => false])
             ->add('planSupChar', TextType::class, [])
@@ -264,7 +194,6 @@ class ClientType extends AbstractType
             ->add('comptFourTypeRegParc', TextType::class, [])
             ->add('comptFourJoursPaiement', NumberType::class, [])
             ->add('comptFourActAchat', TextType::class, [])
-            ->add('comptFourGrTaxAchats', ChoiceType::class, [])
             ->add('comptFourFactAout', CheckboxType::class, ['label' => false])
             ->add('comptFourCertifStartAt', DateType::class, ['widget' => 'single_text',])
             ->add('comptFourCertifEndAt', DateType::class, ['widget' => 'single_text',])
@@ -290,7 +219,6 @@ class ClientType extends AbstractType
             ->add('comptClientTypeRegParc', TextType::class, [])
             ->add('comptClientJoursPaiement', NumberType::class, [])
             ->add('comptClientActVente', TextType::class, [])
-            ->add('comptClientGrTaxVentes', ChoiceType::class, [])
             ->add('comptClientFactAout', CheckboxType::class, ['label' => false])
             ->add('comptClientCertifStartAt', DateType::class, ['widget' => 'single_text',])
             ->add('comptClientCertifEndAt', DateType::class, ['widget' => 'single_text',])
@@ -298,9 +226,9 @@ class ClientType extends AbstractType
             ->add('relanceNom', TextType::class, [])
             ->add('relanceTel', TextType::class, [])
             ->add('relanceTel2', TextType::class, [])
-            ->add('relanceEmail', TextType::class, [])
+            ->add('relanceEmail', EmailType::class, [])
             ->add('relanceMemo', TextareaType::class, ['attr' => ['rows' => 4]])
-            ->add('relanceJours', NumberType::class, [])
+            ->add('relanceJours', DateType::class, ['widget' => 'single_text',])
             ->add('adresseType', TextType::class, [])
             ->add('adresseCode', TextType::class, [])
             ->add('adresseNom', TextType::class, [])

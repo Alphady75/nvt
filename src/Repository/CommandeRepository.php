@@ -82,9 +82,9 @@ class CommandeRepository extends ServiceEntityRepository
             ->select('v', 'c')
             ->select('cli', 'c')
             ->select('i', 'c')
-            ->join('c.vehicule', 'v')
+            ->leftjoin('c.vehicule', 'v')
             ->leftjoin('c.client', 'cli')
-            ->leftjoin('c.itineraires', 'i')
+            ->leftjoin('c.itineraire', 'i')
             ->orderBy('c.created', 'DESC');
 
         if ($search->getVehicules()->count() > 0) {
