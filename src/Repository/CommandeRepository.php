@@ -79,33 +79,17 @@ class CommandeRepository extends ServiceEntityRepository
     private function getSearcheQuery(FiltreCommande $search) //: QueryBuilder
     {
         $query = $this->createQueryBuilder('c')
-            ->select('s', 'c')
             ->select('v', 'c')
-            ->select('veh', 'c')
             ->select('cli', 'c')
             ->select('i', 'c')
-            ->join('c.secteur', 's')
-            ->join('c.ville', 'v')
-            ->join('c.vehicule', 'veh')
+            ->join('c.vehicule', 'v')
             ->leftjoin('c.client', 'cli')
             ->leftjoin('c.itineraires', 'i')
             ->orderBy('c.created', 'DESC');
 
-        if ($search->getSecteurs()->count() > 0) {
-            $query = $query
-                ->andWhere('s.id IN (:secteur)')
-                ->setParameter('secteur', $search->secteurs);
-        }
-
-        if ($search->getVilles()->count() > 0) {
-            $query = $query
-                ->andWhere('v.id IN (:ville)')
-                ->setParameter('ville', $search->villes);
-        }
-
         if ($search->getVehicules()->count() > 0) {
             $query = $query
-                ->andWhere('veh.id IN (:vehicule)')
+                ->andWhere('v.id IN (:vehicule)')
                 ->setParameter('vehicule', $search->vehicules);
         }
 

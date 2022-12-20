@@ -56,10 +56,28 @@ class CommandeController extends AbstractController
             $commande->setQrcode($qrcode);
             $entityManager->flush();
 
+            // Envoie du mail à l'admin
+            $mailer->sendMail(
+                'nevrety@gmail.com',
+                'nevrety@gmail.com',
+                'Nouvelle commande',
+                'mails/conducteur_mail.html.twig',
+                $commande
+            );
+
             // Envoie du mail au conducteur
             $mailer->sendMail(
                 'nevrety@gmail.com',
                 $commande->getConducteur()->getEmail(),
+                'Nouvelle commande',
+                'mails/conducteur_mail.html.twig',
+                $commande
+            );
+
+            // Envoie du mail au client
+            $mailer->sendMail(
+                'nevrety@gmail.com',
+                $commande->getClient()->getEmail(),
                 'Nouvelle commande',
                 'mails/conducteur_mail.html.twig',
                 $commande

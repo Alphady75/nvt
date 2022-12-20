@@ -29,14 +29,6 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private $vehicule;
 
-    #[ORM\ManyToOne(targetEntity: Ville::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $ville;
-
-    #[ORM\ManyToOne(targetEntity: Secteur::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $secteur;
-
     #[ORM\ManyToOne(targetEntity: Conducteur::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     private $conducteur;
@@ -47,9 +39,6 @@ class Commande
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateLivraison;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private $statut;
-
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
@@ -57,16 +46,11 @@ class Commande
     #[ORM\Column(type: 'text', nullable: true)]
     private $qrcode;
 
-    #[ORM\ManyToMany(targetEntity: Itineraire::class, inversedBy: 'commandes')]
-    private $itineraires;
-
     #[ORM\Column(type: 'text', nullable: true)]
     private $observation;
 
-    public function __construct()
-    {
-        $this->itineraires = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(targetEntity: Itineraire::class, inversedBy: 'commandes')]
+    private $itineraire;
 
     public function getId(): ?int
     {
@@ -81,18 +65,6 @@ class Commande
     public function setVehicule(?Vehicule $vehicule): self
     {
         $this->vehicule = $vehicule;
-
-        return $this;
-    }
-
-    public function getSecteur(): ?Secteur
-    {
-        return $this->secteur;
-    }
-
-    public function setSecteur(?Secteur $secteur): self
-    {
-        $this->secteur = $secteur;
 
         return $this;
     }
@@ -145,30 +117,6 @@ class Commande
         return $this;
     }
 
-    public function getStatut(): ?bool
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(?bool $statut): self
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    public function getVille(): ?Ville
-    {
-        return $this->ville;
-    }
-
-    public function setVille(?Ville $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
     public function getTarif(): ?float
     {
         return $this->tarif;
@@ -205,30 +153,6 @@ class Commande
         return $this;
     }
 
-    /**
-     * @return Collection|Itineraire[]
-     */
-    public function getItineraires(): Collection
-    {
-        return $this->itineraires;
-    }
-
-    public function addItineraire(Itineraire $itineraire): self
-    {
-        if (!$this->itineraires->contains($itineraire)) {
-            $this->itineraires[] = $itineraire;
-        }
-
-        return $this;
-    }
-
-    public function removeItineraire(Itineraire $itineraire): self
-    {
-        $this->itineraires->removeElement($itineraire);
-
-        return $this;
-    }
-
     public function getObservation(): ?string
     {
         return $this->observation;
@@ -237,6 +161,18 @@ class Commande
     public function setObservation(?string $observation): self
     {
         $this->observation = $observation;
+
+        return $this;
+    }
+
+    public function getItineraire(): ?Itineraire
+    {
+        return $this->itineraire;
+    }
+
+    public function setItineraire(?Itineraire $itineraire): self
+    {
+        $this->itineraire = $itineraire;
 
         return $this;
     }

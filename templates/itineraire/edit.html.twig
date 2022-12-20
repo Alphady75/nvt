@@ -1,6 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Itineraire{% endblock %}
+{% block title %}Mettre à jour l'itineraire {{ itineraire.designation }}{% endblock %}
+
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('itineraire_index') }}">
+			<i class="mdi mdi-routes"></i>
+			Itineraires
+		</a>
+	</li>
+    <li class="breadcrumb-item active" aria-current="page">
+		{{ itineraire.designation }}
+	</li>
+
+{% endblock %}
 
 {% block btn %}
 	{% include "itineraire/_btn_links.html.twig" %}

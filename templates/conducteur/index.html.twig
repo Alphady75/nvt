@@ -31,7 +31,6 @@
                 <th></th>
                 <th>Type Contrat</th>
                 <th>Coordonnées</th>
-                <th>Ville et Secteur de travaile</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -64,7 +63,6 @@
                 </td>
                 <td>{{ conducteur.typeContrat }}</td>
                 <td>{{ conducteur.telephone }} <br> {{ conducteur.adresse }}</td>
-                <td>{{ conducteur.villeTravail.name }} <br> {{ conducteur.secteur.name ?? '' }}</td>
                 <td>
                     <a href="{{ path('conducteur_show', {'id': conducteur.id}) }}" class="btn btn-light"><i
                         class="mdi mdi-account-search"></i> Détails</a>
@@ -73,7 +71,7 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="8">Aucune donnée</td>
+                <td colspan="7">Aucune donnée</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -31,7 +31,10 @@ class Itineraire
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
-    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'itineraires')]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $link;
+
+    #[ORM\OneToMany(mappedBy: 'itineraire', targetEntity: Commande::class)]
     private $commandes;
 
     public function __construct()
@@ -92,6 +95,23 @@ class Itineraire
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->designation;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(string $link): self
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Commande[]
      */
@@ -104,7 +124,7 @@ class Itineraire
     {
         if (!$this->commandes->contains($commande)) {
             $this->commandes[] = $commande;
-            $commande->addItineraire($this);
+            $commande->setItineraire($this);
         }
 
         return $this;
@@ -113,14 +133,12 @@ class Itineraire
     public function removeCommande(Commande $commande): self
     {
         if ($this->commandes->removeElement($commande)) {
-            $commande->removeItineraire($this);
+            // set the owning side to null (unless already changed)
+            if ($commande->getItineraire() === $this) {
+                $commande->setItineraire(null);
+            }
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->designation;
     }
 }

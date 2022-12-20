@@ -6,6 +6,7 @@ use App\Entity\Itineraire;
 use App\Form\ItineraireType;
 use App\Repository\ItineraireRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ItineraireController extends AbstractController
 {
     #[Route('/', name: 'itineraire_index', methods: ['GET'])]
-    public function index(ItineraireRepository $itineraireRepository): Response
+    public function index(ItineraireRepository $itineraireRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $itineraires = $paginator->paginate(
+            $itineraireRepository->findBy([], ['created' => 'DESC']),
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('itineraire/index.html.twig', [
-            'itineraires' => $itineraireRepository->findAll(),
+            'itineraires' => $itineraires,
         ]);
     }
 

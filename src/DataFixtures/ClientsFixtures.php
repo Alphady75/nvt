@@ -5,18 +5,15 @@ namespace App\DataFixtures;
 use App\Entity\Client;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
 
-class ClientsFixtures extends Fixture implements DependentFixtureInterface
+class ClientsFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
 
         for($nbclients = 1; $nbclients <= 100; $nbclients++){
-
-            $ville = $this->getReference('ville_'. $faker->numberBetween(1, 6));
 
             $client = new Client();           
             $client->setNom($faker->firstName());
@@ -26,7 +23,7 @@ class ClientsFixtures extends Fixture implements DependentFixtureInterface
             $client->setAdresse($faker->streetAddress());
             $client->setTelephone($faker->phoneNumber());
             $client->setEmail($faker->email());
-            $client->setVille($ville);
+            $client->setVille($faker->city);
             $manager->persist($client);
 
             // Enregistre l'utilisateur dans une référence
@@ -34,12 +31,5 @@ class ClientsFixtures extends Fixture implements DependentFixtureInterface
         }
 
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return [
-            VillesFixtures::class,
-        ];
     }
 }

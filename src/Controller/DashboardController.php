@@ -8,21 +8,18 @@ use App\Repository\ClientRepository;
 use App\Repository\CommandeRepository;
 use App\Repository\ConducteurRepository;
 use App\Repository\ItineraireRepository;
-use App\Repository\SecteurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
-use App\Repository\VehiculeRefRepository;
 use App\Repository\VehiculeRepository;
-use App\Repository\VilleRepository;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/dashboard')]
 class DashboardController extends AbstractController
 {
     #[Route('/', name: 'dashboard')]
-    public function home(UserRepository $userRepository, CommandeRepository $commandeRepository, ClientRepository $clientRepository, VehiculeRepository $vehiculeRepository, VilleRepository $villeRepository, SecteurRepository $secteurRepository, Request $request, ConducteurRepository $conducteurRepository, ItineraireRepository $itineraireRepository): Response
+    public function home(UserRepository $userRepository, CommandeRepository $commandeRepository, ClientRepository $clientRepository, VehiculeRepository $vehiculeRepository, Request $request, ConducteurRepository $conducteurRepository, ItineraireRepository $itineraireRepository): Response
     {
         $search = new FiltreCommande();
         $search->page = $request->get('page', 1);
@@ -40,8 +37,6 @@ class DashboardController extends AbstractController
             'clients' => $clientRepository->findAll(),
             'commandesAll' => $commandeRepository->findAll(),
             'vehicules' => $vehiculeRepository->findAll(),
-            'villes' => $villeRepository->findAll(),
-            'secteurs' => $secteurRepository->findAll(),
             'conducteurs' => $conducteurRepository->findAll(),
             'itineraires' => $itineraireRepository->findAll()
         ]);

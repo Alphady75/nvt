@@ -4,8 +4,6 @@ namespace App\Form;
 
 use App\Entity\Client;
 use App\Entity\PalEurope;
-use App\Entity\Secteur;
-use App\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -17,8 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
@@ -139,16 +135,8 @@ class ClientType extends AbstractType
             ])
             ->add('sectAppartenance', TextType::class, [])
             ->add('sectCompte', TextType::class, [])
-            ->add('ville', EntityType::class, [
-                'label'     =>  'Ville*',
-                'placeholder'     =>  '--Sélectionnez--',
-                'class' => Ville::class,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
-            ])
+            ->add('ville', TextType::class, [])
+            ->add('secteur', TextType::class, [])
             ->add('sectNumSiret', TextType::class, [])
             ->add('facValJournaliere', CheckboxType::class, [
                 'label' => false
@@ -165,11 +153,11 @@ class ClientType extends AbstractType
                 'expanded' => false,
             ])
             ->add('editionStartAt', TimeType::class, [
-                'input'  => 'timestamp',
+                //'input'  => 'timestamp',
                 'widget' => 'single_text',
             ])
             ->add('editionEndAt', TimeType::class, [
-                'input'  => 'timestamp',
+                //'input'  => 'timestamp',
                 'widget' => 'single_text',
             ])
             ->add('factMode', ChoiceType::class, [
@@ -319,72 +307,6 @@ class ClientType extends AbstractType
             ->add('adresseDep', TextType::class, [])
             ->add('adresseRef', TextType::class, [])
             ->add('adresseVille', TextType::class, []);
-
-        $builder->get('ville')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) {
-
-                $form = $event->getForm();
-
-                $this->addSecteurFields($form->getParent(), $form->getData());
-            }
-        );
-
-        $builder->addEventListener(
-            FormEvents::POST_SET_DATA,
-            function (FormEvent $event) {
-
-                $data = $event->getData();
-                /* @var $secteur Secteur */
-                $secteur = $data->getSecteur(); //dd(Secteur);
-
-                $form = $event->getForm();
-
-                if ($secteur) {
-
-                    $ville = $secteur->getville();
-
-                    $this->addSecteurFields($form, $ville);
-
-                    $form->get('ville')->setData($ville);
-                    $form->get('secteur')->setData($secteur);
-                } else {
-                    $this->addSecteurFields($form, null);
-                }
-            }
-        );
-    }
-
-    /**
-     * Rajoute un champ de type SecteurType au formulaire
-     * 
-     * @param Ville $ville
-     * @return void
-     */
-    private function addSecteurFields($form, ?Ville $ville)
-    {
-
-        $builder = $form->getConfig()->getFormFactory()->createNamedBuilder(
-            'secteur',
-            EntityType::class,
-            null,
-            [
-                'label' => 'Secteur*',
-                'class' =>  Secteur::class,
-                'auto_initialize'   =>  false,
-                'placeholder'   =>  $ville ? 'Secteur pour ' . $ville->getName() : '--sélectionnez une ville--',
-                'choices'   =>  $ville ? $ville->getSecteurs() : [],
-                'choice_label' => 'name',
-                'required'  =>  false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ]),
-                ],
-            ]
-        );
-
-        $form->add($builder->getForm());
     }
 
     public function configureOptions(OptionsResolver $resolver): void

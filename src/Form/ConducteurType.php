@@ -309,17 +309,6 @@ class ConducteurType extends AbstractType
                 'label'     =>  'Date debut enciennete',
                 'widget' => 'single_text',
                 'required' => false,
-            ])
-            ->add('villeTravail', EntityType::class, [
-                'class' => Ville::class,
-                'label' => 'Ville de travail',
-
-                // uses the User.username property as the visible option string
-                //'choice_label' => 'username',
-
-                // used to render a select box, check boxes or radios
-                // 'multiple' => true,
-                // 'expanded' => true,
             ]);
     }
 

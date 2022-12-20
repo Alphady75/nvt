@@ -1,47 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Itineraire{% endblock %}
+{% block title %}Itineraire - {{ itineraire.designation }}{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('itineraire_index') }}">
+        <i class="mdi mdi-routes"></i>
+        Itineraires
+    </a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    {{ itineraire.designation }}
+</li>
+
+{% endblock %}
 
 {% block btn %}
-	{% include "itineraire/_btn_links.html.twig" %}
+{% include "itineraire/_btn_links.html.twig" %}
 {% endblock %}
 
 
 {% block body %}
-    <h1>Itineraire</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ itineraire.id }}</td>
-            </tr>
-            <tr>
-                <th>Designation</th>
-                <td>{{ itineraire.designation }}</td>
-            </tr>
-            <tr>
-                <th>Tarif</th>
-                <td>{{ itineraire.tarif }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ itineraire.description }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ itineraire.created ? itineraire.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated</th>
-                <td>{{ itineraire.updated ? itineraire.updated|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="card">
+    <div class="card-header bg-primary">
+        <h4 class="font-size-18 py-2 text-light">
+            Itineraire: {{ itineraire.designation }}
+        </h4>
+    </div>
+    <div class="card-body py-5">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ itineraire.id }}</td>
+                </tr>
+                <tr>
+                    <th>Designation</th>
+                    <td>{{ itineraire.designation }}</td>
+                </tr>
+                <tr>
+                    <th>Tarif</th>
+                    <td>{{ itineraire.tarif }}</td>
+                </tr>
+                <tr>
+                    <th>Client</th>
+                    <td>{{ itineraire.client.civilite }}.
+                        <strong>{{ itineraire.client.nom }}
+                            {{ itineraire.client.prenom }}</strong>
+                        <br>
+                        <small>{{ itineraire.client.email }}</small>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Itineraire</th>
+                    <td><a href="{{ itineraire.link }}" class="text-info" target="_blank">{{ itineraire.link }}</a></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ itineraire.description }}</td>
+                </tr>
+                <tr>
+                    <th>Date de création</th>
+                    <td>{{ itineraire.created ? itineraire.created|date('d/m/Y à H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Dernière mise à jour</th>
+                    <td>{{ itineraire.updated ? itineraire.updated|date('d/m/Y à H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Actions</th>
+                    <td>
+                        <a href="{{ path('itineraire_edit', {'id': itineraire.id}) }}" class="btn btn-light">Mettre à
+                            jour</a>
+                        {{ include('itineraire/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <a href="{{ path('itineraire_index') }}">back to list</a>
-
-    <a href="{{ path('itineraire_edit', {'id': itineraire.id}) }}">edit</a>
-
-    {{ include('itineraire/_delete_form.html.twig') }}
 {% endblock %}

@@ -17,10 +17,6 @@
 								<br>
 								VEHICULE
 							</th>
-							<th>SECT
-								<br>
-								VILLE TRAVAIL
-							</th>
 							<th>CONTRAT
 								<br>
 								REF CLIENT
@@ -55,12 +51,6 @@
 								                        commande.vehicule.name }}</span>
 								</td>
 								<td>
-									<span class="co-name text-uppercase small">{{ commande.secteur.name }}
-										<br>
-										{{
-								                        commande.ville.name }}</span>
-								</td>
-								<td>
 									<span class="co-name text-uppercase small">Contrat
 										<br>
 										ref client</span>
@@ -76,26 +66,12 @@
 								                        commande.conducteur.prenom }}
 									</span>
 								</td>
-								<!--<td>
-																						                                        <span class="co-name text-uppercase small">
-																						                                            {{ commande.vehicule.name }} <br> {{ commande.vehicule.reference }}
-																						                                        </span>
-																						                                    </td>-->
+								
 								<td>
 									<span class="co-name text-uppercase small">
 										{{ commande.dateReception|date('d/m/Y H:i:s') }}
 									</span>
 								</td>
-								<!--<td>
-																						                                        <span class="co-name text-uppercase small">
-																						                                            {{ commande.client.telephone }}
-																						                                        </span>
-																						                                    </td>
-																						                                    <td>
-																						                                        <span class="co-name text-uppercase small">
-																						                                            {{ commande.client.nom ~ ' ' ~ commande.client.prenom }}
-																						                                        </span>
-																						                                    </td>-->
 								<td>
 									<span class="badge text-uppercase bg-{{ commande.statut ? 'success' : 'light' }}">{{ commande.statut ?
 								                        'Livrée' : 'En service' }}</span>
@@ -108,7 +84,7 @@
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="9">Aucune données</td>
+								<td colspan="8">Aucune données</td>
 							</tr>
 						{% endfor %}
 

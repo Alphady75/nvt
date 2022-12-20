@@ -3,20 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Client;
-use App\Entity\Ville;
 use App\Entity\FiltreCommande;
 use App\Entity\Itineraire;
-use App\Entity\Secteur;
 use App\Entity\Vehicule;
 use App\Repository\ClientRepository;
 use App\Repository\ItineraireRepository;
-use App\Repository\SecteurRepository;
 use App\Repository\VehiculeRepository;
-use App\Repository\VilleRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -38,36 +32,6 @@ class FiltreCommandeType extends AbstractType
             'help'     =>  'Date de livraison',
             'widget' => 'single_text',
             'required' => false,
-         ])
-         ->add('secteurs', EntityType::class, [
-            'label' => False,
-            'help' => "Secteurs",
-            'multiple' => true,
-            'required' => false,
-            'autocomplete' => true,
-            //'expanded' => true,
-            'class' => Secteur::class,
-            'query_builder' => function (SecteurRepository $getsecteurs) {
-               return $getsecteurs->createQueryBuilder('s')
-                  ->orderBy('s.name', 'ASC');
-            },
-            'choice_label' => 'name',
-            'attr' => ['class' => 'p-0 m-0 border-0']
-         ])
-         ->add('villes', EntityType::class, [
-            'label' => False,
-            'required' => false,
-            'autocomplete' => true,
-            'help' => "Villes",
-            'multiple' => true,
-            //'expanded' => true,
-            'class' => Ville::class,
-            'query_builder' => function (VilleRepository $getville) {
-               return $getville->createQueryBuilder('v')
-                  ->orderBy('v.name', 'ASC');
-            },
-            'choice_label' => 'name',
-            'attr' => ['class' => 'p-0 m-0 border-0']
          ])
          ->add('vehicules', EntityType::class, [
             'label' => False,

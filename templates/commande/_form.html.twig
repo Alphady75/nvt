@@ -25,10 +25,10 @@
 								</td>
 							</tr>
 							<tr>
-								<th>Itineraires</th>
+								<th>Itineraire</th>
 								<td>
-									{{ form_widget(form.itineraires) }}
-									{{ form_errors(form.itineraires) }}
+									{{ form_widget(form.itineraire) }}
+									{{ form_errors(form.itineraire) }}
 								</td>
 							</tr>
 							<tr>
@@ -45,28 +45,13 @@
 									{{ form_errors(form.vehicule) }}
 								</td>
 							</tr>
-
-							<tr>
-								<th>Villes</th>
-								<td>
-									{{ form_widget(form.ville) }}
-									{{ form_errors(form.ville) }}
-								</td>
-							</tr>
-							<tr>
-								<th>Secteurs</th>
-								<td>
-									{{ form_widget(form.secteur) }}
-									{{ form_errors(form.secteur) }}
-								</td>
-							</tr>
 						</tbody>
 					</table>
 					<legend class="font-size-18 mt-4 p-2">Delais de livraison</legend>
 					<table class="table commande">
 						<tbody>
 							<tr>
-								<th>Date de reception</th>
+								<th>Date de chargement</th>
 								<td>
 									{{ form_widget(form.dateReception) }}
 									{{ form_errors(form.dateReception) }}
@@ -77,14 +62,6 @@
 								<td>
 									{{ form_widget(form.dateLivraison) }}
 									{{ form_errors(form.dateLivraison) }}
-								</td>
-							</tr>
-
-							<tr>
-								<th>Statut</th>
-								<td>
-									{{ form_widget(form.statut) }}
-									{{ form_errors(form.statut) }}
 								</td>
 							</tr>
 						</tbody>

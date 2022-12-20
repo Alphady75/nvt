@@ -77,15 +77,13 @@
 
 		{% else %}
 
-			{% for itineraire in commande.itineraires %}
-				<tr style="vertical-align: top;background: white;padding-bottom: 0;">
-					<td>{{ itineraire.id }}</td>
-					<td>{{ itineraire.designation }}</td>
-					<td>{{ itineraire.tarif }}</td>
-					<td>{{ itineraire.tarif ~ currency }}
-					</td>
-				</tr>
-			{% endfor %}
+			<tr style="vertical-align: top;background: white;padding-bottom: 0;">
+				<td>{{ commande.itineraire.id }}</td>
+				<td>{{ commande.itineraire.designation }}</td>
+				<td>{{ commande.itineraire.description }}</td>
+				<td>{{ commande.itineraire.tarif ~ currency }}
+				</td>
+			</tr>
 
 		{% endif %}
 
@@ -125,8 +123,6 @@
 				Date de livraison
 				<br>
 				{{ commande.dateLivraison ? commande.dateLivraison|date('d/m/Y: H:i:s') : '' }}
-				<br>
-				{{ commande.statut ? 'Commande Livrée' : 'Commande En attente' }}
 			</p>
 		</td>
 		<td style="width: 20%;text-align:right;">

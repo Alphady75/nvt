@@ -41,7 +41,7 @@ class Client
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $email;
 
-    #[ORM\ManyToOne(targetEntity: Ville::class, inversedBy: 'clients')]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $ville;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Commande::class)]
@@ -104,7 +104,7 @@ class Client
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $sectCompte;
 
-    #[ORM\ManyToOne(targetEntity: Secteur::class, inversedBy: 'clients')]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $secteur;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -119,10 +119,10 @@ class Client
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $edition;
 
-    #[ORM\Column(type: 'time', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $editionStartAt;
 
-    #[ORM\Column(type: 'time', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $editionEndAt;
 
     #[ORM\Column(type: 'array', nullable: true)]
@@ -447,12 +447,12 @@ class Client
         return $this->getNom() . ' ' . $this->getPrenom() . ' ( ' . $this->getEmail() . ' )';
     }
 
-    public function getVille(): ?Ville
+    public function getVille(): ?string
     {
         return $this->ville;
     }
 
-    public function setVille(?Ville $ville): self
+    public function setVille(?string $ville): self
     {
         $this->ville = $ville;
 
@@ -735,12 +735,12 @@ class Client
         return $this;
     }
 
-    public function getSecteur(): ?Secteur
+    public function getSecteur(): ?string
     {
         return $this->secteur;
     }
 
-    public function setSecteur(?Secteur $secteur): self
+    public function setSecteur(?string $secteur): self
     {
         $this->secteur = $secteur;
 

@@ -6,8 +6,6 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Entity\CategorieImmobilier;
-use App\Entity\Ville;
 use Doctrine\Persistence\ObjectManager;
 
 class FiltreCommande
@@ -16,16 +14,6 @@ class FiltreCommande
     * @var int
     */
    public $page = 1;
-
-   /**
-    * @var ArrayCollection|null
-    */
-   public $secteurs;
-
-   /**
-    * @var ArrayCollection|null
-    */
-   public $villes;
 
    /**
     * @var ArrayCollection|null
@@ -59,43 +47,9 @@ class FiltreCommande
 
    public function __construct()
    {
-      $this->secteurs = new ArrayCollection();
-      $this->villes = new ArrayCollection();
       $this->vehicules = new ArrayCollection();
       $this->clients = new ArrayCollection();
       $this->itineraires = new ArrayCollection();
-   }
-
-   /**
-    * @return ArrayCollection
-    */
-   public function getSecteurs(): ?ArrayCollection
-   {
-      return $this->secteurs;
-   }
-
-   /**
-    * @param ArrayCollection $secteurs
-    */
-   public function setSecteurs(?ArrayCollection $secteurs): void
-   {
-      $this->secteurs = $secteurs;
-   }
-
-   /**
-    * @return ArrayCollection
-    */
-   public function getVilles(): ?ArrayCollection
-   {
-      return $this->villes;
-   }
-
-   /**
-    * @param ArrayCollection $villes
-    */
-   public function setVilles(?ArrayCollection $villes): void
-   {
-      $this->villes = $villes;
    }
 
    /**

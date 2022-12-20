@@ -9,9 +9,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Url;
 
 class ItineraireType extends AbstractType
 {
@@ -23,6 +25,18 @@ class ItineraireType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
+                    ]),
+                ],
+            ])
+            ->add('link', UrlType::class, [
+                'label' => 'Lien*',
+                'attr' => ['placeholder' => 'https://goo.gl/maps/JgSctSVYnBy3XkAi9'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Ce champ est requis',
+                    ]),
+                    new Url([
+                        'message' => 'Veuillez indiquer une URL valide, sans oublier le http:// soit le https://',
                     ]),
                 ],
             ])

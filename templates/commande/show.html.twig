@@ -19,10 +19,12 @@
 {% block body %}
 
 	<div class="card">
-        <div class="card-header bg-primary">
-            <h4 class="py-2 font-size-18 text-light">Commande de 
-				{{ commande.client.civilite }} {{ commande.client.nom }} {{ commande.client.prenom }}</h4>
-        </div>
+		<div class="card-header bg-primary">
+			<h4 class="py-2 font-size-18 text-light">Commande de
+				{{ commande.client.civilite }}
+				{{ commande.client.nom }}
+				{{ commande.client.prenom }}</h4>
+		</div>
 
 		<div class="card-body py-5">
 			<h4 class="my-4 font-size-18">Client</h4>
@@ -85,13 +87,6 @@
 								<strong>{{ commande.conducteur.adresse }}</strong>
 							</p>
 							<p>
-								<span class="">Ville de tarvail et secteur:</span>
-								<strong>{{ commande.conducteur.villeTravail }}
-									-
-									{{ commande.conducteur.secteur.name
-                                    }}</strong>
-							</p>
-							<p>
 								<span class="">Type de contrat:</span>
 								<strong>{{ commande.conducteur.typeContrat }}</strong>
 							</p>
@@ -110,19 +105,16 @@
 
 			<h4 class="my-3 font-size-18">Vehicule</h4>
 
-			{% if commande.statut %}
-
 			<h4 class="my-3 font-size-18">Facture</h4>
 			<div class="p-5 border">
 
-				{{ include('commande/_facture.html.twig') }} <br class="mt-3">
+				{{ include('commande/_facture.html.twig') }}
+				<br class="mt-3">
 
 				{{ include('factures/_form_generer.html.twig') }}
 
 				{{ include('commande/_delete_form.html.twig') }}
 			</div>
-
-			{% endif %}
 
 		</div>
 

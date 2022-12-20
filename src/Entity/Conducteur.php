@@ -65,10 +65,6 @@ class Conducteur
     #[ORM\OneToMany(mappedBy: 'conducteur', targetEntity: Commande::class)]
     private $commandes;
 
-    #[ORM\ManyToOne(targetEntity: Ville::class, inversedBy: 'conducteurs')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $villeTravail;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $typeContrat;
 
@@ -77,9 +73,6 @@ class Conducteur
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateFinContrat;
-
-    #[ORM\ManyToOne(targetEntity: Secteur::class, inversedBy: 'conducteurs')]
-    private $secteur;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $poste;
@@ -323,18 +316,6 @@ class Conducteur
         return $this;
     }
 
-    public function getVilleTravail(): ?Ville
-    {
-        return $this->villeTravail;
-    }
-
-    public function setVilleTravail(?Ville $villeTravail): self
-    {
-        $this->villeTravail = $villeTravail;
-
-        return $this;
-    }
-
     public function getTypeContrat(): ?string
     {
         return $this->typeContrat;
@@ -374,18 +355,6 @@ class Conducteur
     public function __toString()
     {
         return $this->getNom() . ' ' . $this->getPrenom() . ' ' . $this->getEmail();
-    }
-
-    public function getSecteur(): ?Secteur
-    {
-        return $this->secteur;
-    }
-
-    public function setSecteur(?Secteur $secteur): self
-    {
-        $this->secteur = $secteur;
-
-        return $this;
     }
 
     public function getPoste(): ?string

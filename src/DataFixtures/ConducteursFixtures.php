@@ -8,16 +8,13 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class ConducteursFixtures extends Fixture implements DependentFixtureInterface
+class ConducteursFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
 
         for($nbconducteurs = 1; $nbconducteurs <= 20; $nbconducteurs++){
-
-            $ville = $this->getReference('ville_'. $faker->numberBetween(1, 6));
-            $secteur = $this->getReference('secteur_'. $faker->numberBetween(1, 50));
 
             $conducteur = new Conducteur();           
             $conducteur->setNom($faker->firstName());
@@ -45,8 +42,6 @@ class ConducteursFixtures extends Fixture implements DependentFixtureInterface
             $conducteur->setEmail($faker->email());
             $conducteur->setEmailPerso($faker->email());
             $conducteur->setMemo($faker->realText(90));
-            $conducteur->setVilleTravail($ville);
-            $conducteur->setSecteur($secteur);
             $conducteur->setTypeContrat('CDI');
             $conducteur->setDateEntre(new \DateTime());
             $conducteur->setDateDebutEnciennete(new \DateTime());
@@ -65,13 +60,5 @@ class ConducteursFixtures extends Fixture implements DependentFixtureInterface
         }
 
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return [
-            VillesFixtures::class,
-            SecteursFixtures::class,
-        ];
     }
 }
