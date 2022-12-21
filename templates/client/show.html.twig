@@ -4,6 +4,20 @@
 {{ client.nom ~ ' ' ~ client.prenom }}
 {% endblock %}
 
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('client_index') }}">
+        <i class="mdi mdi-account-group"></i>
+        Clients</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <i class="icon-user"></i>
+    {{ client.nom ~ ' ' ~ client.prenom }}
+</li>
+
+{% endblock %}
+
 {% block body %}
 
 <div class="card bg-white">
@@ -29,37 +43,37 @@
                                             <tbody>
                                                 <tr>
                                                     <th>CODE</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.code }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>NUM</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.num }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>siret</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.siret }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>ape Naf</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.apeNaf }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>num Tva</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.numTva }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>type</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.type }}
@@ -69,50 +83,50 @@
                                                 </tr>
                                                 <tr>
                                                     <th>statut</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.statut }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>raison Sociale</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.raisonSociale }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>groupe Client</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.groupeClient }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>sous Groupe</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.sousGroupe }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>resp Facturation</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.respFacturation }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>resp Saisie</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.respSaisie }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>decodage Adr</th>
-                                                    <td class="text-muted small">
-                                                        {{ client.decodageAdr }}
+                                                    <td class="text-muted ">
+                                                        {{ client.decodageAdr ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>adresse Valide</th>
-                                                    <td class="text-muted small">
-                                                        {{ client.adresseValide }}
+                                                    <td class="text-muted ">
+                                                        {{ client.adresseValide ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -125,7 +139,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Appartenance</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.sectAppartenance }}
@@ -138,19 +152,19 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Compte</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.sectCompte }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Secteur</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.secteur }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Num siret</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.sectNumSiret }}
                                                     </td>
                                                 </tr>
@@ -164,10 +178,10 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Val journalière</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
-                                                                {{ client.facValJournaliere }}
+                                                                {{ client.facValJournaliere ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 {{ client.factTarif }}
@@ -177,7 +191,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>edition</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.edition }}
@@ -185,10 +199,10 @@
                                                             <div class="col-sm-6">
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
-                                                                        {{ client.editionStartAt|date('d/m/Y') }}
+                                                                        {{ client.editionStartAt|date('H:i') }}
                                                                     </div>
                                                                     <div class="col-sm-6">
-                                                                        {{ client.editionEndAt|date('d/m/Y') }}
+                                                                        {{ client.editionEndAt|date('H:i') }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -222,7 +236,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Type adr</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.adresseType }}
@@ -232,19 +246,19 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Code</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.adresseCode }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Nom</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.adresseNom }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Adresse</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.adresse }}
                                                         <br>
                                                         {{ client.adresseDep }}
@@ -254,7 +268,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Ville</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.adresseVille }}
                                                     </td>
                                                 </tr>
@@ -268,7 +282,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Nom contact</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.relanceNom }}
@@ -284,7 +298,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Tel</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-5">
                                                                 {{ client.relanceTel }}
@@ -300,7 +314,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Email</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.relanceEmail }}
@@ -310,7 +324,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Memo</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             {{ client.relanceMemo }}
                                                         </div>
@@ -326,20 +340,20 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Tr.CPT.</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.comptClientTrCpt }}
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                {{ client.comptClientCcMulti }}
+                                                                {{ client.comptClientCcMulti ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Compte</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.comptClientCompte }}
@@ -350,13 +364,13 @@
 
                                                 <tr>
                                                     <th>Mode Reg</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.comptClientModReg }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Type Reg</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted">
                                                         <div class="row">
                                                             <div class="col-sm-5">
                                                                 {{ client.comptClientTypeReg }}
@@ -365,61 +379,51 @@
                                                                 <label for="">Jours paiement</label>
                                                             </div>
                                                             <div class="col-sm-4">
-                                                                {{ client.comptClientJoursPaiement }}
+                                                                {{ client.comptClientJoursPaiement|date('d/m/Y') }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Type Reg Parc</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.comptClientTypeRegParc }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Act Achat</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.comptClientActVente }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Groupe Tax Ventes</th>
-                                                    <td class="text-muted small">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                {{ client.comptClientGrTaxVentes }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <th>Fact Aout</th>
-                                                    <td class="text-muted small">
-                                                        {{ client.comptClientFactAout }}
+                                                    <td class="text-muted ">
+                                                        {{ client.comptClientFactAout  ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Certif</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-1">
-                                                                <label for="" class="py-2">Du</label>
+                                                                <label for="" class="">Du</label>
                                                             </div>
                                                             <div class="col-sm-5">
-                                                                {{ client.comptClientCertifStartAt }}
+                                                                {{ client.comptClientCertifStartAt|date('d/m/Y') }}
                                                             </div>
                                                             <div class="col-sm-1">
-                                                                <label for="" class="py-2">Au</label>
+                                                                <label for="" class="">Au</label>
                                                             </div>
                                                             <div class="col-sm-5">
-                                                                {{ client.comptClientCertifEndAt }}
+                                                                {{ client.comptClientCertifEndAt|date('d/m/Y') }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Reference</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.comptClientRef }}
@@ -439,7 +443,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Tol attente cha</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.tolAttenteCha }}
@@ -449,7 +453,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Tol retard cha</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.tolRetardCha }}
@@ -459,7 +463,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Lors du cal attante (ch)</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.calAttanteCha }}
@@ -478,7 +482,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Tol attente cha</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.tolAttenteLiv }}
@@ -488,7 +492,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Tol retard Liv</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.tolRetardLiv }}
@@ -498,7 +502,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Lors du cal attante (Liv)</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-8">
                                                                 {{ client.calAttanteLiv }}
@@ -511,33 +515,20 @@
                                         </table>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label>Demandes clientes</label>
+                                    <div class="mb-3 border rounded p-3">
+                                        <h5>Demandes clientes</h5>
                                         {% for demande in client.demandes %}
                                         <span class="text-uppercase">{{ demande }}</span>,
                                         {% endfor %}
                                     </div>
-                                    <div class="mb-3">
-                                        <h5>Palettes Europe</h5>
-                                        <table class="table commande">
-                                            <tbody>
-                                                <tr>
-                                                    <th>Pal Europe</th>
-                                                    <td class="text-muted small">
-                                                        {{ client.palEurope }}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Mail / sms</label>
+                                    <div class="mb-3 border rounded p-3">
+                                        <h5>Mail / sms</h5>
                                         {% for mailsms in client.mailSms %}
                                         <span class="text-uppercase">{{ mailsms }}</span>
                                         {% endfor %}
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Duplication / sms</label>
+                                    <div class="mb-3 border rounded p-3">
+                                        <h5>Duplication / sms</h5>
                                         {% for duplication in client.duplicationSms %}
                                         <span class="text-uppercase">{{ duplication }}</span>
                                         {% endfor %}
@@ -551,51 +542,51 @@
                                                     <tbody>
                                                         <tr>
                                                             <th>Chargement</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Code Chargement</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planCodeChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planCodeChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Supprimer</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.planSupChar }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Nb car</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planNbCarChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planNbCarChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Vide</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planVideChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planVideChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Ref Client</th>
 
-                                                            <td class="text-muted small">
-                                                                {{ client.planRefClientChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planRefClientChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Supprimer</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.planSup2Char }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Nb Car</th>
 
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.planNbCar2Char }}
                                                             </td>
                                                         </tr>
@@ -607,37 +598,37 @@
                                                     <tbody>
                                                         <tr>
                                                             <th>Livraison</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planLiv }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planLiv ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Code livraison</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planLivCode }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planLivCode ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Supprimer</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.planLivSup }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Ref client</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.planLivRefClient }}
+                                                            <td class="text-muted ">
+                                                                {{ client.planLivRefClient ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Supprimer</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.planLivSup2 }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Nb Car</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.planLivNbCar }}
                                                             </td>
                                                         </tr>
@@ -655,39 +646,39 @@
                                                     <tbody>
                                                         <tr>
                                                             <th>Chargement</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Code Chargement</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleCodeChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleCodeChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Supprimer</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.feuilleSupChar }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Nb car</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.feuilleNbCarChar }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Vide</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleVideChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleVideChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Ref Client</th>
 
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleRefClientChar }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleRefClientChar ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -698,31 +689,31 @@
                                                     <tbody>
                                                         <tr>
                                                             <th>Livraison</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleLiv }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleLiv ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Code livraison</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleLivCode }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleLivCode ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Supprimer</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.feuilleLivSup }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Ref client</th>
-                                                            <td class="text-muted small">
-                                                                {{ client.feuilleLivRefClient }}
+                                                            <td class="text-muted ">
+                                                                {{ client.feuilleLivRefClient ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Nb car</th>
-                                                            <td class="text-muted small">
+                                                            <td class="text-muted ">
                                                                 {{ client.feuilleLivNbCar }}
                                                             </td>
                                                         </tr>
@@ -755,19 +746,19 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <th>Civilité</th>
-                                                                    <td class="text-muted small">
+                                                                    <td class="text-muted ">
                                                                         {{ client.civilite }}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Fonction</th>
-                                                                    <td class="text-muted small">
+                                                                    <td class="text-muted ">
                                                                         {{ client.contFonction }}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Nom</th>
-                                                                    <td class="text-muted small">
+                                                                    <td class="text-muted ">
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 {{ client.nom }}
@@ -780,7 +771,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Email</th>
-                                                                    <td class="text-muted small">
+                                                                    <td class="text-muted ">
                                                                         {{ client.email }}
                                                                     </td>
                                                                 </tr>
@@ -795,19 +786,19 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Tel Fix</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.contFix }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Mobile</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.telephone }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Fax</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.contFax }}
                                                     </td>
                                                 </tr>
@@ -822,26 +813,26 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Tr.CPT.</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.comptFourTrCpt }}
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                {{ client.comptFourCcMulti }}
+                                                                {{ client.comptFourCcMulti ? '<i class="fa fa-check text-success"></i>' : '' }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Mode Reg</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.comptFourModReg }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Type Reg</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.comptFourTypeReg }}
@@ -851,8 +842,8 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <th>Jours paiement</th>
-                                                                            <td class="text-muted small">
-                                                                                {{ client.comptFourJoursPaiement }}
+                                                                            <td class="text-muted ">
+                                                                                {{ client.comptFourJoursPaiement|date('d/m/Y') }}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -863,54 +854,44 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Type Reg Parc</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.comptFourTypeRegParc }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Act Achat</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         {{ client.comptFourActAchat }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Groupe Tax Achats</th>
-                                                    <td class="text-muted small">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                {{ client.comptFourGrTaxAchats }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <th>Fact Aout</th>
-                                                    <td class="text-muted small">
-                                                        {{ client.comptFourFactAout }}
+                                                    <td class="text-muted ">
+                                                        {{ client.comptFourFactAout ? 'Actif' : 'Inactif' }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Certif</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-1">
-                                                                <label for="" class="py-2">Du</label>
+                                                                <label for="" class="">Du</label>
                                                             </div>
                                                             <div class="col-sm-5">
-                                                                {{ client.comptFourCertifStartAt }}
+                                                                {{ client.comptFourCertifStartAt|date('d/m/Y') }}
                                                             </div>
                                                             <div class="col-sm-1">
-                                                                <label for="" class="py-2">Au</label>
+                                                                <label for="" class="">Au</label>
                                                             </div>
                                                             <div class="col-sm-5">
-                                                                {{ client.comptFourCertifEndAt }}
+                                                                {{ client.comptFourCertifEndAt|date('d/m/Y') }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Reference</th>
-                                                    <td class="text-muted small">
+                                                    <td class="text-muted ">
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 {{ client.comptFourRef }}
@@ -932,17 +913,17 @@
                     <tbody>
                         <tr>
                             <th>Date de création</th>
-                            <td class="text-muted small">
+                            <td class="text-muted ">
                                 {{ client.created ? client.created|date('d/m/Y à H:i:s') : '' }}</td>
                         </tr>
                         <tr>
                             <th>Date de mise à jour</th>
-                            <td class="text-muted small">
+                            <td class="text-muted ">
                                 {{ client.updated ? client.updated|date('d/m/Y à H:i:s') : '' }}</td>
                         </tr>
                         <tr>
                             <th>Action</th>
-                            <td class="text-muted small">
+                            <td class="text-muted ">
                                 <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-light">
                                     <i class="mdi mdi-account-edit"></i>
                                     Modifier</a>
@@ -965,7 +946,7 @@
                                     Commande{{ client.commandes|length > 1 ? 's' : '' }}
                                     effectuée{{ client.commandes|length > 1 ? 's' : '' }}
                                 </th>
-                                <td class="text-muted small">
+                                <td class="text-muted ">
                                     {{ include('factures/_form_client_factures.html.twig') }}
                                 </td>
                             </tr>

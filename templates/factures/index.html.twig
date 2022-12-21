@@ -1,37 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Rapports{% endblock %}
+{% block title %}Factures{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('client_index') }}">
+        <i class="mdi mdi-clipboard-outline"></i>
+        Factures ({{ factures.getTotalItemCount }})</a>
+</li>
+
+{% endblock %}
 
 {% block body %}
 
-<!-- Row start -->
-<div class="row gutters mb-5">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ path('dashboard') }}"><i class="icon-home2"></i> Tableau de bord</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><i class="icon-book-open"></i> Rapport</li>
-          </ol>
-      </nav>
-  </div>
+<div class="table-responsive">
+    <table class="table table-hover bg-white rounded table-striped">
+        <thead class="text-left bg-primary text-light text-uppercase">
+            <tr>
+                <th>Id</th>
+                <th>Designation</th>
+                <th>Document</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for facture in factures %}
+            <tr>
+                <td>{{ facture.id }}</td>
+                <td>{{ facture.designation }}</td>
+                <td>{{ facture.document }}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span class="badge badge-pill bg-{{ facture.statut  ? 'success' : 'warning' }}">{{
+                                facture.statut ? '<i class="mdi mdi-email-alert-outline"></i> Envoyer' : 'En attente'
+                                }}</span>
+                        </div>
+                        {% if facture.statut == 0 %}
+                        <div class="col-sm-6">
+                            <a href="{{ path('facture_edit', {'id': facture.id}) }}" class="btn btn-primary"><i
+                                    class="mdi mdi-email-alert-outline"></i> Envoyer</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <a href="{{ path('facture_show', {'id': facture.id}) }}" class="btn btn-light">Details</a>
+                    <a href="{{ path('facture_edit', {'id': facture.id}) }}" class="btn btn-light">Modifier</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Aucune donnée</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(factures) }}
 </div>
-<!-- Row end -->
-
-<div class="card">
-    <div class="card-body">
-
-        {{ include('rapports/_rapports_table.html.twig') }}
-
-        <div class="row">
-            <div class="col-md-6 pt-4">
-                {{ knp_pagination_render(notifications) }}
-            </div>
-            <div class="col-md-6">
-                {{ include('rapports/_form_generer.html.twig') }}
-            </div>
-        </div>
-
-    </div>
-</div>
-
 {% endblock %}

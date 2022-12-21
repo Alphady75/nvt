@@ -77,6 +77,18 @@
 
 				{% endif %}
 
+				{% if is_granted('ROLE_GESTIONNAIRE') %}
+
+					<!-- Comptes utilisateurs -->
+					<li>
+						<a href="{{ path('facture_index') }}" class="waves-effect">
+							<i class="mdi-24px mdi mdi-clipboard-outline"></i>
+							<span>Facturation</span>
+						</a>
+					</li>
+
+				{% endif %}
+
 			</ul>
 		</div>
 		<!-- Sidebar -->

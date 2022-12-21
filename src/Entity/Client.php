@@ -161,7 +161,7 @@ class Client
     #[ORM\Column(type: 'integer', nullable: true)]
     private $tolRetardLiv;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $calAttanteLiv;
 
     #[ORM\ManyToOne(targetEntity: PalEurope::class, inversedBy: 'clients')]
@@ -257,7 +257,7 @@ class Client
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $comptFourTypeRegParc;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $comptFourJoursPaiement;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -290,7 +290,7 @@ class Client
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $comptClientTypeRegParc;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $comptClientJoursPaiement;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -323,7 +323,7 @@ class Client
     #[ORM\Column(type: 'text', nullable: true)]
     private $relanceMemo;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $relanceJours;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -347,10 +347,14 @@ class Client
     #[ORM\Column(type: 'string', length: 10)]
     private $comptClientCompte;
 
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Facture::class)]
+    private $factures;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->itineraires = new ArrayCollection();
+        $this->factures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -939,38 +943,26 @@ class Client
         return $this;
     }
 
-    public function getCalAttanteLiv(): ?int
+    public function getCalAttanteLiv(): ?string
     {
         return $this->calAttanteLiv;
     }
 
-    public function setCalAttanteLiv(?int $calAttanteLiv): self
+    public function setCalAttanteLiv(?string $calAttanteLiv): self
     {
         $this->calAttanteLiv = $calAttanteLiv;
 
         return $this;
     }
 
-    public function getTolAttenteLiv(): ?int
+    public function getTolAttenteLiv(): ?string
     {
         return $this->tolAttenteLiv;
     }
 
-    public function setTolAttenteLiv(?int $tolAttenteLiv): self
+    public function setTolAttenteLiv(?string $tolAttenteLiv): self
     {
         $this->tolAttenteLiv = $tolAttenteLiv;
-
-        return $this;
-    }
-
-    public function getPalEurope(): ?PalEurope
-    {
-        return $this->palEurope;
-    }
-
-    public function setPalEurope(?PalEurope $palEurope): self
-    {
-        $this->palEurope = $palEurope;
 
         return $this;
     }
@@ -1335,12 +1327,12 @@ class Client
         return $this;
     }
 
-    public function getComptFourJoursPaiement(): ?int
+    public function getComptFourJoursPaiement(): ?\DateTimeInterface
     {
         return $this->comptFourJoursPaiement;
     }
 
-    public function setComptFourJoursPaiement(?int $comptFourJoursPaiement): self
+    public function setComptFourJoursPaiement(?\DateTimeInterface $comptFourJoursPaiement): self
     {
         $this->comptFourJoursPaiement = $comptFourJoursPaiement;
 
@@ -1469,12 +1461,12 @@ class Client
         return $this;
     }
 
-    public function getComptClientJoursPaiement(): ?int
+    public function getComptClientJoursPaiement(): ?\DateTimeInterface
     {
         return $this->comptClientJoursPaiement;
     }
 
-    public function setComptClientJoursPaiement(?int $comptClientJoursPaiement): self
+    public function setComptClientJoursPaiement(?\DateTimeInterface $comptClientJoursPaiement): self
     {
         $this->comptClientJoursPaiement = $comptClientJoursPaiement;
 
@@ -1601,12 +1593,12 @@ class Client
         return $this;
     }
 
-    public function getRelanceJours(): ?int
+    public function getRelanceJours(): ?\DateTimeInterface
     {
         return $this->relanceJours;
     }
 
-    public function setRelanceJours(?int $relanceJours): self
+    public function setRelanceJours(?\DateTimeInterface $relanceJours): self
     {
         $this->relanceJours = $relanceJours;
 
@@ -1693,6 +1685,36 @@ class Client
     public function setComptClientCompte(string $comptClientCompte): self
     {
         $this->comptClientCompte = $comptClientCompte;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Facture[]
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Facture $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures[] = $facture;
+            $facture->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): self
+    {
+        if ($this->factures->removeElement($facture)) {
+            // set the owning side to null (unless already changed)
+            if ($facture->getClient() === $this) {
+                $facture->setClient(null);
+            }
+        }
 
         return $this;
     }

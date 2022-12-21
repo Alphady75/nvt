@@ -137,8 +137,8 @@ class ClientType extends AbstractType
                 'label' => "Mail/sms",
                 'multiple' => true,
                 'choices'  => [
-                    'Sans liv port'    =>  'sans-liv-port',
-                    'Sans liv semi' =>  'Sans-lis-semi',
+                    'Sans liv port'    =>  'sans liv port',
+                    'Sans liv semi' =>  'Sans liv semi',
                 ],
                 'expanded' => true,
             ])
@@ -192,7 +192,7 @@ class ClientType extends AbstractType
             ->add('comptFourModReg', TextType::class, [])
             ->add('comptFourTypeReg', TextType::class, [])
             ->add('comptFourTypeRegParc', TextType::class, [])
-            ->add('comptFourJoursPaiement', NumberType::class, [])
+            ->add('comptFourJoursPaiement', DateType::class, ['widget' => 'single_text',])
             ->add('comptFourActAchat', TextType::class, [])
             ->add('comptFourFactAout', CheckboxType::class, ['label' => false])
             ->add('comptFourCertifStartAt', DateType::class, ['widget' => 'single_text',])
@@ -217,7 +217,7 @@ class ClientType extends AbstractType
             ->add('comptClientModReg', TextType::class, [])
             ->add('comptClientTypeReg', TextType::class, [])
             ->add('comptClientTypeRegParc', TextType::class, [])
-            ->add('comptClientJoursPaiement', NumberType::class, [])
+            ->add('comptClientJoursPaiement', DateType::class, ['widget' => 'single_text',])
             ->add('comptClientActVente', TextType::class, [])
             ->add('comptClientFactAout', CheckboxType::class, ['label' => false])
             ->add('comptClientCertifStartAt', DateType::class, ['widget' => 'single_text',])
