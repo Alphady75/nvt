@@ -102,7 +102,7 @@ class CommandeRepository extends ServiceEntityRepository
         if ($search->getDestinations()->count() > 0) {
             $query = $query
                 ->andWhere('d.id IN (:destinations)')
-                ->setParameter('destinations', $search->itineraires);
+                ->setParameter('destinations', $search->destinations);
         }
 
         if (!empty($search->statut)) {
