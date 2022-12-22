@@ -2,8 +2,54 @@
 
 {% block title %}Espace utilisateur{% endblock %}
 
+{% block links %}
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('commande_index') }}">
+			<i class="mdi mdi-account-supervisor-circle-outline"></i>
+			Espace utilisateur</a>
+	</li>
+	<li class="breadcrumb-item active" aria-current="page">
+		<i class=""></i>
+		Bienvenu {{ app.user.nom }} {{ app.user.prenom }}
+	</li>
+
+{% endblock %}
+
 {% block body %}
 
+<div class="card profile">
+   <div class="card-body">
+      <div class="row">
+         <div class="col-sm-5 mx-auto">
+            <div class="text-center">
+               {% if app.user.avatar %}
 
+               <img class="rounded-circle img-thumbnail avatar-xl"
+                  src="{{ vich_uploader_asset(app.user) | imagine_filter('large_avatar') }}"
+                  alt="{{ app.user.nom }} {{ app.user.prenom }}">
+
+               {% else %}
+
+               <img class="rounded-circle img-thumbnail avatar-xl"
+                  src="{{ asset('img/user.jpg') | imagine_filter('large_avatar') }}"
+                  alt="{{ app.user.nom }} {{ app.user.prenom }}">
+
+               {% endif %}
+
+               <div class="online-circle">
+                  <i class="fas fa-circle text-success"></i>
+               </div>
+               <h4 class="mt-3">{{ user.nom ~ ' ' ~ user.prenom }}</h4>
+               <p class="text-muted font-size-13">{{ user.email }}</p>
+               {{ include('users/_roles.html.twig') }}
+               <p class="font-size-13 text-muted">{{ user.apropos|raw }}</p>
+               <a href="{{ path('users_profil') }}" class="btn btn-primary btn-rounded px-5">Profil</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- end card -->
 
 {% endblock %}

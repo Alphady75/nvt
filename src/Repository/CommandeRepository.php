@@ -81,10 +81,10 @@ class CommandeRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('c')
             ->select('v', 'c')
             ->select('cli', 'c')
-            ->select('i', 'c')
+            ->select('d', 'c')
             ->leftjoin('c.vehicule', 'v')
             ->leftjoin('c.client', 'cli')
-            ->leftjoin('c.itineraire', 'i')
+            ->leftjoin('c.destinations', 'd')
             ->orderBy('c.created', 'DESC');
 
         if ($search->getVehicules()->count() > 0) {
@@ -99,10 +99,10 @@ class CommandeRepository extends ServiceEntityRepository
                 ->setParameter('client', $search->clients);
         }
 
-        if ($search->getItineraires()->count() > 0) {
+        if ($search->getDestinations()->count() > 0) {
             $query = $query
-                ->andWhere('i.id IN (:itineraires)')
-                ->setParameter('itineraires', $search->itineraires);
+                ->andWhere('d.id IN (:destinations)')
+                ->setParameter('destinations', $search->itineraires);
         }
 
         if (!empty($search->statut)) {

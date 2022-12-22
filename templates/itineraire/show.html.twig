@@ -46,16 +46,12 @@
                 </tr>
                 <tr>
                     <th>Client</th>
-                    <td>{{ itineraire.client.civilite }}.
-                        <strong>{{ itineraire.client.nom }}
-                            {{ itineraire.client.prenom }}</strong>
+                    <td>{{ itineraire.client.civilite ?? '' }}.
+                        <strong>{{ itineraire.client.nom ?? '' }}
+                            {{ itineraire.client.prenom ?? '' }}</strong>
                         <br>
-                        <small>{{ itineraire.client.email }}</small>
+                        <small>{{ itineraire.client.email ?? '' }}</small>
                     </td>
-                </tr>
-                <tr>
-                    <th>Itineraire</th>
-                    <td><a href="{{ itineraire.link }}" class="text-info" target="_blank">{{ itineraire.link }}</a></td>
                 </tr>
                 <tr>
                     <th>Description</th>

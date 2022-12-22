@@ -17,13 +17,13 @@ class VehiculeType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Image (png, jpg et jpeg)',
+                'label' => '(png, jpg et jpeg)',
                 'required'  =>  false,
                 'allow_delete' =>  false,
                 'download_label'     =>  false,
                 'image_uri'     =>  false,
                 'download_uri'     =>  false,
-                'imagine_pattern'   =>  'identite_size',
+                'imagine_pattern'   =>  'medium_size',
             ])
             ->add('name', TextType::class, [
                 'label' => "Désignation*",
@@ -33,6 +33,11 @@ class VehiculeType extends AbstractType
                         'message' => 'Ce champ est requis',
                     ]),
                 ],
+            ])
+            ->add('numero', TextType::class, [
+                'label' => "Matricule",
+                'attr' => ['placeholder' => "Matricule"],
+                'required' => false,
             ])
             ->add('description', TextareaType::class, [
                 'label' => "Description",

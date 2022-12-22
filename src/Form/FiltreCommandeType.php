@@ -21,18 +21,6 @@ class FiltreCommandeType extends AbstractType
    public function buildForm(FormBuilderInterface $builder, array $options): void
    {
       $builder
-         ->add('dateReception', DateType::class, [
-            'label' => False,
-            'help'     =>  'Date de reception',
-            'widget' => 'single_text',
-            'required' => false,
-         ])
-         ->add('dateLivraison', DateType::class, [
-            'label' => False,
-            'help'     =>  'Date de livraison',
-            'widget' => 'single_text',
-            'required' => false,
-         ])
          ->add('vehicules', EntityType::class, [
             'label' => False,
             'required' => false,
@@ -63,17 +51,17 @@ class FiltreCommandeType extends AbstractType
             //'choice_label' => 'nom',
             'attr' => ['class' => 'p-0 m-0 border-0']
          ])
-         ->add('itineraires', EntityType::class, [
+         ->add('destinations', EntityType::class, [
             'label' => False,
             'required' => false,
             'autocomplete' => true,
-            'help' => "Itineraires",
+            'help' => "Destination",
             'multiple' => true,
             //'expanded' => true,
             'class' => Itineraire::class,
-            'query_builder' => function (ItineraireRepository $getitineraires) {
-               return $getitineraires->createQueryBuilder('i')
-                  ->orderBy('i.id', 'DESC');
+            'query_builder' => function (ItineraireRepository $getdestinations) {
+               return $getdestinations->createQueryBuilder('d')
+                  ->orderBy('d.id', 'DESC');
             },
             //'choice_label' => 'name',
             'attr' => ['class' => 'p-0 m-0 border-0']

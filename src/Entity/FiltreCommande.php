@@ -28,7 +28,7 @@ class FiltreCommande
    /**
     * @var ArrayCollection|null
     */
-   public $itineraires;
+   public $destinations;
 
    /**
     * @var DateTimeInterface|null
@@ -49,7 +49,7 @@ class FiltreCommande
    {
       $this->vehicules = new ArrayCollection();
       $this->clients = new ArrayCollection();
-      $this->itineraires = new ArrayCollection();
+      $this->destinations = new ArrayCollection();
    }
 
    /**
@@ -87,17 +87,17 @@ class FiltreCommande
    /**
     * @return ArrayCollection
     */
-   public function getItineraires(): ?ArrayCollection
+   public function getDestinations(): ?ArrayCollection
    {
-      return $this->itineraires;
+      return $this->destinations;
    }
 
    /**
     * @param ArrayCollection $itineraires
     */
-   public function setItineraires(?ArrayCollection $itineraires): void
+   public function setDestinations(?ArrayCollection $destinations): void
    {
-      $this->$itineraires = $itineraires;
+      $this->$destinations = $destinations;
    }
 
    public function getDateReception(): ?\DateTimeInterface

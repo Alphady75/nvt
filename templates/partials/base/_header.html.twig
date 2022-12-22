@@ -111,16 +111,21 @@
 				</button>
 				<div
 					class="dropdown-menu dropdown-menu-end">
+
+					<a class="dropdown-item" href="{{ path('espace_utilisateur') }}">
+					
+						<i class=" d-inline-block text-muted me-2 mdi mdi-speedometer"></i>
+						Espace utilisateur</a>
 					<!-- item-->
 					<a class="dropdown-item" href="{{ path('users_profil') }}">
 
 						<i class="dripicons-user d-inline-block text-muted me-2"></i>
 						Profile</a>
 
-					<a class="dropdown-item" href="{{ path('espace_utilisateur') }}">
+					<a class="dropdown-item" href="{{ path('users_edit_password') }}">
 
-						<i class="dripicons-user d-inline-block text-muted me-2"></i>
-						Espace utilisateur</a>
+						<i class="dripicons-lock d-inline-block text-muted me-2"></i>
+						Mes accès</a>
 
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{{ path('app_logout') }}">

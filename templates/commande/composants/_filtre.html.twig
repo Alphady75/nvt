@@ -5,19 +5,12 @@
       <tr>
          <td>{{ form_row(form.vehicules) }}</td>
          <td>{{ form_row(form.clients) }}</td>
-         <td>{{ form_row(form.itineraires) }}</td>
-      </tr>
-      <tr>
-         <td>{{ form_row(form.dateLivraison) }}</td>
-         <td>{{ form_row(form.dateReception) }}</td>
-         <td colspan="3">{{ form_row(form.statut) }}</td>
-      </tr>
-      <tr>
-         <td colspan="5">
-            <button class="btn btn-primary mb-4"><i class="mdi mdi-filter"></i> Filtrer</button>
-         </td>
+         <td>{{ form_row(form.destinations) }}</td>
+         <td>{{ form_row(form.statut) }}</td>
+         <td style="text-align: right;"><button class="btn btn-light w-100"><i class="mdi mdi-filter"></i> Filtrer</button></td>
       </tr>
    </tbody>
 </table>
+
 
 {{ form_end(form) }}

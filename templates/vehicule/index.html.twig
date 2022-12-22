@@ -4,56 +4,65 @@
 
 {% block links %}
 <li class="breadcrumb-item">
-    <a href="{{ path('vehicule_index') }}">
+	<a href="{{ path('vehicule_index') }}">
 		<i class="mdi mdi-bus-marker"></i>
-		Vehicules</a>
+		Vehicules ({{ vehicules.getTotalItemCount }})</a>
 </li>
 {% endblock %}
 
 {% block btn %}
 <a href="{{ path('vehicule_new') }}" class="btn btn-primary">
-    <i class="mdi mdi-map"></i> Ajouter un vehicule
+	<i class="mdi mdi-bus-marker"></i> Ajouter un vehicule
 </a>
 {% endblock %}
 
 {% block body %}
-<table class="table shadow table-striped rounded">
-	<thead class="text-uppercase bg-primary text-light">
-		<tr>
-			<th>Id</th>
-			<th>Désignation</th>
-			<th>Media</th>
-			<th>Reference</th>
-			<th>Date création</th>
-			<th>Dernière mise à jour</th>
-			<th>actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for vehicule in vehicules %}
-		<tr>
-			<td>{{ vehicule.id }}</td>
-			<td>{{ vehicule.name }}</td>
-			<td>
-				{% if vehicule.imageName %}
-				<img src="{{ vich_uploader_asset(vehicule) | imagine_filter('medium_avatar') }}"
-					alt="{{ vehicule.name }}">
-				{% endif %}
-			</td>
-			<td>{{ vehicule.reference }}</td>
-			<td>{{ vehicule.created ? vehicule.created|date('d/m/Y H:i:s') : '' }}</td>
-			<td>{{ vehicule.updated ? vehicule.updated|date('d/m/Y H:i:s') : '' }}</td>
-			<td>
-				<a href="{{ path('vehicule_show', {'id': vehicule.id}) }}" class="btn btn-light"><i class="mdi mdi-clipboard-search-outline"></i> Détails</a>
-				<a href="{{ path('vehicule_edit', {'id': vehicule.id}) }}" class="btn btn-light"><i class="mdi mdi-clipboard-edit-outline"></i> Modifier</a>
-			</td>
-		</tr>
-		{% else %}
-		<tr>
-			<td colspan="7">Aucune données</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
+
+<div class="table-responsive">
+	<table class="table shadow table-striped rounded">
+		<thead class="text-uppercase bg-primary text-light">
+			<tr>
+				<th>Id</th>
+				<th>Désignation</th>
+				<th>Media</th>
+				<th>Matricule</th>
+				<th>Reference</th>
+				<th>Date création</th>
+				<th>Dernière mise à jour</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for vehicule in vehicules %}
+			<tr>
+				<td>{{ vehicule.id }}</td>
+				<td>{{ vehicule.name }}</td>
+				<td>
+					{% if vehicule.imageName %}
+					<img src="{{ vich_uploader_asset(vehicule) | imagine_filter('medium_avatar') }}"
+						alt="{{ vehicule.name }}">
+					{% endif %}
+				</td>
+				<td>{{ itineraire.numero }}</td>
+				<td>{{ vehicule.reference }}</td>
+				<td>{{ vehicule.created ? vehicule.created|date('d/m/Y H:i:s') : '' }}</td>
+				<td>{{ vehicule.updated ? vehicule.updated|date('d/m/Y H:i:s') : '' }}</td>
+				<td>
+					<a href="{{ path('vehicule_show', {'id': vehicule.id}) }}" class="btn btn-light"><i
+							class="mdi mdi-clipboard-search-outline"></i> Détails</a>
+					<a href="{{ path('vehicule_edit', {'id': vehicule.id}) }}" class="btn btn-light"><i
+							class="mdi mdi-clipboard-edit-outline"></i> Modifier</a>
+				</td>
+			</tr>
+			{% else %}
+			<tr>
+				<td colspan="7">Aucune données</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{{ knp_pagination_render(vehicules) }}
+</div>
 
 {% endblock %}

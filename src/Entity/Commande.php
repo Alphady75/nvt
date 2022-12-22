@@ -33,12 +33,6 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private $conducteur;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private $dateReception;
-
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private $dateLivraison;
-
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
@@ -49,9 +43,14 @@ class Commande
     #[ORM\Column(type: 'text', nullable: true)]
     private $observation;
 
-    #[ORM\ManyToOne(targetEntity: Itineraire::class, inversedBy: 'commandes')]
-    private $itineraire;
+    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'commandes', cascade: ["persist"])]
+    private $destinations;
 
+    public function __construct()
+    {
+        $this->destinations = new ArrayCollection();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -89,30 +88,6 @@ class Commande
     public function setConducteur(?Conducteur $conducteur): self
     {
         $this->conducteur = $conducteur;
-
-        return $this;
-    }
-
-    public function getDateReception(): ?\DateTimeInterface
-    {
-        return $this->dateReception;
-    }
-
-    public function setDateReception(?\DateTimeInterface $dateReception): self
-    {
-        $this->dateReception = $dateReception;
-
-        return $this;
-    }
-
-    public function getDateLivraison(): ?\DateTimeInterface
-    {
-        return $this->dateLivraison;
-    }
-
-    public function setDateLivraison(?\DateTimeInterface $dateLivraison): self
-    {
-        $this->dateLivraison = $dateLivraison;
 
         return $this;
     }
@@ -165,14 +140,26 @@ class Commande
         return $this;
     }
 
-    public function getItineraire(): ?Itineraire
+    /**
+     * @return Collection|Destination[]
+     */
+    public function getDestinations(): Collection
     {
-        return $this->itineraire;
+        return $this->destinations;
     }
 
-    public function setItineraire(?Itineraire $itineraire): self
+    public function addDestination(Destination $destination): self
     {
-        $this->itineraire = $itineraire;
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        $this->destinations->removeElement($destination);
 
         return $this;
     }

@@ -16,6 +16,7 @@ class VehiculesFixtures extends Fixture
         for($nbvehicules = 1; $nbvehicules <= 5; $nbvehicules++){
             $vehicule = new Vehicule();              
             $vehicule->setName($faker->companySuffix());
+            $vehicule->setNumero('AXZ-' .$faker->numberBetween(1000, 9000) . '-AZZ');
             $vehicule->setDescription($faker->realText(200));
             $vehicule->setReference($faker->realText(60));
             $manager->persist($vehicule);

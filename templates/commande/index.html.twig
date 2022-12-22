@@ -8,10 +8,8 @@
 	<li class="breadcrumb-item">
 		<a href="{{ path('commande_index') }}">
 			<i class="mdi mdi-calendar-multiple"></i>
-			Planning des commandes 
-			        ({{ commandes.getTotalItemCount }}
-			commande
-			{{ commandes.getTotalItemCount > 1 ? 's' : '' }})
+			Planning des commandes ({{ commandes.getTotalItemCount }}
+			commande{{ commandes.getTotalItemCount > 1 ? 's' : '' }})
 		</a>
 	</li>
 

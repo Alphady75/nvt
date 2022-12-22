@@ -3,32 +3,71 @@
     <div class="card-header bg-primary">
         <legend class="font-size-18 py-2 text-light">Vehicule
             {% if app.request.attributes.get('_route') == 'vehicule_edit' %}
-                {{ vehicule.name }}
+            {{ vehicule.name }}
             {% endif %}
         </legend>
     </div>
     <div class="card-body py-5">
 
         <div class="row">
-            <div class="col-sm-8 offset-sm-1">
+            <div class="col-sm-9">
 
-                {{ form_row(form.name) }}
+                <table class="table th-50">
+                    <tbody>
+                        <tr>
+                            <th><label for="">Designation</label></th>
+                            <td>
+                                {{ form_widget(form.name) }}
+                                {{ form_errors(form.name) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="">Matricule</label></th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ form_widget(form.numero) }}
+                                        {{ form_errors(form.numero) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="">Reference</label></th>
+                            <td>
+                                {{ form_widget(form.reference) }}
+                                {{ form_errors(form.reference) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="">Image</label></th>
+                            <td>
+                                {{ form_row(form.imageFile) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>
+                                {{ form_widget(form.description) }}
+                                {{ form_errors(form.description) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>{{ form_rest(form) }}</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <button class="btn btn-primary my-3">{{ button_label|default('Enregistrer') }}</button>
 
-                {{ form_row(form.reference) }}
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        {{ form_row(form.imageFile) }}
-                    </div>
-                </div>
-
-                {{ form_rest(form) }}
-
-                <button class="btn btn-primary my-3">{{ button_label|default('Enregistrer') }}</button>
-
-                {% if app.request.attributes.get('_route') == 'vehicule_edit' %}
-                    {{ include('vehicule/_delete_form.html.twig') }}
-                {% endif %}
+                                {% if app.request.attributes.get('_route') == 'vehicule_edit' %}
+                                {{ include('vehicule/_delete_form.html.twig') }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
         </div>

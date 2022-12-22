@@ -22,21 +22,19 @@ class ItineraireType extends AbstractType
         $builder
             ->add('designation', TextType::class, [
                 'label' => 'Désination*',
+                'attr' => ['placeholder' => "Indiquez la désignation de l'itineraire*"],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
                     ]),
                 ],
             ])
-            ->add('link', UrlType::class, [
-                'label' => 'Lien*',
-                'attr' => ['placeholder' => 'https://goo.gl/maps/JgSctSVYnBy3XkAi9'],
+            ->add('adresse', TextType::class, [
+                'label' => 'Adresse*',
+                'attr' => ['placeholder' => "Indiquez l'adresse de livraison*"],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
-                    ]),
-                    new Url([
-                        'message' => 'Veuillez indiquer une URL valide, sans oublier le http:// soit le https://',
                     ]),
                 ],
             ])
@@ -44,12 +42,13 @@ class ItineraireType extends AbstractType
                 'help'     =>  'Facultatif',
                 'label'     =>  'Client',
                 //'attr' => ['class' => "p-0 m-0 h-25"],
-                'placeholder'     =>  '--Sélectionnez client--',
+                'placeholder'     =>  '--Sélectionnez un client--',
                 'class' => Client::class,
-                //'autocomplete' => true,
+                'required' => false,
             ])
             ->add('tarif', NumberType::class, [
                 'label' => 'Tarif*',
+                'attr' => ['placeholder' => '€'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -58,8 +57,9 @@ class ItineraireType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
+                'attr' => ['placeholder' => "Indiquez une description"],
                 'attr' => ['rows' => "6"],
-                'required' => 'false'
+                'required' => false
             ]);
     }
 

@@ -21,13 +21,13 @@ class CommandesFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        for($nbcommandes = 1; $nbcommandes <= 2000; $nbcommandes++){
+        for($nbcommandes = 1; $nbcommandes <= 400; $nbcommandes++){
 
             $user = $this->getReference('user_'. $faker->numberBetween(1, 5));
             $client = $this->getReference('client_'. $faker->numberBetween(1, 100));
             $conducteur = $this->getReference('conducteur_'. $faker->numberBetween(1, 20));
             $vehicule = $this->getReference('vehicule_'. $faker->numberBetween(1, 5));
-            $itineraire = $this->getReference('itineraire_'. $faker->numberBetween(1, 200));
+            $destinations = $this->getReference('destination_'. $faker->numberBetween(1, 200));
 
             $qrvalues = $nbcommandes;
 
@@ -35,7 +35,9 @@ class CommandesFixtures extends Fixture implements DependentFixtureInterface
 
             $commande = new Commande();
 
-            $commande->setItineraire($itineraire);
+            for($destination = 1; $destination < 4; $destination++){
+                $commande->addDestination($destinations);
+            }
             $commande->setQrcode($qrcode);
             $commande->setObservation($faker->realText(100));
             $commande->setTarif($faker->numberBetween(50, 900));
@@ -43,8 +45,6 @@ class CommandesFixtures extends Fixture implements DependentFixtureInterface
             $commande->setClient($client);
             $commande->setConducteur($conducteur);
             $commande->setVehicule($vehicule);
-            $commande->setDateReception(new \DateTime());
-            $commande->setDateLivraison(new \DateTime());
             $manager->persist($commande);
 
             // Enregistre l'utilisateur dans une référence

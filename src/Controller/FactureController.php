@@ -13,6 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Endroid\QrCode\Builder\BuilderInterface;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -82,7 +85,7 @@ class FactureController extends AbstractController
     #[Route('/{id}', name: 'facture_delete', methods: ['POST'])]
     public function delete(Request $request, Facture $facture, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $facture->getId(), $request->request->get('_token'))) {
             $entityManager->remove($facture);
             $entityManager->flush();
         }
@@ -91,7 +94,8 @@ class FactureController extends AbstractController
     }
 
     #[Route('/generer/{id}', name: 'generer_facture', methods: ['POST'])]
-    public function factureRenener(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
+    public function factureRenener(Request $request, Commande $commande, 
+    EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('generer', $request->request->get('_token'))) {
             // 1- Définition des options de pdf
@@ -147,13 +151,15 @@ class FactureController extends AbstractController
             $facture->setStatut(false);
             $entityManager->persist($facture);
             $entityManager->flush();
+            
+            // Upload de la facture
 
             return new Response();
         }
     }
-    
+
     #[Route('/client/{id}', name: 'client_generer_facture', methods: ['POST'])]
-    public function userFactures(Request $request, Client $client, EntityManagerInterface $entityManager): Response
+    public function userFactures(Request $request, Client $client, EntityManagerInterface $entityManager, BuilderInterface $builder): Response
     {
         if ($this->isCsrfTokenValid('genererfactures' . $client->getId(), $request->request->get('_token'))) {
             // 1- Définition des options de pdf

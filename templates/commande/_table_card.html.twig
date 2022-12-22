@@ -51,13 +51,16 @@
 								
 								<td>
 									<span class="co-name text-uppercase small">
-										{{ commande.dateReception|date('d/m/Y H:i:s') }}
+										{{ commande.created|date('d/m/Y H:i:s') }}
 									</span>
 								</td>
 								<td>
 									<a href="{{ path('commande_show', {id: commande.id}) }}" class="btn btn-light">
 										<i class="mdi mdi-clipboard-search-outline"></i>
 										Detail</a>
+									<a href="{{ path('commande_edit', {id: commande.id}) }}" class="btn btn-light">
+										<i class="mdi mdi-clipboard-edit-outline"></i>
+										Modifier</a>
 								</td>
 							</tr>
 						{% else %}

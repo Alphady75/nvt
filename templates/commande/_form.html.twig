@@ -4,8 +4,8 @@
 		<h4 class="font-size-18 py-2 text-light">
 			Commande
 			{% if app.request.attributes.get('_route') == 'commande_edit' %}
-				n°:
-				{{ commande.id }}
+			n°:
+			{{ commande.id }}
 			{% endif %}
 		</h4>
 	</div>
@@ -25,13 +25,6 @@
 								</td>
 							</tr>
 							<tr>
-								<th>Itineraire</th>
-								<td>
-									{{ form_widget(form.itineraire) }}
-									{{ form_errors(form.itineraire) }}
-								</td>
-							</tr>
-							<tr>
 								<th>Conducteur</th>
 								<td>
 									{{ form_widget(form.conducteur) }}
@@ -45,42 +38,37 @@
 									{{ form_errors(form.vehicule) }}
 								</td>
 							</tr>
-						</tbody>
-					</table>
-					<legend class="font-size-18 mt-4 p-2">Delais de livraison</legend>
-					<table class="table commande">
-						<tbody>
 							<tr>
-								<th>Date de chargement</th>
+								<th>
+									<div id="destination"
+										data-prototype="{{ form_row(form.destinations.vars.prototype)|e('html_attr') }}">
+										{{ form_row(form.destinations) }}
+										<span></span>
+									</div>
+								</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Observation</th>
 								<td>
-									{{ form_widget(form.dateReception) }}
-									{{ form_errors(form.dateReception) }}
+									{{ form_row(form.observation) }}
 								</td>
 							</tr>
 							<tr>
-								<th>Date de livraison</th>
+								<th></th>
 								<td>
-									{{ form_widget(form.dateLivraison) }}
-									{{ form_errors(form.dateLivraison) }}
+									<button class="btn btn-primary" formnovalidate>
+										{{ button_label|default('Enregistrer') }}
+									</button>
+									{% if app.request.attributes.get('_route') == 'commande_edit' %}
+									{{ include('commande/_delete_form.html.twig') }}
+									{% endif %}
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</fieldset>
-
-				<fieldset>
-					<legend class="font-size-18 mt-4 p-2">Observation</legend>
-					{{ form_row(form.observation) }}
-				</fieldset>
-
 				{{ form_rest(form) }}
-
-				<div class="py-3">
-					<button class="btn btn-primary" formnovalidate>
-						{{ button_label|default('Enregistrer') }}
-					</button>
-				</div>
-
 			</div>
 		</div>
 

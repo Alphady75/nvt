@@ -1,40 +1,79 @@
 {{ form_start(form) }}
-    <div class="card">
-        <div class="card-header bg-primary">
-            <h4 class="font-size-18 py-2 text-light">
-                Itineraire
-                {% if app.request.attributes.get('_route') == 'itineraire_edit' %}
-                n°:
-                {{ itineraire.designation }}
-                {% endif %}
-            </h4>
-        </div>
-        <div class="card-body py-5">
-            <div class="row">
-                <div class="col-sm-8 offset-sm-1">
+<div class="card">
+    <div class="card-header bg-primary">
+        <h4 class="font-size-18 py-2 text-light">
+            Itineraire
+            {% if app.request.attributes.get('_route') == 'itineraire_edit' %}
+            n°:
+            {{ itineraire.designation }}
+            {% endif %}
+        </h4>
+    </div>
+    <div class="card-body py-5">
+        <div class="row">
+            <div class="col-sm-9">
 
-                    {{ form_row(form.designation) }}
+                <table class="table th-50">
+                    <tbody>
+                        <tr>
+                            <th><label for="">designation</label></th>
+                            <td>
+                                {{ form_widget(form.designation) }}
+                                {{ form_errors(form.designation) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="">adresse</label></th>
+                            <td>
+                                {{ form_widget(form.adresse) }}
+                                {{ form_errors(form.adresse) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="">Client</label></th>
+                            <td>
+                                {{ form_widget(form.client) }}
+                                {{ form_errors(form.client) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="">tarif</label></th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ form_widget(form.tarif) }}
+                                        {{ form_errors(form.tarif) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>
+                                {{ form_widget(form.description) }}
+                                {{ form_errors(form.description) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>{{ form_rest(form) }}</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                                {% if app.request.attributes.get('_route') == 'itineraire_edit' %}
 
-                    {{ form_row(form.link) }}
+                                {{ include('itineraire/_delete_form.html.twig') }}
 
-                    <div class="row">
-                        <div class="col-sm-7">
-                            {{ form_row(form.client) }}
-                        </div>
-                        
-                        <div class="col-sm-5">
-                            {{ form_row(form.tarif) }}
-                        </div>
-                    </div>
-                    {{ form_rest(form) }}
-                    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
-                    {% if app.request.attributes.get('_route') == 'itineraire_edit' %}
-                    
-                    {{ include('itineraire/_delete_form.html.twig') }}
-                    
-                    {% endif %}
-                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ form_rest(form) }}
             </div>
         </div>
     </div>
+</div>
 {{ form_end(form) }}

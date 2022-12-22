@@ -20,7 +20,8 @@ class ItinerairesFixtures extends Fixture implements DependentFixtureInterface
 
             $itineraire = new Itineraire();
             
-            $itineraire->setDesignation($faker->realText(50));
+            $itineraire->setDesignation($faker->country);
+            $itineraire->setAdresse($faker->streetAddress);
             $itineraire->setTarif($faker->numberBetween(20, 200));
             $itineraire->setClient($client);
             $itineraire->setDescription($faker->time . ' ' . $faker->city . '<br>' .$faker->time . ' ' . $faker->city);

@@ -6,6 +6,7 @@ use App\Entity\Vehicule;
 use App\Form\VehiculeType;
 use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class VehiculeController extends AbstractController
 {
     #[Route('/', name: 'vehicule_index', methods: ['GET'])]
-    public function index(VehiculeRepository $vehiculeRepository): Response
+    public function index(VehiculeRepository $vehiculeRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $vehicules = $paginator->paginate(
+            $vehiculeRepository->findBy([], ['created' => 'DESC']),
+            $request->query->getInt('page', 1),
+            20
+        );
+
         return $this->render('vehicule/index.html.twig', [
-            'vehicules' => $vehiculeRepository->findAll(),
+            'vehicules' => $vehicules,
         ]);
     }
 

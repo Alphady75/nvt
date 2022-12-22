@@ -31,7 +31,6 @@
 					<th>Designation</th>
 					<th>Tarif</th>
 					<th>Client</th>
-					<th>Itineraire</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -42,13 +41,12 @@
 						<td>{{ itineraire.designation }}</td>
 						<td>{{ itineraire.tarif ~ currency }}</td>
 						<td>
-						{{ itineraire.client.civilite }}.
-							<strong>{{ itineraire.client.nom }}
-								{{ itineraire.client.prenom }}</strong>
+						{{ itineraire.client.civilite ?? '' }}.
+							<strong>{{ itineraire.client.nom ?? '' }}
+								{{ itineraire.client.prenom ?? '' }}</strong>
 							<br>
-							<small>{{ itineraire.client.email }}</small>
+							<small>{{ itineraire.client.email ?? '' }}</small>
 						</td>
-						<td><a href="{{ itineraire.link }}" class="text-info" target="_blank">{{ itineraire.link }}</a></td>
 						<td>
 							<a href="{{ path('itineraire_show', {'id': itineraire.id}) }}" class="btn btn-light">
 								Details
@@ -60,7 +58,7 @@
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="10">Aucune données</td>
+						<td colspan="6">Aucune données</td>
 					</tr>
 				{% endfor %}
 			</tbody>

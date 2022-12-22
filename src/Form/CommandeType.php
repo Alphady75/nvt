@@ -13,8 +13,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,37 +30,15 @@ class CommandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('itineraire', EntityType::class, [
-                'label'     =>  false,
-                'placeholder'     =>  '--Sélectionnez un itineraire--',
-                'class' => Itineraire::class,
-                'autocomplete' => true,
-                'attr' => ['class' => "p-0 m-0 h-25"],
-                'expanded' => false,
-                'multiple' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
+            ->add('destinations', CollectionType::class, [
+                'entry_type' => DestinationType::class,
+                'label' => 'Destination',
+                'entry_options' => [
+                    'label' => false,
                 ],
-            ])
-            ->add('dateReception', DateType::class, [
-                'label'     =>  'Date de reception*',
-                'widget' => 'single_text',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
-            ])
-            ->add('dateLivraison', DateType::class, [
-                'label'     =>  'Date de livraison*',
-                'widget' => 'single_text',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ est requis',
-                    ])
-                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
             ])
             ->add('client', EntityType::class, [
                 'help'     =>  'Client*',

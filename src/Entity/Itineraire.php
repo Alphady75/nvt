@@ -31,15 +31,19 @@ class Itineraire
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $link;
-
     #[ORM\OneToMany(mappedBy: 'itineraire', targetEntity: Commande::class)]
     private $commandes;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $adresse;
+
+    #[ORM\OneToMany(mappedBy: 'adresseLivraison', targetEntity: Destination::class)]
+    private $dateChargement;
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->dateChargement = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,45 +101,45 @@ class Itineraire
 
     public function __toString()
     {
-        return $this->designation;
+        return $this->getDesignation() . ' - ' . $this->getAdresse();
     }
 
-    public function getLink(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->link;
+        return $this->adresse;
     }
 
-    public function setLink(string $link): self
+    public function setAdresse(string $adresse): self
     {
-        $this->link = $link;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
     /**
-     * @return Collection|Commande[]
+     * @return Collection|Destination[]
      */
-    public function getCommandes(): Collection
+    public function getDateChargement(): Collection
     {
-        return $this->commandes;
+        return $this->dateChargement;
     }
 
-    public function addCommande(Commande $commande): self
+    public function addDateChargement(Destination $dateChargement): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setItineraire($this);
+        if (!$this->dateChargement->contains($dateChargement)) {
+            $this->dateChargement[] = $dateChargement;
+            $dateChargement->setAdresseLivraison($this);
         }
 
         return $this;
     }
 
-    public function removeCommande(Commande $commande): self
+    public function removeDateChargement(Destination $dateChargement): self
     {
-        if ($this->commandes->removeElement($commande)) {
+        if ($this->dateChargement->removeElement($dateChargement)) {
             // set the owning side to null (unless already changed)
-            if ($commande->getItineraire() === $this) {
-                $commande->setItineraire(null);
+            if ($dateChargement->getAdresseLivraison() === $this) {
+                $dateChargement->setAdresseLivraison(null);
             }
         }
 
