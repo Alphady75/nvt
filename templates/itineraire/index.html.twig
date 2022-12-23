@@ -8,10 +8,8 @@
 	<li class="breadcrumb-item">
 		<a href="{{ path('itineraire_index') }}">
 			<i class="mdi mdi-routes"></i>
-			Itineraires
-						        ({{ itineraires.getTotalItemCount }}
-			itineraire
-			{{ itineraires.getTotalItemCount > 1 ? 's' : '' }})
+			Itineraires ({{ itineraires.getTotalItemCount }}
+			itineraire{{ itineraires.getTotalItemCount > 1 ? 's' : '' }})
 		</a>
 	</li>
 
@@ -25,7 +23,7 @@
 
 	<div class="table-responsive">
 		<table class="table table-hover bg-white rounded table-striped">
-			<thead class="text-left bg-primary text-light">
+			<thead class="text-left bg-primary text-light text-uppercase">
 				<tr>
 					<th>Id</th>
 					<th>Designation</th>
@@ -49,16 +47,16 @@
 						</td>
 						<td>
 							<a href="{{ path('itineraire_show', {'id': itineraire.id}) }}" class="btn btn-light">
-								Details
+								<i class="mdi mdi-clipboard-search-outline"></i> Details
 							</a>
 							<a href="{{ path('itineraire_edit', {'id': itineraire.id}) }}" class="btn btn-light">
-								Modifier
+								<i class="mdi mdi-clipboard-edit-outline"></i> Modifier
 							</a>
 						</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="6">Aucune données</td>
+						<td colspan="6" class="text-center"><i class="fa-2x fas fa-search text-muted"></i> Aucune données</td>
 					</tr>
 				{% endfor %}
 			</tbody>

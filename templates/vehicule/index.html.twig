@@ -27,8 +27,6 @@
 				<th>Media</th>
 				<th>Matricule</th>
 				<th>Reference</th>
-				<th>Date création</th>
-				<th>Dernière mise à jour</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -43,10 +41,8 @@
 						alt="{{ vehicule.name }}">
 					{% endif %}
 				</td>
-				<td>{{ itineraire.numero }}</td>
+				<td>{{ vehicule.numero }}</td>
 				<td>{{ vehicule.reference }}</td>
-				<td>{{ vehicule.created ? vehicule.created|date('d/m/Y H:i:s') : '' }}</td>
-				<td>{{ vehicule.updated ? vehicule.updated|date('d/m/Y H:i:s') : '' }}</td>
 				<td>
 					<a href="{{ path('vehicule_show', {'id': vehicule.id}) }}" class="btn btn-light"><i
 							class="mdi mdi-clipboard-search-outline"></i> Détails</a>
@@ -56,7 +52,7 @@
 			</tr>
 			{% else %}
 			<tr>
-				<td colspan="7">Aucune données</td>
+				<td colspan="6" class="text-center"><i class="fa-2x fas fa-search text-muted"></i> Aucune données</td>
 			</tr>
 			{% endfor %}
 		</tbody>

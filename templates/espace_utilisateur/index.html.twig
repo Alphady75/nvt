@@ -26,13 +26,13 @@
                {% if app.user.avatar %}
 
                <img class="rounded-circle img-thumbnail avatar-xl"
-                  src="{{ vich_uploader_asset(app.user) | imagine_filter('large_avatar') }}"
+                  src="{{ vich_uploader_asset(app.user) | imagine_filter('small_size') }}"
                   alt="{{ app.user.nom }} {{ app.user.prenom }}">
 
                {% else %}
 
                <img class="rounded-circle img-thumbnail avatar-xl"
-                  src="{{ asset('img/user.jpg') | imagine_filter('large_avatar') }}"
+                  src="{{ asset('img/user.jpg') | imagine_filter('small_size') }}"
                   alt="{{ app.user.nom }} {{ app.user.prenom }}">
 
                {% endif %}

@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     /**
      * @Vich\UploadableField(mapping="users_avatars", fileNameProperty="avatar")
      * @var File|null
-     * @Assert\Image(maxSize="3M", maxSizeMessage="Image trop volumineuse maximum 10Mb")
+     * @Assert\Image(maxSize="10M", maxSizeMessage="Image trop volumineuse maximum 10Mb")
      * @Assert\Image(mimeTypes = {"image/jpeg", "image/jpg", "image/png"}, mimeTypesMessage = "Mauvais format d'image (jpeg, jpg et png)")
     **/
     private $imageFile;

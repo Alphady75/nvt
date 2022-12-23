@@ -23,8 +23,8 @@
 {% block body %}
 
 <div class="table-responsive">
-    <table class="table table-hover table-striped text-uppercase">
-        <thead class="text-left bg-primary text-light">
+    <table class="table table-hover table-striped">
+        <thead class="text-left bg-primary text-light text-uppercase">
             <tr>
                 <th>Id</th>
                 <th>Conducteur</th>
@@ -44,10 +44,10 @@
                         alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
                     {% else %}
                     {% if conducteur.civilite == 'Mr' %}
-                    <img src="{{ asset('img/user.png') | imagine_filter('medium_avatar') }}"
+                    <img src="{{ asset('img/user.jpg') | imagine_filter('medium_avatar') }}"
                         alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
                     {% else %}
-                    <img src="{{ asset('img/femmel.png') | imagine_filter('medium_avatar') }}"
+                    <img src="{{ asset('img/femme.jpg') | imagine_filter('medium_avatar') }}"
                         alt="{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}">
                     {% endif %}
                     {% endif %}
@@ -58,7 +58,7 @@
                         {{ conducteur.nom }}
                         {{ conducteur.prenom }}
                     </strong>
-                    <small class="d-block py-0 my-0">{{ conducteur.email }}</small>
+                    <a href="mailto:{{ conducteur.email }}" class="small d-block py-0 my-0">{{ conducteur.email }}</a>
                     <small class="d-block py-0 my-0">Code: {{ conducteur.code }}</small>
                 </td>
                 <td>{{ conducteur.typeContrat }}</td>
@@ -71,7 +71,7 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="7">Aucune donnée</td>
+                <td colspan="7" class="text-center"><i class="fa-2x fas fa-search text-muted"></i> Aucune donnée</td>
             </tr>
             {% endfor %}
         </tbody>

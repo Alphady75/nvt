@@ -1,122 +1,139 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Tableau de bord {% endblock %}
+{% block title %}
+	Tableau de bord
+{% endblock %}
+
+{% block links %}
+	<li class="breadcrumb-item">
+		<a href="{{ path('dashboard') }}">
+			<i class="mdi mdi-speedometer"></i>
+			Tableau de bord
+		</a>
+	</li>
+{% endblock %}
 
 {% block body %}
 
-<div class="row">
-	<!-- end col -->
-	<div class="col-sm-6 col-xl-4">
-		<div class="card card-content">
-			<div class="card-body row justify-content-center">
-				<h4 class="mb-2 font-size-20">
-					<i class="mdi-24px mdi mdi-calendar-multiple"></i> {{ commandesAll|length }}
-				</h4>
-				<p class="mb-2 text-muted font-size-13 text-nowrap">
-					<a href="{{ path('commande_index') }}">Commandes</a>
-				</p>
+	<div
+		class="row">
+		<!-- end col -->
+		<div class="col-sm-6 col-xl-4">
+			<div class="card card-content">
+				<div class="card-body row justify-content-center">
+					<h4 class="mb-2 font-size-20">
+						<i class="mdi-24px mdi mdi-calendar-multiple"></i>
+						{{ commandesAll|length }}
+					</h4>
+					<p class="mb-2 text-muted font-size-13 text-nowrap">
+						<a href="{{ path('commande_index') }}">Commandes</a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end col -->
+		<!-- end col -->
 
-	<!-- end col -->
-	<div class="col-sm-6 col-xl-4">
-		<div class="card card-content">
-			<div class="card-body row justify-content-center">
-				<h4 class="mb-2 font-size-20">
-					<i class="mdi-24px mdi mdi-account-group"></i> {{ clients|length }}
-				</h4>
-				<p class="mb-2 text-muted font-size-13 text-nowrap">
-					<a href="{{ path('client_index') }}">Clients</a>
-				</p>
+		<!-- end col -->
+		<div class="col-sm-6 col-xl-4">
+			<div class="card card-content">
+				<div class="card-body row justify-content-center">
+					<h4 class="mb-2 font-size-20">
+						<i class="mdi-24px mdi mdi-account-group"></i>
+						{{ clients|length }}
+					</h4>
+					<p class="mb-2 text-muted font-size-13 text-nowrap">
+						<a href="{{ path('client_index') }}">Clients</a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end col -->
+		<!-- end col -->
 
-	<!-- end col -->
-	<div class="col-sm-6 col-xl-4">
-		<div class="card card-content">
-			<div class="card-body row justify-content-center">
-				<h4 class="mb-2 font-size-20">
-					<i class="mdi-24px mdi mdi-account-multiple-outline"></i> {{ conducteurs|length }}
-				</h4>
-				<p class="mb-2 text-muted font-size-13 text-nowrap">
-					<a href="{{ path('conducteur_index') }}">Conducteurs</a>
-				</p>
+		<!-- end col -->
+		<div class="col-sm-6 col-xl-4">
+			<div class="card card-content">
+				<div class="card-body row justify-content-center">
+					<h4 class="mb-2 font-size-20">
+						<i class="mdi-24px mdi mdi-account-multiple-outline"></i>
+						{{ conducteurs|length }}
+					</h4>
+					<p class="mb-2 text-muted font-size-13 text-nowrap">
+						<a href="{{ path('conducteur_index') }}">Conducteurs</a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end col -->
+		<!-- end col -->
 
-	<!-- end col -->
-	<div class="col-sm-6 col-xl-4">
-		<div class="card card-content">
-			<div class="card-body row justify-content-center">
-				<h4 class="mb-2 font-size-20">
-					<i class="mdi-24px mdi mdi-routes"></i> {{ itineraires|length }}
-				</h4>
-				<p class="mb-2 text-muted font-size-13 text-nowrap">
-					<a href="{{ path('itineraire_index') }}">Itineraires</a>
-				</p>
+		<!-- end col -->
+		<div class="col-sm-6 col-xl-4">
+			<div class="card card-content">
+				<div class="card-body row justify-content-center">
+					<h4 class="mb-2 font-size-20">
+						<i class="mdi-24px mdi mdi-routes"></i>
+						{{ itineraires|length }}
+					</h4>
+					<p class="mb-2 text-muted font-size-13 text-nowrap">
+						<a href="{{ path('itineraire_index') }}">Itineraires</a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end col -->
+		<!-- end col -->
 
-	<!-- end col -->
-	<div class="col-sm-6 col-xl-4">
-		<div class="card card-content">
-			<div class="card-body row justify-content-center">
-				<h4 class="mb-2 font-size-20">
-					<i class="mdi-24px mdi mdi-bus-marker"></i> {{ vehicules|length }}
-				</h4>
-				<p class="mb-2 text-muted font-size-13 text-nowrap">
-					<a href="{{ path('vehicule_index') }}">Vehicules</a>
-				</p>
+		<!-- end col -->
+		<div class="col-sm-6 col-xl-4">
+			<div class="card card-content">
+				<div class="card-body row justify-content-center">
+					<h4 class="mb-2 font-size-20">
+						<i class="mdi-24px mdi mdi-bus-marker"></i>
+						{{ vehicules|length }}
+					</h4>
+					<p class="mb-2 text-muted font-size-13 text-nowrap">
+						<a href="{{ path('vehicule_index') }}">Vehicules</a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end col -->
-	
-	<!-- end col -->
-	<div class="col-sm-6 col-xl-4">
-		<div class="card card-content">
-			<div class="card-body row justify-content-center">
-				<h4 class="mb-2 font-size-20">
-					<i class="mdi-24px mdi mdi-account-supervisor-circle-outline"></i> {{ users|length }}
-				</h4>
-				<p class="mb-2 text-muted font-size-13 text-nowrap">
-					<a href="{{ path('users_index') }}">Comptes utilisateurs</a>
-				</p>
-			</div>
-		</div>
-	</div>
-	<!-- end col -->
-</div>
-<!-- end row -->
+		<!-- end col -->
 
-{% include "commande/_table_card.html.twig" %}
+		<!-- end col -->
+		<div class="col-sm-6 col-xl-4">
+			<div class="card card-content">
+				<div class="card-body row justify-content-center">
+					<h4 class="mb-2 font-size-20">
+						<i class="mdi-24px mdi mdi-account-supervisor-circle-outline"></i>
+						{{ users|length }}
+					</h4>
+					<p class="mb-2 text-muted font-size-13 text-nowrap">
+						<a href="{{ path('users_index') }}">Comptes utilisateurs</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- end col -->
+	</div>
+	<!-- end row -->
+
+	{% include "commande/_table_card.html.twig" %}
 
 
 {% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
+	{{ parent() }}
 
-<!-- Responsive Table css -->
-<link href="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.css') }}" rel="stylesheet"
-	type="text/css" />
+	<!-- Responsive Table css -->
+	<link href="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.css') }}" rel="stylesheet" type="text/css"/>
 
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
+	{{ parent() }}
 
-<!-- Responsive Table js -->
-<script src="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.js') }}"></script>
+	<!-- Responsive Table js -->
+	<script src="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.js') }}"></script>
 
-<!-- Init js -->
-<script src="{{ asset('themes/base/js/pages/table-responsive.init.js') }}"></script>
+	<!-- Init js -->
+	<script src="{{ asset('themes/base/js/pages/table-responsive.init.js') }}"></script>
 {% endblock %}

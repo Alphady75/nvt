@@ -42,7 +42,7 @@
         {{ form_end(form) }}
         <div class="table-rep-plugin">
             <div class="table-responsive mb-0" data-bs-pattern="priority-columns">
-                <table id="tech-companies-1" class="table  table-striped no-radius">
+                <table id="tech-companies-1" class="table  table-striped no-radius table-hover">
                     <thead class="text-uppercase bg-light text-dark rounded-0">
                         <tr>
                             <th>Id</th>
@@ -60,20 +60,22 @@
                             <td>{{ client.id }}</td>
                             <td>
                                 {% if client.civilite == 'Mr' %}
-                                <img src="{{ asset('img/user.png') | imagine_filter('medium_avatar') }}"
+                                <img src="{{ asset('img/user.jpg') | imagine_filter('medium_avatar') }}"
                                     alt="{{ client.nom ~ ' ' ~ client.prenom }}">
                                 {% else %}
-                                <img src="{{ asset('img/femmel.png') | imagine_filter('medium_avatar') }}"
+                                <img src="{{ asset('img/femme.jpg') | imagine_filter('medium_avatar') }}"
                                     alt="{{ client.nom ~ ' ' ~ client.prenom }}">
                                 {% endif %}
                             </td>
-                            <td>{{ client.civilite }}.
+                            <td>
+                                {{ client.civilite }}.
                                 <strong>{{ client.nom }}
                                     {{ client.prenom }}</strong>
                                 <br>
                                 <small>{{ client.email }}</small>
                             </td>
-                            <td>{{ client.adresse }}
+                            <td>
+                                {{ client.adresse }}
                                 <br>
                                 {{ client.telephone }}
                             </td>
@@ -82,15 +84,19 @@
                             <td>
                                 <a href="{{ path('client_show', {'id': client.id}) }}" class="btn btn-light">
                                     <i class="mdi mdi-account-search"></i>
-                                    Détails</a>
+                                    Détails
+                                </a>
                                 <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-light">
                                     <i class="mdi mdi-account-edit"></i>
-                                    Modifier</a>
+                                    Modifier
+                                </a>
                             </td>
                         </tr>
                         {% else %}
                         <tr>
-                            <td colspan="7">Aucune donnée</td>
+                            <td colspan="7" class="text-center">
+                                <i class="fa-2x fas fa-search text-muted"></i> Aucune donnée
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

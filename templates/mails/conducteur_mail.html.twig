@@ -9,6 +9,7 @@
 <h5>Detail de la commande:</h5>
 
 {% for destination in commande.destinations %}
+	<br>
 	<table style="width: 100%;">
 		<tbody>
 			<tr>
@@ -34,8 +35,9 @@
 		</tbody>
 	</table>
 	<br>
-	<a href="{{ destination.livraison.lienMap ?? '' }}" target="_blank" style="display: inline-block;padding: 15px;border-radius: 20px;background: #1f3c4d;color:white;text-decoration:none;">Voir l'itineraire sur la carte</a>
-
+	{% if destination.livraison.lienMap %}
+		<a href="{{ destination.livraison.lienMap }}" target="_blank" style="display: inline-block;padding: 15px;border-radius: 20px;background: #1f3c4d;color:white;text-decoration:none;">Voir l'itineraire sur la carte</a>
+	{% endif %}
 {% endfor %}
 <br><br>
 <h2>Merci!</h2>

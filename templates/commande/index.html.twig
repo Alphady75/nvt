@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Planning des commandes
-{% endblock %}
+{% block title %}Planning des commandes{% endblock %}
 
 {% block links %}
 
@@ -17,9 +16,13 @@
 
 {% block btn %}
 	<a href="{{ path('commande_new') }}" class="btn btn-primary">
-		Nouvelle commande</a>&nbsp;&nbsp;
+		<i class="mdi mdi-calendar-multiple"></i>
+		Nouvelle commande
+	</a>&nbsp;&nbsp;
 	<a href="{{ path('itineraire_index') }}" class="btn btn-primary">
-		Itineraires</a>
+		<i class="mdi mdi-routes"></i>
+		Itineraires
+	</a>
 {% endblock %}
 
 {% block body %}
@@ -29,10 +32,10 @@
 {% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
+	{{ parent() }}
 
-<!-- Responsive Table css -->
-<link href="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.css') }}" rel="stylesheet" type="text/css" />
+	<!-- Responsive Table css -->
+	<link href="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.css') }}" rel="stylesheet" type="text/css"/>
 
 {% endblock %}
 
@@ -41,7 +44,7 @@
 
 	<!-- Responsive Table js -->
 	<script src="{{ asset('themes/base/libs/admin-resources/rwd-table/rwd-table.min.js') }}"></script>
-	
+
 	<!-- Init js -->
 	<script src="{{ asset('themes/base/js/pages/table-responsive.init.js') }}"></script>
 {% endblock %}
