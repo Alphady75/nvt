@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8"/>
+		<title>
+			{% block title %}Bienvenue sur
+				{{ appName }}
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+		<meta
+		content="Themesbrand" name="author"/>
+		<!-- App favicon -->
+		<link rel="shortcut icon" href="{{ asset('base/images/favicon.ico') }}"/>
+
+		<link
+		href="{{ asset('themes/base/libs/metrojs/release/MetroJs.Full/MetroJs.min.css') }}" rel="stylesheet" type="text/css"/>
+
+		<!-- Bootstrap Css -->
+		<link
+		href="{{ asset('themes/base/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+		<!-- Icons Css -->
+		<link
+		href="{{ asset('themes/base/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+		<!-- App Css-->
+		<link href="{{ asset('themes/base/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css"/>
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		<style>
+			table.th-50 th {
+				width: 30%;
+			}
+			table.th-100 th {
+				width: 45%;
+			}
+			table.th-50 td {
+				width: 60%;
+			}
+			table.th-50 td, table.th-50 th{
+				padding: 8px !important;
+			}
+			table.th-50 p {
+				padding: 3px 0;
+				margin: 0;
+			}
+			.font-size-18 {
+				font-weight: bold !important;
+			}
+			.form-group {
+				margin: 0 0 10px;
+			}
+			.uppercase-label form label {
+				text-transform: uppercase !important;
+			}
+			.bg-primary {
+				background: #1f3c4d !important;
+			}
+			.table {
+				background: white;
+				border-radius: 5px !important;
+				border: transparent !important;
+				overflow: hidden;
+			}
+			.table.no-radius{
+				border-radius: inherit!important;
+				overflow: inherit;
+			}
+			.table.commande, table.filtre{
+				overflow: inherit;
+			}
+			.table.commande th {
+				width: 40%;
+			}
+			.table.commande th,
+			.commande td {
+				padding: 10px;
+			}
+			.commande input,
+			.commande select,
+			.commande text,
+			.commande radio {
+				text-transform: uppercase;
+			}
+			.turbo-progress-bar {
+				height: 2px;
+				background-color: #1f3c4d !important;
+			}
+			.vich-image img{
+				display: block;
+				border-radius: 10px;
+				margin: 10px 0;
+			}
+			.ts-control .item {
+				background: #1f3c4d !important;
+				background: #1f3c4d !important;
+				font-size: .8em!important;
+				border: transparent !important;
+				color: white !important;
+			}
+			.btn-toolbar{
+				display: none!important;
+			}
+			table.filtre tbody tr td{
+				padding: 5px;
+				width: 33%;
+			}
+			table.contact{
+				text-transform: uppercase;
+			}
+			.client-form legend{
+				font-size: 1.2em!important;
+				font-weight: 600;
+				padding: 0 10px;
+			}
+			.client-form fieldset{
+				border: 1px solid rgb(216, 216, 216);
+				padding: 15px;
+				border-radius: 10px;
+			}
+			.form-error-icon{
+				display: none;
+			}
+		</style>
+
+	</head>
+
+	<body data-turbo="false" data-topbar="dark" data-keep-enlarged="true" class="vertical-collpsed" data-layout-size="">
+		<!--boxed-->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 mx-auto">
+
+					<div class="text-center">
+						<h1 class="font-size-16 py-3">{{ appName }}</h1>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							{% block body %}{% endblock %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- JAVASCRIPT -->
+		<script src="{{ asset('themes/base/libs/jquery/jquery.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/metismenu/metisMenu.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/simplebar/simplebar.min.js') }}"></script>
+		<script src="{{ asset('themes/base/libs/node-waves/waves.min.js') }}"></script>
+
+		<!-- Chart JS -->
+		<script src="{{ asset('themes/base/libs/chart.js/Chart.bundle.min.js') }}"></script>
+		<script src="{{ asset('themes/base/js/pages/chartjs.init.js') }}"></script>
+
+		<script src="{{ asset('themes/base/js/app.js') }}"></script>
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+	</body>
+
+</html>

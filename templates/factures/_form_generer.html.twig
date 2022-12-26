@@ -1,8 +1,4 @@
-{% if is_granted('ROLE_GESTIONNAIRE') %}
-
 <form method="post" class="mt-3 d-inline pt-4" action="{{ path('generer_facture', {id: commande.id}) }}" data-turbo="false">
 	<input type="hidden" name="_token" value="{{ csrf_token('generer') }}">
 	<button type="submit" class="btn btn-primary stripes-btn"><i class="mdi mdi-arrow-collapse-down"></i> Générer le document pdf </button>
 </form>
-
-{% endif %}

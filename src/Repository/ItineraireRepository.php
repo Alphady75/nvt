@@ -47,4 +47,17 @@ class ItineraireRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function findTotalByCommande($commande)
+    {
+        return $this->createQueryBuilder('i')
+            ->select("SUM(i.tarif) as total")
+            ->andWhere('i.commande = :commande')
+            ->setParameters([
+                'user' => $commande,
+            ])
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

@@ -1,0 +1,18 @@
+{% extends 'client.html.twig' %}
+
+{% block title %}Commande n°{{ commande.id }}{% endblock %}
+
+{% block body %}
+
+{% include "commande/_facture.html.twig" %}
+
+<div class="py-4">
+   <form method="post" class="mt-3 d-inline pt-4" action="{{ path('ma_facture', {commandeId: commande.id}) }}"
+      data-turbo="false">
+      <input type="hidden" name="_token" value="{{ csrf_token('mafacture') }}">
+      <button type="submit" class="btn btn-primary stripes-btn"><i class="mdi mdi-arrow-collapse-down"></i> Générer le
+         document pdf </button>
+   </form>
+</div>
+
+{% endblock %}

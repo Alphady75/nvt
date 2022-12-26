@@ -13,31 +13,34 @@
 	<table style="width: 100%;">
 		<tbody>
 			<tr>
-				<th style="width: 40%; text-align:left;">Adresse de chargement:</th>
+				<th style="width: 20%; text-align:left;">Adresse de chargement:</th>
 				<td>
 					{{ destination.adresseChargement }}
 				</td>
 			</tr>
 			<tr>
-				<th style="width: 40%; text-align:left;">Date de chargement:</th>
+				<th style="width: 20%; text-align:left;">Date de chargement:</th>
 				<td>{{ destination.dateChargement|date('d/m/Y à H:s:i') }}</td>
 			</tr>
 			<tr>
-				<th style="width: 40%; text-align:left;">Adresse de livraison:</th>
+				<th style="width: 20%; text-align:left;">Adresse de livraison:</th>
 				<td>
 					{{ destination.adresseLivraison ?? '' }}
 				</td>
 			</tr>
 			<tr>
-				<th style="width: 40%; text-align:left;">Date de livraison:</th>
+				<th style="width: 20%; text-align:left;">Date de livraison:</th>
 				<td>{{ destination.dateLivraison|date('d/m/Y à H:s:i') }}</td>
 			</tr>
 		</tbody>
 	</table>
 	<br>
-	{% if destination.livraison.lienMap %}
-		<a href="{{ destination.livraison.lienMap }}" target="_blank" style="display: inline-block;padding: 15px;border-radius: 20px;background: #1f3c4d;color:white;text-decoration:none;">Voir l'itineraire sur la carte</a>
+	{% if destination.lienMap %}
+		<a href="{{ destination.lienMap }}" target="_blank" style="display: inline-block;padding: 15px;border-radius: 20px;background: #1f3c4d;color:white;text-decoration:none;">
+			Voir l'itineraire sur la carte
+		</a>
 	{% endif %}
+
 {% endfor %}
-<br><br>
+<br>
 <h2>Merci!</h2>

@@ -46,9 +46,13 @@ class Commande
     #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'commandes', cascade: ["persist"])]
     private $destinations;
 
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Facture::class)]
+    private $factures;
+
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
+        $this->factures = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -160,6 +164,36 @@ class Commande
     public function removeDestination(Destination $destination): self
     {
         $this->destinations->removeElement($destination);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Facture[]
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Facture $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures[] = $facture;
+            $facture->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): self
+    {
+        if ($this->factures->removeElement($facture)) {
+            // set the owning side to null (unless already changed)
+            if ($facture->getCommande() === $this) {
+                $facture->setCommande(null);
+            }
+        }
 
         return $this;
     }

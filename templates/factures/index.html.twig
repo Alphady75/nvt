@@ -1,64 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Factures{% endblock %}
+{% block title %}Factures
+{% endblock %}
 
 {% block links %}
 
-<li class="breadcrumb-item">
-    <a href="{{ path('client_index') }}">
-        <i class="mdi mdi-clipboard-outline"></i>
-        Factures ({{ factures.getTotalItemCount }})</a>
-</li>
+	<li class="breadcrumb-item">
+		<a href="{{ path('client_index') }}">
+			<i class="mdi mdi-clipboard-outline"></i>
+			Factures ({{ factures.getTotalItemCount }})</a>
+	</li>
 
 {% endblock %}
 
 {% block body %}
 
-<div class="table-responsive">
-    <table class="table table-hover bg-white rounded table-striped">
-        <thead class="text-left bg-primary text-light text-uppercase">
-            <tr>
-                <th>Id</th>
-                <th>Designation</th>
-                <th>Document</th>
-                <th>Statut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for facture in factures %}
-            <tr>
-                <td>{{ facture.id }}</td>
-                <td>{{ facture.designation }}</td>
-                <td>{{ facture.document }}</td>
-                <td>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span class="badge badge-pill bg-{{ facture.statut  ? 'success' : 'warning' }}">{{
-                                facture.statut ? '<i class="mdi mdi-email-alert-outline"></i> Envoyer' : 'En attente'
-                                }}</span>
-                        </div>
-                        {% if facture.statut == 0 %}
-                        <div class="col-sm-6">
-                            <a href="{{ path('facture_edit', {'id': facture.id}) }}" class="btn btn-primary"><i
-                                    class="mdi mdi-email-alert-outline"></i> Envoyer</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </td>
-                <td>
-                    <a href="{{ path('facture_show', {'id': facture.id}) }}" class="btn btn-light">Details</a>
-                    <a href="{{ path('facture_edit', {'id': facture.id}) }}" class="btn btn-light">Modifier</a>
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5" class="text-center"><i class="fa-2x fas fa-search text-muted"></i> Aucune donnée</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+	<div class="table-responsive">
+		<table class="table table-hover bg-white rounded table-striped">
+			<thead class="text-left bg-primary text-light text-uppercase">
+				<tr>
+					<th>Id</th>
+					<th>Designation</th>
+					<th>Document</th>
+					<th>Client</th>
+					<th></th>
+					<th>Statut</th>
+					<th>Alerte</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for facture in factures %}
+					<tr>
+						<td>{{ facture.id }}</td>
+						<td>{{ facture.designation }}</td>
+						<td>{{ facture.document }}</td>
+						<td>{{ facture.client.email }}</td>
+						<td>
+							{% if facture.statut == 0 %}
 
-    {{ knp_pagination_render(factures) }}
-</div>
+								{% include "factures/_send_client_mail.html.twig" %}
+
+							{% endif %}
+						</td>
+						<td>
+							<span class="badge badge-pill bg-{{ facture.statut  ? 'success' : 'warning' }}">{{
+                        facture.statut ? '<i class="mdi mdi-email-alert-outline"></i> Envoyer' : 'En attente'
+                        }}
+							</span>
+						</td>
+						<td>
+							<span class="badge badge-pill bg-{{ facture.receved  ? 'success' : 'warning' }}">{{
+                        facture.receved ? '<i class="mdi mdi-email-alert-outline"></i> Reçu' : 'En attente'
+                        }}</span>
+						</td>
+						<td>
+							<a href="{{ path('facture_show', {'id': facture.id}) }}" class="btn btn-light">Details</a>
+							<a href="{{ path('facture_edit', {'id': facture.id}) }}" class="btn btn-light">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5" class="text-center">
+							<i class="fa-2x fas fa-search text-muted"></i>
+							Aucune donnée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{{ knp_pagination_render(factures) }}
+	</div>
 {% endblock %}

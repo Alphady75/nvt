@@ -38,12 +38,12 @@
 			<small style="padding: 0;"></small>
 
 			<p>Période du
-								...
-								au
-								...
+												...
+												au
+												...
 			</p>
 			<p>ref:
-								...
+												...
 			</p>
 		</div>
 
@@ -53,9 +53,7 @@
 <table style="border: 1px solid black;width: 100%;margin-right: 10px">
 	<thead style="background: rgb(146, 248, 146);">
 		<tr>
-			<td>JR</td>
-			<td>Date de reception</td>
-			<td>Date de livraison</td>
+			<td>N°</td>
 			<td>Itinéraires</td>
 		</tr>
 	</thead>
@@ -64,8 +62,6 @@
 
 			<tr style="vertical-align: top;background: white;padding-bottom: 0;">
 				<td>{{ commande.id }}</td>
-				<td>{{ commande.dateReception|date('d/m/Y') }}</td>
-				<td>{{ commande.dateReception|date('d/m/Y') }}</td>
 				<td>
 					{% for itineraire in commande.client.itineraires %}
 						<table style="border: 1px solid rgb(192, 192, 192);width: 100%;">
@@ -78,8 +74,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td style="width: 30%">{{ itineraire.designation }}</td>
-									<td style="width: 20%">{{ itineraire.tarif ~ currency }}</td>
+									<td>{{ itineraire.designation }}</td>
+									<td>{{ itineraire.tarif ~ currency }}
 									<td>{{ itineraire.description|raw }}</td>
 								</tr>
 							</tbody>
@@ -126,3 +122,105 @@
 		</td>
 	</tr>
 </table>
+
+
+<div style="margin: 15px 0;">
+	<div style="width: 48%;display: inline-block;vertical-align: top;">
+		<h4>CAISSE d'EPARGNE</h4>
+		<h6>CE ILE DE FRANCE</h6>
+	</div>
+	<div style="width: 48%;display: inline-block;vertical-align: top;text-align: right">
+		<h6>Relevé d'Identité Caisse d'Epargne</h6>
+	</div>
+</div>
+
+<p style="padding: 1px;margin: 0;">Ce relevé est destiné à être remis, sur leur demande, à vos créanciers ou débiteurs
+		appelés à faire inscrire des opérations à votre compte (virément, paiement de quittance, etc.).</p>
+<p style="padding: 1px;margin: 0;">Son utilisation vous garantit le bon enregistrement des opérations en cause et vous
+		évite ainsi des réclamations pour erreurs ou retard d'imputation.</p>
+
+<table style="width: 100%;border: 2px solid black;margin: 15px 0;">
+	<thead>
+		<tr>
+			<th style="text-align: center;border: 2px solid black;">17515</th>
+			<th style="text-align: center;border: 2px solid black;">90000</th>
+			<th style="text-align: center;border: 2px solid black;">08036410893</th>
+			<th style="text-align: center;border: 2px solid black;">49</th>
+			<th style="text-align: center;border: 2px solid black;">CE ILE DE FRANCE</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="text-align: center;border: 2px solid black;">c/étab</td>
+			<td style="text-align: center;border: 2px solid black;">c/guichet</td>
+			<td style="text-align: center;border: 2px solid black;">n/compte</td>
+			<td style="text-align: center;border: 2px solid black;">c/rice</td>
+			<td style="text-align: center;border: 2px solid black;">domiciliation</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>IBAN</h4>
+
+<table style="width: 100%;border: 2px solid black;margin: 5px 0 15px 0;">
+	<thead>
+		<tr>
+			<th style="text-align: center;border: 2px solid black;">FR76</th>
+			<th style="text-align: center;border: 2px solid black;">1751</th>
+			<th style="text-align: center;border: 2px solid black;">5900</th>
+			<th style="text-align: center;border: 2px solid black;">0008</th>
+			<th style="text-align: center;border: 2px solid black;">0364</th>
+			<th style="text-align: center;border: 2px solid black;">1089</th>
+			<th style="text-align: center;border: 2px solid black;">349</th>
+		</tr>
+	</thead>
+</table>
+
+<h4>BIC</h4>
+
+<table style="width: 50%;border: 2px solid black;margin: 5px 0 15px 0;">
+	<thead>
+		<tr>
+			<th style="text-align: center;border: 2px solid black;">C</th>
+			<th style="text-align: center;border: 2px solid black;">E</th>
+			<th style="text-align: center;border: 2px solid black;">P</th>
+			<th style="text-align: center;border: 2px solid black;">A</th>
+			<th style="text-align: center;border: 2px solid black;">F</th>
+			<th style="text-align: center;border: 2px solid black;">R</th>
+			<th style="text-align: center;border: 2px solid black;">P</th>
+			<th style="text-align: center;border: 2px solid black;">P</th>
+			<th style="text-align: center;border: 2px solid black;">7</th>
+			<th style="text-align: center;border: 2px solid black;">5</th>
+			<th style="text-align: center;border: 2px solid black;">1</th>
+		</tr>
+	</thead>
+</table>
+
+<div>
+	<div style="width: 33%;display: inline-block;vertical-align: top;">
+		<h5>
+			CTRE D AFF ENTREP JOINVILLE LE P
+			<br>
+			Immeuble le Vancouver
+			<br>
+			3 ALLEE EDMEE LHEUREUX
+			<br>
+			94340 JOINVILLE LE PONT
+						TEL: 01.82.01.14.39
+		</h5>
+	</div>
+	<div style="width: 30%;display: inline-block;vertical-align: top;text-align:right;">
+		<p>
+			<i>Intitulé du compte</i>
+		</p>
+	</div>
+	<div style="width: 32%;display: inline-block;vertical-align: top;">
+		<h5>STAF SAS
+			<br>
+			10 RUE LAMARTINE
+			<br>
+			94290 VILLENEUVE LE ROI</h5>
+	</div>
+</div>
+
+<hr style="border: 1px dotted black;">

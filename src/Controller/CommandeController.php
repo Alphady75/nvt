@@ -74,15 +74,6 @@ class CommandeController extends AbstractController
                 $commande
             );
 
-            // Envoie du mail au client
-            $mailer->sendMail(
-                'nevrety@gmail.com',
-                $commande->getClient()->getEmail(),
-                'Nouvelle commande',
-                'mails/conducteur_mail.html.twig',
-                $commande
-            );
-
             $this->addFlash('success', 'Commande crée avec succès');
 
             return $this->redirectToRoute('commande_show', ['id' => $commande->getId()],Response::HTTP_SEE_OTHER);

@@ -40,6 +40,8 @@ class ItineraireController extends AbstractController
             $entityManager->persist($itineraire);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Itineraire cré avec succès');
+
             return $this->redirectToRoute('itineraire_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -66,6 +68,8 @@ class ItineraireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Itineraire mise à jour avec succès');
+
             return $this->redirectToRoute('itineraire_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -81,6 +85,8 @@ class ItineraireController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$itineraire->getId(), $request->request->get('_token'))) {
             $entityManager->remove($itineraire);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Itineraire supprimer avec succès');
         }
 
         return $this->redirectToRoute('itineraire_index', [], Response::HTTP_SEE_OTHER);

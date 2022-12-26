@@ -6,7 +6,9 @@ use App\Entity\Client;
 use App\Entity\Commande;
 use App\Entity\Facture;
 use App\Form\FactureType;
+use App\Repository\CommandeRepository;
 use App\Repository\FactureRepository;
+use App\Services\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -94,9 +96,11 @@ class FactureController extends AbstractController
     }
 
     #[Route('/generer/{id}', name: 'generer_facture', methods: ['POST'])]
-    public function factureRenener(Request $request, Commande $commande, 
-    EntityManagerInterface $entityManager): Response
-    {
+    public function factureRenener(
+        Request $request,
+        Commande $commande,
+        EntityManagerInterface $entityManager
+    ): Response {
         if ($this->isCsrfTokenValid('generer', $request->request->get('_token'))) {
             // 1- Définition des options de pdf
             $pdfOptions = new Options();
@@ -144,15 +148,14 @@ class FactureController extends AbstractController
             ]);
 
             $facture = new Facture();
-
             $facture->setDesignation($nomsClient);
             $facture->setClient($commande->getClient());
+            $facture->setCommande($commande);
             $facture->setDocument($file);
             $facture->setStatut(false);
+            $facture->setReceved(false);
             $entityManager->persist($facture);
             $entityManager->flush();
-            
-            // Upload de la facture
 
             return new Response();
         }
@@ -219,5 +222,43 @@ class FactureController extends AbstractController
 
             return new Response();
         }
+    }
+
+    #[Route('/commande/client/{commandeId}/{factureId}', name: 'send_client_facture', methods: ['POST'])]
+    public function sendClientFacture(CommandeRepository $commandeRepo, FactureRepository $factureRepo, MailerService $mailer, $commandeId, $factureId,  EntityManagerInterface $entityManager, Request $request): Response 
+    {
+        $commande = $commandeRepo->find($commandeId);
+
+        $facture = $factureRepo->find($factureId);
+
+        if (!$commande) {
+            dd('Aucune commande');
+        }
+        
+        if (!$facture) {
+            dd('Aucune commande');
+        }
+
+        if ($this->isCsrfTokenValid('send_client_mail' . $commande->getId(), $request->request->get('_token'))) {
+            // Envoie du mail au client
+            $mailer->sendMail(
+                'nevrety@gmail.com',
+                $commande->getClient()->getEmail(),
+                'Transmission de la facture',
+                'mails/client_mail.html.twig',
+                $commande
+            );
+
+            $facture->setStatut(true);
+            $entityManager->persist($facture);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La facture a bien été envoyer au client ' . $commande->getClient()->getEmail());
+            
+        }else{
+            $this->addFlash('danger', 'La facture n\'a pas été envoyer au client ' . $commande->getClient()->getEmail());
+        }
+
+        return $this->redirectToRoute('facture_index');
     }
 }

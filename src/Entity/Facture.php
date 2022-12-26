@@ -29,6 +29,12 @@ class Facture
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'factures')]
     private $client;
 
+    #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'factures')]
+    private $commande;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $receved;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,6 +84,30 @@ class Facture
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getReceved(): ?bool
+    {
+        return $this->receved;
+    }
+
+    public function setReceved(?bool $receved): self
+    {
+        $this->receved = $receved;
 
         return $this;
     }
