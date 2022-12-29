@@ -110,16 +110,16 @@ class CommandeRepository extends ServiceEntityRepository
                 ->andWhere('c.statut = 1');
         }
 
-        if (!empty($search->dateReception)) {
+        if (!empty($search->minCreated)) {
             $query = $query
-                ->andWhere('c.dateReception = :dateReception')
-                ->setParameter('dateReception', $search->dateReception);;
+                ->andWhere('c.created >= :minCreated')
+                ->setParameter('minCreated', $search->minCreated);
         }
 
-        if (!empty($search->dateLivraison)) {
+        if (!empty($search->maxCreated)) {
             $query = $query
-                ->andWhere('c.dateLivraison = :dateLivraison')
-                ->setParameter('dateLivraison', $search->dateLivraison);;
+                ->andWhere('c.created <= :maxCreated')
+                ->setParameter('maxCreated', $search->maxCreated);
         }
 
         return $query;

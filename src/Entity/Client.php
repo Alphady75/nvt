@@ -436,7 +436,7 @@ class Client
 
     public function __toString()
     {
-        return $this->getNom() . ' ' . $this->getPrenom() . ' ( ' . $this->getEmail() . ' )';
+        return $this->getCode();
     }
 
     public function getVille(): ?string

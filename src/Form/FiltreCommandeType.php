@@ -69,6 +69,18 @@ class FiltreCommandeType extends AbstractType
          ->add('statut', CheckboxType::class, [
             'label' => "Commandes validée",
             'required' => false
+         ])
+         ->add('minCreated', DateType::class, [
+            'widget' => 'single_text',
+            'required' => false,
+            'label' => false,
+            'help' => 'Du'
+         ])
+         ->add('maxCreated', DateType::class, [
+            'widget' => 'single_text',
+            'required' => false,
+            'label' => false,
+            'help' => 'Au'
          ]);
    }
 

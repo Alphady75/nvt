@@ -8,9 +8,19 @@
          <td>{{ form_row(form.destinations) }}</td>
       </tr>
       <tr>
+         <td>
+            <div class="row">
+               <div class="col-sm-6">
+                  {{ form_row(form.minCreated) }}
+               </div>
+               <div class="col-sm-6">
+                  {{ form_row(form.maxCreated) }}
+               </div>
+            </div>
+         </td>
          <td>{{ form_row(form.statut) }}</td>
-         <td></td>
-         <td style="text-align: right;"><button class="btn btn-light"><i class="mdi mdi-filter"></i> Filtrer</button></td>
+         <td colspan="3" style="text-align: right;"><button class="btn btn-light"><i class="mdi mdi-filter"></i>
+               Filtrer</button></td>
       </tr>
    </tbody>
 </table>

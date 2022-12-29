@@ -33,12 +33,12 @@ class FiltreCommande
    /**
     * @var DateTimeInterface|null
     */
-   public $dateReception = null;
+   public $minCreated = null;
 
    /**
     * @var DateTimeInterface|null
     */
-   public $dateLivraison = null;
+   public $maxCreated = null;
 
    /**
     * @var boolean
@@ -100,26 +100,26 @@ class FiltreCommande
       $this->$destinations = $destinations;
    }
 
-   public function getDateReception(): ?\DateTimeInterface
+   public function getMinCreated(): ?\DateTimeInterface
    {
-      return $this->dateReception;
+      return $this->minCreated;
    }
 
-   public function setDateReception(?\DateTimeInterface $dateReception): self
+   public function setMinCreated(?\DateTimeInterface $minCreated): self
    {
-      $this->dateReception = $dateReception;
+      $this->minCreated = $minCreated;
 
       return $this;
    }
 
-   public function getDateLivraison(): ?\DateTimeInterface
+   public function getMaxCreated(): ?\DateTimeInterface
    {
-      return $this->dateLivraison;
+      return $this->maxCreated;
    }
 
-   public function setDateLivraison(?\DateTimeInterface $dateLivraison): self
+   public function setMaxCreated(?\DateTimeInterface $maxCreated): self
    {
-      $this->dateLivraison = $dateLivraison;
+      $this->maxCreated = $maxCreated;
 
       return $this;
    }

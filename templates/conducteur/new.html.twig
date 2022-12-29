@@ -20,3 +20,11 @@
     {{ include('conducteur/_form.html.twig') }}
     
 {% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+{{ include('conducteur/_collection_script.html.twig') }}
+
+{% endblock %}

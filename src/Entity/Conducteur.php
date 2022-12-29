@@ -149,9 +149,13 @@ class Conducteur
     #[ORM\Column(type: 'array', length: 255, nullable: true)]
     private $statut;
 
+    #[ORM\ManyToMany(targetEntity: Piece::class, inversedBy: 'conducteurs', cascade: ["persist"])]
+    private $pieces;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->pieces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -653,6 +657,30 @@ class Conducteur
     public function setStatut(?array $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Piece[]
+     */
+    public function getPieces(): Collection
+    {
+        return $this->pieces;
+    }
+
+    public function addPiece(Piece $piece): self
+    {
+        if (!$this->pieces->contains($piece)) {
+            $this->pieces[] = $piece;
+        }
+
+        return $this;
+    }
+
+    public function removePiece(Piece $piece): self
+    {
+        $this->pieces->removeElement($piece);
 
         return $this;
     }

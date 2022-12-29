@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -26,7 +27,9 @@ class ConducteurType extends AbstractType
         $builder
             ->add('code', TextType::class, [
                 'label' => "Code*",
+                'required' => false,
                 'attr' => ['placeholder' => "Code*"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -36,6 +39,7 @@ class ConducteurType extends AbstractType
             ->add('nom', TextType::class, [
                 'label' => "Nom*",
                 'attr' => ['placeholder' => "nom*"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -45,6 +49,7 @@ class ConducteurType extends AbstractType
             ->add('prenom', TextType::class, [
                 'label' => "Prénom*",
                 'attr' => ['placeholder' => "Prénom"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -54,6 +59,7 @@ class ConducteurType extends AbstractType
             ->add('prenom2', TextType::class, [
                 'label' => "Prénom 2*",
                 'attr' => ['placeholder' => "Prénom2"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -63,6 +69,7 @@ class ConducteurType extends AbstractType
             ->add('domicile', TextType::class, [
                 'label' => "Domicile*",
                 'attr' => ['placeholder' => "domicile"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -77,6 +84,7 @@ class ConducteurType extends AbstractType
             ->add('poste', TextType::class, [
                 'label' => "Poste*",
                 'attr' => ['placeholder' => "Poste*"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -86,6 +94,7 @@ class ConducteurType extends AbstractType
             ->add('service', TextType::class, [
                 'label' => "Service*",
                 'attr' => ['placeholder' => "Service*"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -95,6 +104,7 @@ class ConducteurType extends AbstractType
             ->add('entreprise', TextType::class, [
                 'label' => "Entreprise*",
                 'attr' => ['placeholder' => "Entreprise*"],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -104,6 +114,7 @@ class ConducteurType extends AbstractType
             ->add('emailPerso', EmailType::class, [
                 'label' => 'Email perso',
                 'attr' => ['placeholder' => 'Email perso'],
+                'required' => false,
                 'required' => false,
                 'constraints' => [
                     new Email([
@@ -127,6 +138,7 @@ class ConducteurType extends AbstractType
                     'Madamme' =>  'Mme',
                 ],
                 'expanded' => false,
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -161,6 +173,7 @@ class ConducteurType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email*',
                 'attr' => ['placeholder' => 'Email*'],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -186,6 +199,7 @@ class ConducteurType extends AbstractType
                     'CDD'    =>  'CDD',
                     'CDI' =>  'CDI',
                 ],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -198,6 +212,7 @@ class ConducteurType extends AbstractType
                     'Type 1'    =>  'Type 1',
                     'Type 2' =>  'Type 2',
                 ],
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -212,6 +227,7 @@ class ConducteurType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true,
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -232,6 +248,7 @@ class ConducteurType extends AbstractType
             ])
             ->add('societe', TextType::class, [
                 'label' => "Sociéte",
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -240,6 +257,7 @@ class ConducteurType extends AbstractType
             ])
             ->add('appartenance', TextType::class, [
                 'label' => "Appartenance",
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -248,6 +266,7 @@ class ConducteurType extends AbstractType
             ])
             ->add('taille', NumberType::class, [
                 'label' => "Taille",
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -256,6 +275,7 @@ class ConducteurType extends AbstractType
             ])
             ->add('pointure', TextType::class, [
                 'label' => "Pointure",
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -269,6 +289,7 @@ class ConducteurType extends AbstractType
             ->add('dateEntre', DateType::class, [
                 'label'     =>  "Date d'entrée",
                 'widget' => 'single_text',
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -299,6 +320,7 @@ class ConducteurType extends AbstractType
             ->add('dateFinContrat', DateType::class, [
                 'label'     =>  'Date de fin de contrat',
                 'widget' => 'single_text',
+                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',
@@ -309,6 +331,16 @@ class ConducteurType extends AbstractType
                 'label'     =>  'Date debut enciennete',
                 'widget' => 'single_text',
                 'required' => false,
+            ])
+            ->add('pieces', CollectionType::class, [
+                'entry_type' => PieceType::class,
+                'label' => 'Piece jointe',
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
             ]);
     }
 

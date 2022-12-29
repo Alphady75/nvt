@@ -1,15 +1,15 @@
 {{ form_start(form) }}
 
 <div class="card">
-    <div class="card-header bg-primary">
-        <h4 class="font-size-18 py-2 text-light">
-            Conducteur
-            {% if app.request.attributes.get('_route') == 'conducteur_edit' %}
-                :
-                {{ conducteur.nom ~ ' ' ~ conducteur.prenom }}
-            {% endif %}
-        </h4>
-    </div>
+	<div class="card-header bg-primary">
+		<h4 class="font-size-18 py-2 text-light">
+			Conducteur
+			{% if app.request.attributes.get('_route') == 'conducteur_edit' %}
+			:
+			{{ conducteur.nom ~ ' ' ~ conducteur.prenom }}
+			{% endif %}
+		</h4>
+	</div>
 	<div class="card-body py-5">
 		<div class="row">
 			<div class="col-sm-10 offset-sm-1">
@@ -20,19 +20,19 @@
 
 							{% if app.request.attributes.get('_route') == 'conducteur_edit' %}
 
-								{% if conducteur.imageName %}
+							{% if conducteur.imageName %}
 
-									{% else %}
-										{% if conducteur.civilite == 'Mr' %}
-											<img src="{{ asset('img/user.jpg') }}" class="img-fluid" alt="">
-										{% else %}
-											<img src="{{ asset('img/femme.jpg') }}" class="img-fluid" alt="">
-										{% endif %}
-								{% endif %}
+							{% else %}
+							{% if conducteur.civilite == 'Mr' %}
+							<img src="{{ asset('img/user.jpg') }}" class="img-fluid" alt="">
+							{% else %}
+							<img src="{{ asset('img/femme.jpg') }}" class="img-fluid" alt="">
+							{% endif %}
+							{% endif %}
 
 							{% else %}
 
-								<img src="{{ asset('img/user.jpg') }}" class="img-fluid" alt="">
+							<img src="{{ asset('img/user.jpg') }}" class="img-fluid" alt="">
 
 							{% endif %}
 
@@ -122,7 +122,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						{{ form_row(form.chauffeur) }}
-						
+
 						{{ form_row(form.memo) }}
 					</div>
 				</div>
@@ -173,6 +173,16 @@
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col-sm-6">
+						<div id="piece"
+							data-prototype="{{ form_row(form.pieces.vars.prototype)|e('html_attr') }}">
+							{{ form_row(form.pieces) }}
+							<span></span>
+						</div>
+					</div>
+				</div>
+
 				{{ form_rest(form) }}
 
 				<div class="pt-4">
@@ -180,7 +190,7 @@
 
 
 					{% if app.request.attributes.get('_route') == 'conducteur_edit' %}
-						{{ include('conducteur/_delete_form.html.twig') }}
+					{{ include('conducteur/_delete_form.html.twig') }}
 					{% endif %}
 				</div>
 

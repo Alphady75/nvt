@@ -59,16 +59,16 @@
 							<p class="my-1 pt-4 text-muted">Nom*</p>
 							{{ conducteur.nom }}
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="my-1 pt-4 text-muted">Prénom*</p>
-                                    {{ conducteur.prenom }}
-                                </div>
-                                <div class="col-sm-6">
-                                    <p class="my-1 pt-4 text-muted">Prénom 2*</p>
-                                    {{ conducteur.prenom2 }}
-                                </div>
-                            </div>
+							<div class="row">
+								<div class="col-sm-6">
+									<p class="my-1 pt-4 text-muted">Prénom*</p>
+									{{ conducteur.prenom }}
+								</div>
+								<div class="col-sm-6">
+									<p class="my-1 pt-4 text-muted">Prénom 2*</p>
+									{{ conducteur.prenom2 }}
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-sm-6">
 									<p class="my-1 pt-4 text-muted">Date de naissance</p>
@@ -221,6 +221,15 @@
 					<div class="">
 						<table class="table table-striped mt-3">
 							<tbody>
+								<tr>
+									<th>Pièces jointes</th>
+									<td>
+									{% for piece in conducteur.pieces %}
+										<a href="{{ vich_uploader_asset(piece) }}" class="badge bg-secondary" target="_blank">{{ piece.description }}</a>
+										<br>
+									{% endfor %}
+								</td>
+								</tr>
 								<tr>
 									<th>Date de création</th>
 									<td>{{ conducteur.created ? conducteur.created|date('d/m/Y H:i:s') : '' }}</td>

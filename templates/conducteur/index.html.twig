@@ -30,6 +30,7 @@
                 <th>Conducteur</th>
                 <th></th>
                 <th>Type Contrat</th>
+                <th>Pièces jointe</th>
                 <th>Coordonnées</th>
                 <th>actions</th>
             </tr>
@@ -62,6 +63,11 @@
                     <small class="d-block py-0 my-0">Code: {{ conducteur.code }}</small>
                 </td>
                 <td>{{ conducteur.typeContrat }}</td>
+                <td>
+                    {% for piece in conducteur.pieces %}
+                        <a href="{{ vich_uploader_asset(piece) }}" class="badge bg-secondary" target="_blank">{{ piece.description }}</a> <br>
+                    {% endfor %}
+                </td>
                 <td>{{ conducteur.telephone }} <br> {{ conducteur.adresse }}</td>
                 <td>
                     <a href="{{ path('conducteur_show', {'id': conducteur.id}) }}" class="btn btn-light"><i
