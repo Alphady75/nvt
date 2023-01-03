@@ -146,7 +146,6 @@ class ClientType extends AbstractType
                 'label' => "Duplication sms",
                 'multiple' => true,
                 'choices'  => [
-                    'Actif'    =>  'Actif',
                     'Duplication'    =>  'Duplication',
                     'Avec memo ch'    =>  'Avec memo ch',
                     'sms ref'    =>  'sms ref',
@@ -155,6 +154,10 @@ class ClientType extends AbstractType
                     'sms nature'    =>  'sms nature',
                 ],
                 'expanded' => true,
+            ])
+            ->add('actif', CheckboxType::class, [
+                'label' => "Actif",
+                'required' => false,
             ])
             ->add('tolAttenteCha', NumberType::class, [])
             ->add('tolRetardCha', NumberType::class, [])

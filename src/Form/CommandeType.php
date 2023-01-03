@@ -9,6 +9,7 @@ use App\Entity\Itineraire;
 use App\Entity\Secteur;
 use App\Entity\Vehicule;
 use App\Entity\Ville;
+use App\Repository\ClientRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -47,6 +48,10 @@ class CommandeType extends AbstractType
                 'attr' => ['class' => "p-0 m-0 h-25"],
                 'placeholder'     =>  '--Sélectionnez client--',
                 'class' => Client::class,
+                'query_builder' => function (ClientRepository $getClient) {
+                    return $getClient->createQueryBuilder('c')
+                    ->andWhere('c.actif = 1');
+                },
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ est requis',

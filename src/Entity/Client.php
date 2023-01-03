@@ -350,6 +350,9 @@ class Client
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Facture::class)]
     private $factures;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $actif;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -1715,6 +1718,18 @@ class Client
                 $facture->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActif(): ?bool
+    {
+        return $this->actif;
+    }
+
+    public function setActif(?bool $actif): self
+    {
+        $this->actif = $actif;
 
         return $this;
     }

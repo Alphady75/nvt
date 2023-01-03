@@ -1,4 +1,4 @@
 <form method="post" class="mt-3 d-inline pt-4" action="{{ path('send_client_facture', {commandeId: facture.commande.id, factureId: facture.id, }) }}" data-turbo="false">
 	<input type="hidden" name="_token" value="{{ csrf_token('send_client_mail' ~ facture.commande.id) }}">
-	<button type="submit" class="btn btn-primary stripes-btn"><i class="mdi mdi-email-alert-outline"></i> Envoyer la facture</button>
+	<button type="submit" {{ facture.statut == 1 ? 'disabled' : '' }} class="btn btn-primary stripes-btn"><i class="mdi mdi-email-outline"></i>&nbsp;Envoyer la facture</button>
 </form>

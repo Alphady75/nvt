@@ -529,6 +529,7 @@
                                     </div>
                                     <div class="mb-3 border rounded p-3">
                                         <h5>Duplication / sms</h5>
+                                        <span class="text-uppercase">{{ client.actif ? '<i class="fa fa-check text-success"></i>' : '' }}</span>
                                         {% for duplication in client.duplicationSms %}
                                         <span class="text-uppercase">{{ duplication }}</span>
                                         {% endfor %}

@@ -13,7 +13,7 @@ class DompdfService
 		$pdfOptions = new Options();
 
             // 1-a Police par défaut
-		$pdfOptions->set('defaultFont', 'Courier');
+		$pdfOptions->set('defaultFont', 'Open Sans');
 
 		$pdfOptions->setIsRemoteEnabled(true);
 

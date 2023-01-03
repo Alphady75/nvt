@@ -37,11 +37,7 @@
 						<td>{{ facture.document }}</td>
 						<td>{{ facture.client.email }}</td>
 						<td>
-							{% if facture.statut == 0 %}
-
-								{% include "factures/_send_client_mail.html.twig" %}
-
-							{% endif %}
+							{% include "factures/_send_client_mail.html.twig" %}
 						</td>
 						<td>
 							<span class="badge badge-pill bg-{{ facture.statut  ? 'success' : 'warning' }}">{{

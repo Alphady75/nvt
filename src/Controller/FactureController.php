@@ -211,14 +211,14 @@ class FactureController extends AbstractController
                 'Attachment' => true,
             ]);
 
-            $facture = new Facture();
+            /*$facture = new Facture();
 
             $facture->setDesignation($nomsClient);
             $facture->setClient($client);
             $facture->setDocument($file);
             $facture->setStatut(false);
             $entityManager->persist($facture);
-            $entityManager->flush();
+            $entityManager->flush();*/
 
             return new Response();
         }

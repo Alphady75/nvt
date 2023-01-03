@@ -1,6 +1,14 @@
 <!--display: grid; grid-template-columns: repeat(2, 1fr); grid-column-gap: 5px;margin-bottom: 30px;-->
 <div style="text-align: center;">
-	{% include "partials/base/_logo_base64.html.twig" %}
+
+	{% if app.request.attributes.get('_route') == 'client_show' %}
+		{% include "partials/base/_logo_base64.html.twig" %}
+	{% elseif app.request.attributes.get('_route') == 'ma_facture' %}
+		{% include "partials/base/_logo_base64.html.twig" %}
+	{% else %}
+		<img src="{{ asset('img/logo.jpg') }}" width="100" alt="">
+	{% endif %}
+	
 </div>
 
 <div style="margin-bottom: 5px;">
@@ -12,18 +20,18 @@
 		<h4 style="color: red;text-align: center;margin: 0;">www.{{ appName }}.com</h4>
 		<h4 style="margin: 0;">
 			<span style="color: red;">STOCKAGE DISTRIBUTION</span>
-			<small style="font-size: .6em;font-weight: 100;">Tél:
+			<small style="font-size: .6em;font-weight: 100;">
 			</small>
 		</h4>
 		<table style="border: 1px solid black;width: 100%;margin: 10px 10px 20px 0">
 			<thead style="background: rgb(146, 248, 146);">
 				<tr>
-					<td>Client</td>
+					<td style="border-collapse: collapse;">Client</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>
+					<td style="border-collapse: collapse;">
 						<strong>{{ client.nom ~ ' ' ~ client.prenom }}</strong>
 					</td>
 				</tr>
@@ -38,189 +46,171 @@
 			<small style="padding: 0;"></small>
 
 			<p>Période du
-												...
-												au
-												...
+				{% for commande in commandes %}
+					{% for destination in commande.destinations %}
+						Du: {{ destination.dateChargement|date('d/m/Y') }} au {{ destination.dateLivraison|date('d/m/Y') }}
+					{% endfor %}
+				{% endfor %}
 			</p>
-			<p>ref:
-												...
+			<p>Ref:
+				{% for commande in commandes %}
+					{% for destination in commande.destinations %}
+						De {{ destination.adresseChargement }} à {{ destination.adresseLivraison }}
+					{% endfor %}
+				{% endfor %}
 			</p>
 		</div>
 
 	</div>
 </div>
 <small>Historique des commandes</small>
-<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+<table style="border: 1px solid black;width: 100%;margin-right: 10px;border-collapse: collapse;">
 	<thead style="background: rgb(146, 248, 146);">
 		<tr>
-			<td>N°</td>
-			<td>Itinéraires</td>
+			<td style="border-collapse: collapse;">N°</td>
+			<td style="border-collapse: collapse;">Itinéraires</td>
 		</tr>
 	</thead>
 	<tbody>
 		{% for commande in commandes %}
 
-			<tr style="vertical-align: top;background: white;padding-bottom: 0;">
-				<td>{{ commande.id }}</td>
-				<td>
-					{% for itineraire in commande.client.itineraires %}
-						<table style="border: 1px solid rgb(192, 192, 192);width: 100%;">
-							<thead style="background: rgb(146, 248, 146);">
-								<tr>
-									<td>Designation</td>
-									<td>Tarif</td>
-									<td>Description</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>{{ itineraire.designation }}</td>
-									<td>{{ itineraire.tarif ~ currency }}
-									<td>{{ itineraire.description|raw }}</td>
-								</tr>
-							</tbody>
-						</table>
-					{% endfor %}
-				</td>
-			</tr>
+		<tr style="vertical-align: top;background: white;padding-bottom: 0;">
+			<td style="border-collapse: collapse;">{{ commande.id }}</td>
+			<td style="border-collapse: collapse;">
+				{% for itineraire in commande.client.itineraires %}
+				<table style="border: 1px solid rgb(192, 192, 192);width: 100%;border-collapse: collapse;">
+					<thead style="background: rgb(146, 248, 146);">
+						<tr>
+							<td style="width: 33%;">Designation</td>
+							<td style="width: 33%;">Tarif</td>
+							<td style="width: 33%;">Description</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-collapse: collapse;">{{ itineraire.designation }}</td>
+							<td style="border-collapse: collapse;">{{ itineraire.tarif ~ currency }}</td>
+							<td style="border-collapse: collapse;">{{ itineraire.description|raw }}</td>
+						</tr>
+					</tbody>
+				</table>
+				{% endfor %}
+			</td>
+		</tr>
 		{% else %}
-			<tr>
-				<td colspan="4">Aucune commande</td>
-			</tr>
+		<tr>
+			<td colspan="4">Aucune commande</td>
+		</tr>
 		{% endfor %}
 
 	</tbody>
 </table>
 <br>
-<table style="border: 1px solid black;width: 100%;margin-right: 10px">
+<table style="border: 1px solid black;width: 100%;margin-right: 10px;border-collapse: collapse;">
 	<thead style="background: rgb(146, 248, 146);">
 		<tr>
-			<th>Total Taxable</th>
-			<th>Total non Taxable</th>
-			<th>Total Hors Taxe</th>
-			<th>Taux TVA</th>
-			<th>Montant TVA</th>
-			<th>Net a Payer</th>
+			<th style="border-collapse: collapse;">Total Taxable</th>
+			<th style="border-collapse: collapse;">Total non Taxable</th>
+			<th style="border-collapse: collapse;">Total Hors Taxe</th>
+			<th style="border-collapse: collapse;">Taux TVA</th>
+			<th style="border-collapse: collapse;">Montant TVA</th>
+			<th style="border-collapse: collapse;">Net a Payer</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td style="border-collapse: collapse;"></td>
+			<td style="border-collapse: collapse;"></td>
+			<td style="border-collapse: collapse;"></td>
+			<td style="border-collapse: collapse;"></td>
+			<td style="border-collapse: collapse;"></td>
+			<td style="border-collapse: collapse;"></td>
 		</tr>
 	</tbody>
-</table><br>
-<table style="width: 100%;border: 1px solid gray">
-	<tr>
-		<td style="width: 80%;"><br></td>
-		<td style="width: 20%;text-align:right;">
-			<p style="padding: 8px;"></p>
-		</td>
-	</tr>
 </table>
-
 
 <div style="margin: 15px 0;">
 	<div style="width: 48%;display: inline-block;vertical-align: top;">
-		<h4>CAISSE d'EPARGNE</h4>
-		<h6>CE ILE DE FRANCE</h6>
+		<h4 style="color: blue;">LA BANQUE POSTALE</h4>
 	</div>
 	<div style="width: 48%;display: inline-block;vertical-align: top;text-align: right">
-		<h6>Relevé d'Identité Caisse d'Epargne</h6>
+		<h6 style="color: blue;">RELEVÉ D’IDENTITÉ BANCAIRE/IBAN</h6>
 	</div>
 </div>
 
-<p style="padding: 1px;margin: 0;">Ce relevé est destiné à être remis, sur leur demande, à vos créanciers ou débiteurs
-		appelés à faire inscrire des opérations à votre compte (virément, paiement de quittance, etc.).</p>
-<p style="padding: 1px;margin: 0;">Son utilisation vous garantit le bon enregistrement des opérations en cause et vous
-		évite ainsi des réclamations pour erreurs ou retard d'imputation.</p>
+<p style="padding: 1px;margin: 0;">
+	Ce relevé est destiné à être remis, sur demande de vos créanciers et débiteurs, français ou étrangers appelés à faire
+	inscrire des opérations sur votre compte (virements, prélèvements...). Nous vous rappelons que les informations
+	contenues dans votre RIB/IBAN sont de nature confidentielle, c’est pourquoi nous vous invitons à la plus grande
+	vigilance avant leur transmission.
+</p>
+<p style="padding: 1px;margin: 0;">
+	We remind you that the information contained in your RIB/IBAN is on confidential nature, and we thus strongly
+	encourage you to be vigilant as regards its transmission.
+</p>
 
-<table style="width: 100%;border: 2px solid black;margin: 15px 0;">
+<h4 style="color: blue;">IBAN identifiant national de compte</h4>
+<P style="font-style: italic;">National Bank Account Number</P>
+<br><br>
+<table style="width: 100%;border: 2px solid black;margin: 15px 0;border-collapse: collapse;">
 	<thead>
 		<tr>
-			<th style="text-align: center;border: 2px solid black;">17515</th>
-			<th style="text-align: center;border: 2px solid black;">90000</th>
-			<th style="text-align: center;border: 2px solid black;">08036410893</th>
-			<th style="text-align: center;border: 2px solid black;">49</th>
-			<th style="text-align: center;border: 2px solid black;">CE ILE DE FRANCE</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="text-align: center;border: 2px solid black;">c/étab</td>
-			<td style="text-align: center;border: 2px solid black;">c/guichet</td>
-			<td style="text-align: center;border: 2px solid black;">n/compte</td>
-			<td style="text-align: center;border: 2px solid black;">c/rice</td>
-			<td style="text-align: center;border: 2px solid black;">domiciliation</td>
-		</tr>
-	</tbody>
-</table>
-
-<h4>IBAN</h4>
-
-<table style="width: 100%;border: 2px solid black;margin: 5px 0 15px 0;">
-	<thead>
-		<tr>
-			<th style="text-align: center;border: 2px solid black;">FR76</th>
-			<th style="text-align: center;border: 2px solid black;">1751</th>
-			<th style="text-align: center;border: 2px solid black;">5900</th>
-			<th style="text-align: center;border: 2px solid black;">0008</th>
-			<th style="text-align: center;border: 2px solid black;">0364</th>
-			<th style="text-align: center;border: 2px solid black;">1089</th>
-			<th style="text-align: center;border: 2px solid black;">349</th>
+			<th style="border-collapse: collapse;text-align: center;border: 2px solid black;">
+				<h5>ETABLISSEMENT <br><br> 20041</h5>
+			</th>
+			<th style="border-collapse: collapse;text-align: center;border: 2px solid black;">
+				<h5>GUICHET <br><br> 01012</h5>
+			</th>
+			<th style="border-collapse: collapse;text-align: center;border: 2px solid black;">
+				<h5>N°COMPTE <br><br> 5585877W033</h5>
+			</th>
+			<th style="border-collapse: collapse;text-align: center;border: 2px solid black;">
+				<h5>CLÉ RIB <br><br> 04</h5>
+			</th>
+			<th style="border-collapse: collapse;text-align: center;border: 2px solid black;">
+				<h5>DOMICILIATION <br><br> ORLEANS LA SCE CENTRE
+					FINANCIER</h5>
+			</th>
 		</tr>
 	</thead>
 </table>
 
-<h4>BIC</h4>
-
-<table style="width: 50%;border: 2px solid black;margin: 5px 0 15px 0;">
-	<thead>
-		<tr>
-			<th style="text-align: center;border: 2px solid black;">C</th>
-			<th style="text-align: center;border: 2px solid black;">E</th>
-			<th style="text-align: center;border: 2px solid black;">P</th>
-			<th style="text-align: center;border: 2px solid black;">A</th>
-			<th style="text-align: center;border: 2px solid black;">F</th>
-			<th style="text-align: center;border: 2px solid black;">R</th>
-			<th style="text-align: center;border: 2px solid black;">P</th>
-			<th style="text-align: center;border: 2px solid black;">P</th>
-			<th style="text-align: center;border: 2px solid black;">7</th>
-			<th style="text-align: center;border: 2px solid black;">5</th>
-			<th style="text-align: center;border: 2px solid black;">1</th>
-		</tr>
-	</thead>
-</table>
-
+<p>
+	L’identifiant international de compte est intégré au présent relevé d’identité bancaire. Cet identifiant a été créé
+	pour faciliter les règlements transfrontières.
+</p>
+<br><br>
 <div>
-	<div style="width: 33%;display: inline-block;vertical-align: top;">
-		<h5>
-			CTRE D AFF ENTREP JOINVILLE LE P
-			<br>
-			Immeuble le Vancouver
-			<br>
-			3 ALLEE EDMEE LHEUREUX
-			<br>
-			94340 JOINVILLE LE PONT
-						TEL: 01.82.01.14.39
-		</h5>
+	<div style="width: 49%;display: inline-block;vertical-align: top;">
+		<h5 style="padding: 0;margin: 0;letter-spacing: -1px;">IBAN - Identifiant international de compte</h5>
+		<p style="padding: 0;margin: 0;font-style: italic;">International Bank Account Number</p>
+		<div style="border: 2px solid black;padding: 15px;text-align:center;">
+			<h5>FR2520041010125585877W03304</h5>
+		</div>
 	</div>
-	<div style="width: 30%;display: inline-block;vertical-align: top;text-align:right;">
-		<p>
-			<i>Intitulé du compte</i>
-		</p>
-	</div>
-	<div style="width: 32%;display: inline-block;vertical-align: top;">
-		<h5>STAF SAS
-			<br>
-			10 RUE LAMARTINE
-			<br>
-			94290 VILLENEUVE LE ROI</h5>
+	<div style="width: 49%;display: inline-block;vertical-align: top;">
+		<h5 style="padding: 0;margin: 0;letter-spacing: -1px;">BIC - Identifiant international de l’établissement</h5>
+		<p style="padding: 0;margin: 0;font-style: italic;">Bank Identifier Code</p>
+		<div style="border: 2px solid black;padding: 15px;text-align:center;">
+			<h5>PSSTFRPPSCE</h5>
+		</div>
 	</div>
 </div>
 
-<hr style="border: 1px dotted black;">
+<br><br>
+<div>
+	<h4 style="color: blue;">TITULAIRE DU COMPTE</h4>
+	<p style="padding: 0;margin: 0;font-style: italic;">Account Owner</p>
+	<hr>
+	<h3>TRANSPORTS NEVRITY</h3>
+	<p>
+		121 AVENUE VICTOR HUGO <br>
+		91550 <br>
+		PARAY VIEILLE POSTE
+	</p>
+	<br><br>
+	<small>
+		La Banque Postale -Société Anonyme à Directoire et Conseil de Surveillance au capital de 6 585 350 218 euros
+		Siège social et adresse postale :115, rue de Sèvres-75275 Paris Cedex 06-RCS Paris 421 100 645 - Code APE6419Z
+	</small>
+</div>

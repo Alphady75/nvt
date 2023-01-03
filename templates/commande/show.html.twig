@@ -28,7 +28,7 @@
 
 		<div class="card-body py-5">
 			<h4 class="my-4 font-size-18">Client</h4>
-			<table class="h-50 table table-borderless table-hover p-0">
+			<table class="table commande table-borderless table-hover p-0">
 				<tbody class="py-0 my-0">
 					<tr class="">
 						<th class="">Civilité</th>
@@ -62,7 +62,7 @@
 			</table>
 
 			<h4 class="my-4 font-size-18">Conducteur</h4>
-			<table class="h-50 table table-borderless table-hover p-0">
+			<table class="table commande table-borderless table-hover p-0">
 				<tbody class="py-0 my-0">
 					<tr>
 						<th>
@@ -104,6 +104,45 @@
 			</table>
 
 			<h4 class="my-3 font-size-18">Vehicule</h4>
+			<table class="table commande table-borderless table-hover p-0">
+				<tbody class="py-0 my-0">
+					<tr>
+						<th>
+							{% if commande.vehicule.imageName %}
+								<img src="{{ vich_uploader_asset(commande.vehicule) | imagine_filter('identite_size') }}" alt="{{ commande.vehicule.name }}">
+								{% else %}
+								<p>Aucune image</p>
+							{% endif %}
+						</th>
+						<td>
+							<p>
+								<span class="">Désignation:</span>
+								<strong>{{ commande.vehicule.name }}</strong>
+							</p>
+							<p>
+								<span class="">Description:</span>
+								<strong>{{ commande.vehicule.description|raw }}</strong>
+							</p>
+							<p>
+								<span class="">Réference:</span>
+								<strong>{{ commande.vehicule.reference }}</strong>
+							</p>
+							<p>
+								<span class="">Numéro matricul:</span>
+								<strong>{{ commande.vehicule.numero }}</strong>
+							</p>
+							<p>
+								<span class="" colspan="2">
+									<a href="{{ path('vehicule_edit', {id: commande.vehicule.id}) }}" target="_blank" class="btn btn-light">
+										<i class="mdi mdi-account-edit"></i>
+										Mettre à jour
+									</a>
+								</span>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
 			<h4 class="my-3 font-size-18">Facture</h4>
 			<div class="p-5 border">

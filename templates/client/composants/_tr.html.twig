@@ -1,0 +1,35 @@
+<tr>
+	<td>{{ client.id }}</td>
+	<td>
+		{% if client.civilite == 'Mr' %}
+			<img src="{{ asset('img/user.jpg') | imagine_filter('medium_avatar') }}" alt="{{ client.nom ~ ' ' ~ client.prenom }}">
+		{% else %}
+			<img src="{{ asset('img/femme.jpg') | imagine_filter('medium_avatar') }}" alt="{{ client.nom ~ ' ' ~ client.prenom }}">
+		{% endif %}
+	</td>
+	<td>
+		{{ client.civilite }}.
+		<strong>{{ client.nom }}
+			{{ client.prenom }}</strong>
+		<br>
+		<small class="d-block">{{ client.email }}</small>
+		<span class="badge bg-{{ client.actif ? 'success' : 'danger' }}">{{ client.actif ? 'Actif' : 'Pas actif' }}</span>
+	</td>
+	<td>
+		{{ client.adresse }}
+		<br>
+		{{ client.telephone }}
+	</td>
+	<td>{{ client.created ? client.created|date('d/m/Y H:i:s') : '' }}</td>
+	<td>{{ client.updated ? client.updated|date('d/m/Y H:i:s') : '' }}</td>
+	<td>
+		<a href="{{ path('client_show', {'id': client.id}) }}" class="btn btn-light">
+			<i class="mdi mdi-account-search"></i>
+			Détails
+		</a>
+		<a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-light">
+			<i class="mdi mdi-account-edit"></i>
+			Modifier
+		</a>
+	</td>
+</tr>

@@ -56,6 +56,8 @@
                         </fieldset>
                         <fieldset class="mb-3">
                             <label>Duplication / sms</label>
+                            {{ form_widget(form.actif) }}
+                            {{ form_errors(form.actif) }}
                             {{ form_widget(form.duplicationSms) }}
                             {{ form_errors(form.duplicationSms) }}
                         </fieldset>
