@@ -20,7 +20,7 @@ class ConducteursFixtures extends Fixture
             $conducteur->setNom($faker->firstName());
             $conducteur->setPrenom($faker->lastName());
             $conducteur->setPrenom2($faker->lastName());
-            $conducteur->setCivilite('Mr');
+            $conducteur->setCivilite($faker->randomElement(['Mme', 'Mr']));
             $conducteur->setCode($faker->postcode());
             $conducteur->setPoste($faker->companySuffix);
             $conducteur->setService($faker->companySuffix);

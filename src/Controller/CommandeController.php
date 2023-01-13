@@ -58,8 +58,8 @@ class CommandeController extends AbstractController
 
             // Envoie du mail à l'admin
             $mailer->sendMail(
-                'nevrity@gmail.com',
-                'nevrity@gmail.com',
+                'planning@nevrity-transports.com',
+                'planning@nevrity-transports.com',
                 'Nouvelle commande',
                 'mails/conducteur_mail.html.twig',
                 $commande
@@ -67,7 +67,7 @@ class CommandeController extends AbstractController
 
             // Envoie du mail au conducteur
             $mailer->sendMail(
-                'nevrity@gmail.com',
+                'planning@nevrity-transports.com',
                 $commande->getConducteur()->getEmail(),
                 'Nouvelle commande',
                 'mails/conducteur_mail.html.twig',

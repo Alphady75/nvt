@@ -31,7 +31,7 @@ class UsersFixtures extends Fixture
                 $user->setEmail($faker->email);
             }                
             $user->setNom($faker->firstName());
-            $user->setGenre('Homme');
+            $user->setGenre($faker->randomElement(['Homme', 'Femme']));
             $user->setPrenom($faker->lastName());
             $user->setApropos($faker->realText(900));
             //$user->setIsVerified($faker->numberBetween(0, 1));

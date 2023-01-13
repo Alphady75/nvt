@@ -21,7 +21,7 @@ class ClientsFixtures extends Fixture
             $client->setComptClientCompte($faker->numberBetween(10000000000, 90000000000));
             $client->setCode("AGC-" . $faker->numberBetween(10000000000, 90000000000));
             $client->setActif($faker->numberBetween(0, 1));
-            $client->setCivilite('Mme');
+            $client->setCivilite($faker->randomElement(['Mme', 'Mr']));
             $client->setAdresse($faker->streetAddress());
             $client->setTelephone($faker->phoneNumber());
             $client->setEmail($faker->email());

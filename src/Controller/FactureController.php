@@ -242,7 +242,7 @@ class FactureController extends AbstractController
         if ($this->isCsrfTokenValid('send_client_mail' . $commande->getId(), $request->request->get('_token'))) {
             // Envoie du mail au client
             $mailer->sendMail(
-                'nevrety@gmail.com',
+                'planning@nevrity-transports.com',
                 $commande->getClient()->getEmail(),
                 'Transmission de la facture',
                 'mails/client_mail.html.twig',
