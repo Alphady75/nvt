@@ -41,6 +41,7 @@ class CommandesFixtures extends Fixture implements DependentFixtureInterface
             $commande->setQrcode($qrcode);
             $commande->setObservation($faker->realText(100));
             $commande->setTarif($faker->numberBetween(50, 900));
+            $commande->setEmballage($faker->numberBetween(0, 1));
             $commande->setUser($user);
             $commande->setClient($client);
             $commande->setConducteur($conducteur);

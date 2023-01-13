@@ -9,6 +9,7 @@ twig:
         devise: 'Unité - Travail - Progrès'
         pays: 'France'
         appEmail: 'planning@nevrity-transports.com'
+        siteweb: 'www.nevrity-transports.com'
         appPhone: '+33 (0)5 56 36 03 32'
         currency: ' €'
         ashtag: '#'

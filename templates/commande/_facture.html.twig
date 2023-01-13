@@ -13,22 +13,14 @@
 
 <div style="margin-bottom: 5px;">
 	<div style="display: inline-block;width: 45%; vertical-align: top;">
-		<h4 style="text-align: center;margin: 0;">Société de transports
-			<br>
-			Alimentaires et Frigorifiques
-		</h4>
-		<h4 style="color: red;text-align: center;margin: 0;">www.staf-transports.com</h4>
-		<h4 style="margin: 0;">
-			<span style="color: red;">STOCKAGE DISTRIBUTION</span>
-			<small style="font-size: .6em;font-weight: 100;">Tél:
-				{{ commande.client.telephone }}</small>
-		</h4>
+		<h4 style="color: red;text-align: center;margin: 0;">{{ siteweb }}</h4>
 		<table style="border: 1px solid black;width: 100%;margin: 10px 10px 20px 0">
 			<thead style="background: rgb(146, 248, 146);">
 				<tr>
 					<td style="border-collapse: collapse;">Date</td>
 					<td style="border-collapse: collapse;">N°Facture</td>
 					<td style="border-collapse: collapse;">Code client</td>
+					<td style="border-collapse: collapse;">Nom(s) client</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,6 +28,10 @@
 					<td style="border-collapse: collapse;">{{ commande.created|date('d/m/Y') }}</td>
 					<td style="border-collapse: collapse;">F{{ commande.id }}</td>
 					<td style="border-collapse: collapse;">{{ commande.client.id }}</td>
+					<td style="border-collapse: collapse;">
+						<strong style="padding: 0;text-style: capitalize;">{{ commande.client.nom }}
+				{{ commande.client.prenom }}</strong>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -43,17 +39,15 @@
 	<div style="display: inline-block;width: 48%; padding: 15px; vertical-align: top;">
 
 		<div>
-			<h4 style="padding: 0;margin: 0;">TRANSPORTS FABRICE MOISY SAS</h4>
-			<small style="padding: 0;">{{ commande.client.adresse }}</small><br>
-			<small style="padding: 0;">{{ commande.client.nom }}
-				{{ commande.client.prenom }}</small>
+			
+			<small style="padding: 0;">{{ commande.client.adresse }}</small>
 
-			<p>Période du
-				{{ commande.created|date('d/m/Y H:i:s') }}
+			<p style="margin: 0;">Période du
+				{{ commande.created|date('d/m/Y') }}
 				au
-				{{ commande.updated|date('d/m/Y H:i:s') }}
+				{{ commande.updated|date('d/m/Y') }}
 			</p>
-			<p>ref:
+			<p style="margin: 0;">Ref:
 				{{ commande.id }}
 			</p>
 		</div>
@@ -114,7 +108,7 @@
 		<td style="width: 80%;"><br>
 			<p style="padding: 8px;">Date de facturation
 				<br>
-				{{ commande.created ? commande.created|date('d/m/Y: H:i:s') : '' }}
+				{{ commande.created ? commande.created|date('d/m/Y:') : '' }}
 				<br>
 			</p>
 		</td>

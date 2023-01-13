@@ -18,6 +18,7 @@
 							<th>DT COM PORTABLE</th>
 							<th>CODE CONDUCTEUR</th>
 							<th>ITINERAIRE/DESTINATION</th>
+							<th>EMBALLAGE</th>
 							<th>POSITION RECU LE</th>
 							<th>ACTION</th>
 						</tr>
@@ -60,17 +61,20 @@
 								{% if commande.destinations|length > 0 %}
 
 								{% for destination in commande.destinations %}
-								<span>DE {{ destination.adresseChargement }} <br> A {{ destination.adresseLivraison }}</span>
+								<span>CH: {{ destination.adresseChargement }} <br> LV: {{ destination.adresseLivraison }}</span>
 								{% endfor %}
 
 								{% endif %}
+							</td>
+							<td>
+								<i class="fa fa-check text-{{ commande.emballage ? 'success' : 'light' }} btn btn-light btn-sm" style="font-size: 1em;"></i>
 							</td>
 							<td>
 
 								{% if commande.destinations|length > 0 %}
 
 								{% for destination in commande.destinations %}
-								<span>DU {{ destination.dateChargement|date('d/m/Y') }} <br> AU {{
+								<span>CH: {{ destination.dateChargement|date('d/m/Y') }} <br> LV: {{
 									destination.dateLivraison|date('d/m/Y') }}</span>
 								{% endfor %}
 

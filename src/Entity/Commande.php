@@ -49,6 +49,9 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Facture::class)]
     private $factures;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $emballage;
+
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
@@ -194,6 +197,18 @@ class Commande
                 $facture->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmballage(): ?bool
+    {
+        return $this->emballage;
+    }
+
+    public function setEmballage(?bool $emballage): self
+    {
+        $this->emballage = $emballage;
 
         return $this;
     }

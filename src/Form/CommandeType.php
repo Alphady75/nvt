@@ -82,6 +82,10 @@ class CommandeType extends AbstractType
                     ])
                 ],
             ])
+            ->add('emballage', CheckboxType::class, [
+                'label'     =>  'Emballage',
+                'required' => false
+            ])
             ->add('observation', TextareaType::class, [
                 'label'     =>  false,
                 'help' =>  'Facultatif',

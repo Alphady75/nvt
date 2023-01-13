@@ -13,16 +13,7 @@
 
 <div style="margin-bottom: 5px;">
 	<div style="display: inline-block;width: 45%; vertical-align: top;">
-		<h4 style="text-align: center;margin: 0;">Société de transports
-			<br>
-			Alimentaires et Frigorifiques
-		</h4>
-		<h4 style="color: red;text-align: center;margin: 0;">www.{{ appName }}.com</h4>
-		<h4 style="margin: 0;">
-			<span style="color: red;">STOCKAGE DISTRIBUTION</span>
-			<small style="font-size: .6em;font-weight: 100;">
-			</small>
-		</h4>
+		<h4 style="color: red;text-align: center;margin: 0;">{{ siteweb }}</h4>
 		<table style="border: 1px solid black;width: 100%;margin: 10px 10px 20px 0">
 			<thead style="background: rgb(146, 248, 146);">
 				<tr>
@@ -41,18 +32,14 @@
 	<div style="display: inline-block;width: 48%; padding: 15px; vertical-align: top;">
 
 		<div>
-			<h4 style="padding: 0;margin: 0;">TRANSPORTS FABRICE MOISY SAS</h4>
-			<small style="padding: 0;"></small><br>
-			<small style="padding: 0;"></small>
-
-			<p>Période du
+			<p style="margin: 0;">Période du
 				{% for commande in commandes %}
 					{% for destination in commande.destinations %}
 						Du: {{ destination.dateChargement|date('d/m/Y') }} au {{ destination.dateLivraison|date('d/m/Y') }}
 					{% endfor %}
 				{% endfor %}
 			</p>
-			<p>Ref:
+			<p style="margin: 0;">Ref:
 				{% for commande in commandes %}
 					{% for destination in commande.destinations %}
 						De {{ destination.adresseChargement }} à {{ destination.adresseLivraison }}
