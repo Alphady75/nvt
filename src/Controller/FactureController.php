@@ -21,10 +21,9 @@ use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-#[Route('/facturation')]
 class FactureController extends AbstractController
 {
-    #[Route('/', name: 'facture_index', methods: ['GET'])]
+    #[Route('/factures', name: 'facture_index', methods: ['GET'])]
     public function index(FactureRepository $factureRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $factures = $paginator->paginate(
@@ -38,7 +37,7 @@ class FactureController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'facture_new', methods: ['GET', 'POST'])]
+    #[Route('/factures/new', name: 'facture_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $facture = new Facture();
@@ -58,11 +57,14 @@ class FactureController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'facture_show', methods: ['GET'])]
+    #[Route('/facturres/{id}', name: 'facture_show', methods: ['GET'])]
     public function show(Facture $facture): Response
     {
         return $this->render('factures/show.html.twig', [
             'facture' => $facture,
+            'client' => $facture->getClient(),
+            'commande' => $facture->getCommande(),
+            'commandes' => $facture->getClient()->getCommandes(),
         ]);
     }
 
@@ -84,7 +86,7 @@ class FactureController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'facture_delete', methods: ['POST'])]
+    #[Route('/factures/{id}', name: 'facture_delete', methods: ['POST'])]
     public function delete(Request $request, Facture $facture, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $facture->getId(), $request->request->get('_token'))) {
@@ -95,7 +97,7 @@ class FactureController extends AbstractController
         return $this->redirectToRoute('facture_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/generer/{id}', name: 'generer_facture', methods: ['POST'])]
+    #[Route('/factures/generer/{id}', name: 'generer_facture', methods: ['POST'])]
     public function factureRenener(
         Request $request,
         Commande $commande,
@@ -161,7 +163,7 @@ class FactureController extends AbstractController
         }
     }
 
-    #[Route('/client/{id}', name: 'client_generer_facture', methods: ['POST'])]
+    #[Route('/facturation/client/{id}', name: 'client_generer_facture', methods: ['POST'])]
     public function userFactures(Request $request, Client $client, EntityManagerInterface $entityManager, BuilderInterface $builder): Response
     {
         if ($this->isCsrfTokenValid('genererfactures' . $client->getId(), $request->request->get('_token'))) {
@@ -224,7 +226,7 @@ class FactureController extends AbstractController
         }
     }
 
-    #[Route('/commande/client/{commandeId}/{factureId}', name: 'send_client_facture', methods: ['POST'])]
+    #[Route('/facturation/commande/client/{commandeId}/{factureId}', name: 'send_client_facture', methods: ['POST'])]
     public function sendClientFacture(CommandeRepository $commandeRepo, FactureRepository $factureRepo, MailerService $mailer, $commandeId, $factureId,  EntityManagerInterface $entityManager, Request $request): Response 
     {
         $commande = $commandeRepo->find($commandeId);

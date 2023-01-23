@@ -1,34 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Facture{% endblock %}
+{% block title %}Facture n°
+{{ facture.id }}
+{% endblock %}
+
+{% block links %}
+
+<li class="breadcrumb-item">
+    <a href="{{ path('facture_index') }}">
+        <i class="mdi mdi-account-group"></i>
+        Facturation</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <i class="icon-user"></i>facture n°
+    {{ facture.id }}
+</li>
+
+{% endblock %}
 
 {% block body %}
-    <h1>Facture</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ facture.id }}</td>
-            </tr>
-            <tr>
-                <th>Designation</th>
-                <td>{{ facture.designation }}</td>
-            </tr>
-            <tr>
-                <th>Document</th>
-                <td>{{ facture.document }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ facture.statut ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="card bg-white">
+    <div class="card-header bg-primary">
+        <h4 class="font-size-18 text-light">Facture n°{{ facture.id }}</h4>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Statut</th>
+                    <td>
+                        <span class="badge badge-pill bg-{{ facture.statut  ? 'success' : 'warning' }}">{{
+                            facture.statut ? '<i class="mdi mdi-email-alert-outline"></i> Envoyer' : 'En attente'
+                            }}
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        {% include "factures/_send_client_mail.html.twig" %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('facture_index') }}">back to list</a>
+        {% include "commande/_facture.html.twig" %}
 
-    <a href="{{ path('facture_edit', {'id': facture.id}) }}">edit</a>
+        <div class="py-4">
+            <a href="{{ path('facture_index') }}" class="btn btn-primary">Factures</a>
 
-    {{ include('factures/_delete_form.html.twig') }}
+        {{ include('factures/_delete_form.html.twig') }}
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}
