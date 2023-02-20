@@ -1,0 +1,9 @@
+<form method="post" class="d-inline" action="{{ path('commande_notification', {'id': commande.id}) }}" onsubmit="return confirm('Confirmez-vous l\'envoie de la notification au conducteur?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('notification' ~ commande.id) }}">
+    <button class="btn btn-{{ commande.mailSent == true ? 'success' : 'light' }}"><i class="fa fa-envelope"></i>&nbsp;Envoyer 
+        {% if commande.mailSent == true %}
+            de nouveau
+        {% endif %} 
+        la notification
+    </button>
+</form>

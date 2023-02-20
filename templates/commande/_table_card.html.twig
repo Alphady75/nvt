@@ -48,6 +48,8 @@
 									{{ commande.conducteur.nom ~ ' ' ~
 									commande.conducteur.prenom }}
 								</span>
+								<br><br>
+								{{ include('commande/_notification_form.html.twig') }}
 							</td>
 							<td>
 								{% if commande.client.itineraires|length > 0 %}

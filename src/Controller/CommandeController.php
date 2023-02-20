@@ -56,27 +56,9 @@ class CommandeController extends AbstractController
             $commande->setQrcode($qrcode);
             $entityManager->flush();
 
-            // Envoie du mail à l'admin
-            $mailer->sendMail(
-                'planning@nevrity-transports.com',
-                'planning@nevrity-transports.com',
-                'Nouvelle commande',
-                'mails/conducteur_mail.html.twig',
-                $commande
-            );
-
-            // Envoie du mail au conducteur
-            $mailer->sendMail(
-                'planning@nevrity-transports.com',
-                $commande->getConducteur()->getEmail(),
-                'Nouvelle commande',
-                'mails/conducteur_mail.html.twig',
-                $commande
-            );
-
             $this->addFlash('success', 'Commande crée avec succès');
 
-            return $this->redirectToRoute('commande_show', ['id' => $commande->getId()],Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('commande_show', ['id' => $commande->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('commande/new.html.twig', [
@@ -116,11 +98,35 @@ class CommandeController extends AbstractController
     #[Route('/{id}', name: 'commande_delete', methods: ['POST'])]
     public function delete(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $commande->getId(), $request->request->get('_token'))) {
             $entityManager->remove($commande);
             $entityManager->flush();
 
             $this->addFlash('success', 'Commande supprimer avec succès');
+        }
+
+        return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/send-mail/{id}', name: 'commande_notification', methods: ['POST'])]
+    public function sendMailToMember(Commande $commande, Request $request, MailerService $mailer, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('notification' . $commande->getId(), $request->request->get('_token'))) {
+
+            // Envoie du mail au conducteur
+            $mailer->sendMail(
+                'planning@nevrity-transports.com',
+                $commande->getConducteur()->getEmail(),
+                'Nouvelle commande',
+                'mails/conducteur_mail.html.twig',
+                $commande
+            );
+
+            $commande->setMailSent(true);
+            $entityManager->flush();
+
+            $this->addFlash('success', "Notification envoyer au conducteur et à l'administrateur avec succès");
+
         }
 
         return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);

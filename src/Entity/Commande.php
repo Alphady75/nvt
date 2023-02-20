@@ -52,6 +52,9 @@ class Commande
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $emballage;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $mailSent;
+
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
@@ -209,6 +212,18 @@ class Commande
     public function setEmballage(?bool $emballage): self
     {
         $this->emballage = $emballage;
+
+        return $this;
+    }
+
+    public function getMailSent(): ?bool
+    {
+        return $this->mailSent;
+    }
+
+    public function setMailSent(?bool $mailSent): self
+    {
+        $this->mailSent = $mailSent;
 
         return $this;
     }
