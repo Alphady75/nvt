@@ -46,7 +46,7 @@ class Commande
     #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'commandes', cascade: ["persist"])]
     private $destinations;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Facture::class)]
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Facture::class, cascade: ['persist', 'remove'])]
     private $factures;
 
     #[ORM\Column(type: 'boolean', nullable: true)]

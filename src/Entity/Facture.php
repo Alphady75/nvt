@@ -30,6 +30,7 @@ class Facture
     private $client;
 
     #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'factures')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $commande;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
