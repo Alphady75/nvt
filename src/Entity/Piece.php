@@ -40,6 +40,7 @@ class Piece
     private $description;
 
     #[ORM\ManyToMany(targetEntity: Conducteur::class, mappedBy: 'pieces')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $conducteurs;
 
     public function __construct()

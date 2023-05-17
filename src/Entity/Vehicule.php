@@ -47,6 +47,7 @@ class Vehicule
     private $reference;
 
     #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: Commande::class)]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $commandes;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

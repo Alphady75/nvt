@@ -23,18 +23,19 @@ class Commande
     private $tarif;
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $client;
 
     #[ORM\ManyToOne(targetEntity: Vehicule::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private $vehicule;
 
     #[ORM\ManyToOne(targetEntity: Conducteur::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private $conducteur;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private $user;
 
     #[ORM\Column(type: 'text', nullable: true)]

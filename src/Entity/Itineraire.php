@@ -26,18 +26,21 @@ class Itineraire
     private $tarif;
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'itineraires')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $client;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'itineraire', targetEntity: Commande::class)]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $commandes;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $adresse;
 
     #[ORM\OneToMany(mappedBy: 'adresseLivraison', targetEntity: Destination::class)]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $dateChargement;
 
     public function __construct()

@@ -23,6 +23,7 @@ class Destination
     private $adresseChargement;
 
     #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'destinations')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $commandes;
 
     #[ORM\ManyToOne(targetEntity: Itineraire::class, inversedBy: 'dateChargement')]

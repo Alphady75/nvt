@@ -45,6 +45,7 @@ class Client
     private $ville;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Commande::class)]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private $commandes;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
